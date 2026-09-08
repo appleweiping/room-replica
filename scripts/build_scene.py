@@ -844,9 +844,7 @@ def validate_and_manifest(cameras, bed_support=None):
                 "fit_rmse_px": o.get("fit_rmse_px"),
                 "held_out_rmse_px": o.get("held_out_rmse_px"),
                 "fit_geometry_status": o.get("fit_geometry_status"),
-                "residuals_apply_to_current_geometry": o.get(
-                    "residuals_apply_to_current_geometry"
-                ),
+                "residuals_apply_to_current_geometry": o.get("residuals_apply_to_current_geometry"),
                 "exposure_ev": o.get("exposure_ev"),
             }
             for o in scene.objects
@@ -927,6 +925,9 @@ def main():
     from layout_v3 import refine_layout
 
     refine_layout(M)
+    from desktop_pose_v4 import refine_desktop_pose
+
+    refine_desktop_pose(M)
     from counter_props_v4 import refine_counter_props
 
     refine_counter_props(M)

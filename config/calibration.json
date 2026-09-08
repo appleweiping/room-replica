@@ -828,5 +828,338 @@
       }
     },
     "manual_reference_15_status": "The manual review camera was fitted against the former rail geometry and must not be used as a pixel-accurate oracle for the corrected rails."
+  },
+  "desktop_pose": {
+    "status": "Manual three-view rigid-corner estimate; contact plane is authored and scale is not surveyed.",
+    "reference_views": [
+      2,
+      9,
+      12
+    ],
+    "fitted_points_order": [
+      "screen_top_left",
+      "screen_top_right",
+      "screen_bottom_left",
+      "screen_bottom_right",
+      "base_front_left",
+      "base_front_right",
+      "tablet_back_left",
+      "tablet_back_right",
+      "tablet_front_left",
+      "tablet_front_right"
+    ],
+    "fitted_points_world": [
+      [
+        1.5982967669880548,
+        2.234232377265121,
+        1.0665515541752013
+      ],
+      [
+        1.5801151854074007,
+        1.8635015293494375,
+        1.0632943399341759
+      ],
+      [
+        1.5770896501394227,
+        2.2373467652906993,
+        0.8304538548893469
+      ],
+      [
+        1.5589080685587686,
+        1.8666159173750156,
+        0.8271966406483214
+      ],
+      [
+        1.358501988683854,
+        2.248823147494932,
+        0.7443743140444761
+      ],
+      [
+        1.3403204071032,
+        1.8780922995792484,
+        0.7411170998034506
+      ],
+      [
+        1.2891138028698534,
+        2.181316263298847,
+        0.7513351674347054
+      ],
+      [
+        1.2771272864683618,
+        1.9203228030691561,
+        0.7507599234977088
+      ],
+      [
+        1.1020015085400539,
+        2.1899286673236835,
+        0.7427187490518966
+      ],
+      [
+        1.0900149921385622,
+        1.9289352070939925,
+        0.7421435051149
+      ]
+    ],
+    "observations": [
+      {
+        "name": "screen_top_left",
+        "pixels": {
+          "2": [
+            893,
+            725
+          ],
+          "9": [
+            832,
+            221
+          ],
+          "12": [
+            367,
+            166
+          ]
+        }
+      },
+      {
+        "name": "screen_top_right",
+        "pixels": {
+          "2": [
+            1000,
+            730
+          ],
+          "9": [
+            963,
+            227
+          ],
+          "12": [
+            898,
+            174
+          ]
+        }
+      },
+      {
+        "name": "screen_bottom_left",
+        "pixels": {
+          "2": [
+            889,
+            791
+          ],
+          "9": [
+            833,
+            316
+          ],
+          "12": [
+            499,
+            459
+          ]
+        }
+      },
+      {
+        "name": "screen_bottom_right",
+        "pixels": {
+          "2": [
+            1000,
+            798
+          ],
+          "9": [
+            952,
+            326
+          ],
+          "12": [
+            886,
+            469
+          ]
+        }
+      },
+      {
+        "name": "base_front_left",
+        "pixels": {
+          "2": [
+            878,
+            842
+          ],
+          "9": [
+            804,
+            373
+          ],
+          "12": [
+            450,
+            700
+          ]
+        }
+      },
+      {
+        "name": "base_front_right",
+        "pixels": {
+          "2": [
+            998,
+            853
+          ],
+          "9": [
+            933,
+            386
+          ],
+          "12": [
+            877,
+            713
+          ]
+        }
+      },
+      {
+        "name": "tablet_back_left",
+        "pixels": {
+          "2": [
+            895,
+            850
+          ],
+          "9": [
+            815,
+            377
+          ],
+          "12": [
+            508,
+            772
+          ]
+        }
+      },
+      {
+        "name": "tablet_back_right",
+        "pixels": {
+          "2": [
+            986,
+            856
+          ],
+          "9": [
+            911,
+            388
+          ],
+          "12": [
+            824,
+            777
+          ]
+        }
+      },
+      {
+        "name": "tablet_front_left",
+        "pixels": {
+          "2": [
+            885,
+            882
+          ],
+          "9": [
+            792,
+            407
+          ],
+          "12": [
+            405,
+            1037
+          ]
+        }
+      },
+      {
+        "name": "tablet_front_right",
+        "pixels": {
+          "2": [
+            981,
+            892
+          ],
+          "9": [
+            891,
+            422
+          ],
+          "12": [
+            810,
+            1057
+          ]
+        }
+      }
+    ],
+    "point_semantics": "Screen outer lower/upper corners and base/tablet outer lower perimeter; bevel/hinge ambiguity remains.",
+    "desk_contact_z_m": 0.7412,
+    "fit_method": "Shared fixed reference2/9 cameras and focal length; two rigid rectangles, common screen/base width; joint reference12 pose; soft lower-perimeter desk contact constraints.",
+    "camera_fit": {
+      "position_world": [
+        1.0447580990298535,
+        1.8959417464249089,
+        1.2461378172326263
+      ],
+      "rotation_world_to_cv": [
+        [
+          -0.007963752748573465,
+          -0.9999169008048258,
+          -0.010137560211025964
+        ],
+        [
+          -0.8021752114856503,
+          0.012441067562098125,
+          -0.5969590856297171
+        ],
+        [
+          0.5970356008816494,
+          0.0033780649472586743,
+          -0.8022076289571798
+        ]
+      ],
+      "focal_px": 677.77858
+    },
+    "errors_px_by_view": {
+      "2": [
+        1.2799093776978014,
+        1.8748637549282774,
+        2.7534243974011168,
+        3.4667671598448826,
+        0.48150080679898283,
+        0.6434794162162116,
+        1.5705306570760362,
+        3.5007078295512426,
+        0.44088559550953704,
+        1.1464242280348622
+      ],
+      "9": [
+        2.2694221140107675,
+        0.15643865250034242,
+        2.940129665029784,
+        2.0079327201816524,
+        3.309818869749325,
+        2.0200315963325055,
+        3.8322339932798584,
+        0.8565734495719999,
+        1.0737791544951318,
+        2.0598098442977366
+      ],
+      "12": [
+        0.8491370385208765,
+        0.8818987634924922,
+        0.44222085543515505,
+        1.521713686282456,
+        1.8258143686016295,
+        1.8568802563359343,
+        7.352625992818639,
+        3.114875899442299,
+        2.5144621883697185,
+        1.13947677532449
+      ]
+    },
+    "camera_fit_rmse_px": 2.8666363850276646,
+    "independent_desk_corner": {
+      "source_views": [
+        2,
+        9
+      ],
+      "world_xyz": [
+        1.1011758,
+        2.43581796,
+        0.73315871
+      ],
+      "reference12_pixel": [
+        25,
+        1064
+      ],
+      "error_px": 24.99716234532757,
+      "status": "Excluded from optimization; manually triangulated on an independently estimated local desk plane. Not a final native edge residual."
+    },
+    "limits": [
+      "Manual corner and hinge selection, fixed-camera errors, and shared-focal assumptions are not captured by the small fitted residual.",
+      "Current render geometry includes retained base thickness, tiny contact correction and inferred hidden rear supports.",
+      "Reference12 remains an approximate manual review camera, not an automatic SfM registration."
+    ]
   }
 }

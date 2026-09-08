@@ -12,6 +12,10 @@ landmarks and observations are embedded for audit; no reference pixels, personal
 screen content, or rejected feature matches are included.
 
 Detailed diagnostic evidence: .local/missing-camera-manual-v4 (private).
+
+When the refined desktop assembly exists, its jointly fitted real-corner pose
+replaces historical camera 12. That separate fit and its limitations are stored
+in calibration.json; the historical correspondences below remain unchanged.
 """
 
 from __future__ import annotations
@@ -835,5 +839,9 @@ def add_manual_reference_cameras_v4():
         camera["exposure_status"] = (
             "Provisional shared detail-view exposure; not radiometrically measured"
         )
+        if number == 12 and bpy.context.scene.get("desktop_pose_refinement"):
+            from desktop_pose_v4 import apply_review_camera
+
+            apply_review_camera(camera)
         made[number] = camera
     return made

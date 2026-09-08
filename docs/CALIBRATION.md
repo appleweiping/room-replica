@@ -68,7 +68,15 @@ Four backpack views support a uniform scale of 0.894 and a base pivot near (−1
 
 References 12 (desktop) and 15 (right bed frame) do not have reliable automatic SfM registration. The new `reference_cameras_v4` module fits manually identified static furniture and rigid-object landmarks using the existing 677.778580 px focal length. It does not replace the thirteen registered reference cameras.
 
-Reference 12 has six fitted points (20.3 px RMS) and six independent held-out points (64.6 px RMS). Existing desktop prop positions are approximate, so this is only a rough appearance-review camera. Reference 15 has eight fitted points (24.0 px RMS) and three held-out screw centres (14.5 px RMS). These errors are measured at 1707 × 1280. Neither camera establishes surveyed geometry or successful SfM recovery. Coordinates, observation descriptions and residuals are embedded in the module. Exposure remains provisional.
+The historical reference-12 fit has six fitted points (20.3 px RMS) and six independent held-out points (64.6 px RMS); it depends on the former approximate desktop props. It remains available in the module for source audit, while the refined desktop uses the separate fit described below. Reference 15 has eight fitted points (24.0 px RMS) and three held-out screw centres (14.5 px RMS). These errors are measured at 1707 × 1280. Neither camera establishes surveyed geometry or successful SfM recovery. Coordinates, observation descriptions and residuals are embedded in the module. Exposure remains provisional.
+
+### Desktop rigid-corner refinement
+
+Ten manually matched screen, laptop-base and tablet corners in references 2, 9 and 12 jointly constrain two rectangular surfaces, a shared screen/base width and the missing reference-12 camera. Registered cameras 2/9 and the 677.778580 px focal length stay fixed. The source records every image observation, fitted point and assumption in `desktop_pose`. A small contact prior uses the existing 0.741 m desktop; outside lower perimeters must not be confused with the top keyboard/glass surfaces. A rejected interpretation applied body thickness twice and worsened the independent desk-corner check to 71 pixels.
+
+The reviewed candidate places reference 12 at approximately (1.0448, 1.8959, 1.2461) m. Its ten analytic reference-12 corner residuals are 2.87 px RMS, while an independently triangulated desk corner excluded from fitting differs by 25.0 px. Manual picks, narrow-baseline triangulation, the shared focal assumption and retained body thickness limit accuracy; the small fit residual does **not** describe all final beveled mesh edges. The thirteen automatic reference cameras remain unchanged.
+
+The refinement raises the laptop's rear relative to its front, adjusts its screen tilt, enlarges the tablet to the observed rectangle and moves the two laptop cable endpoints. Small hidden rear supports are explicitly inferred mechanical completion; their design is not identified from the photographs. Actual Cycles views 2, 9 and 12 were inspected, and the source refinement preserves rigid mesh coordinates and UVs. Appearance details and surrounding desk clutter remain unfinished.
 
 ### Right bed rails after the manual camera fit
 
