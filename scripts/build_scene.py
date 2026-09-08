@@ -931,6 +931,9 @@ def main():
     from desktop_surface_v4 import refine_desktop_surfaces
 
     refine_desktop_surfaces()
+    from desktop_packages_v5 import refine_desktop_packages
+
+    refine_desktop_packages()
     from counter_props_v4 import refine_counter_props
 
     refine_counter_props(M)

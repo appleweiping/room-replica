@@ -1,0 +1,40 @@
+{
+  "author": "Original procedural graphics authored by Codex for this room reconstruction",
+  "method": "Deterministic NumPy/Pillow/SciPy raster drawing; no downloaded images, no photograph pixels, no personal screen information.",
+  "seed": 52105,
+  "references": [
+    "User photographs 2, 9 and 12 inform object type and broad color distribution only."
+  ],
+  "license": "CC0-1.0 for these authored raster assets and this generating script.",
+  "fonts": "Arial/Arial Bold rasterized with the local Windows font installation; font files are not redistributed.",
+  "files": {
+    "neutral-crisps-print.png": {
+      "bytes": 21178,
+      "sha256": "77c754fd703b91e6aa6cb3cebe43a9e01b201c120bb1eedfad90ba71094db038"
+    },
+    "paper-emboss-normal.png": {
+      "bytes": 1375016,
+      "sha256": "e76b65607f0822ca84f5cddd23081cbafda9f0bb9ebd8272621bb610a62b98e3"
+    },
+    "paper-end-albedo.png": {
+      "bytes": 573953,
+      "sha256": "51bdc0c2bcf05fa3884005e7f0aeeefcecc3b37e88967a002b25b2b7713779b3"
+    },
+    "paper-end-normal.png": {
+      "bytes": 1943971,
+      "sha256": "94c0cf100c9a663c069bbccb2d35fde35b7d0712d4d410768edf1778c85725e8"
+    },
+    "paper-fiber-albedo.png": {
+      "bytes": 481263,
+      "sha256": "939b8dd22824cc704b002ac8f1e894ce9bc094ff1bb6345399b79a845ad84aaf"
+    },
+    "wrapper-micro-normal.png": {
+      "bytes": 137744,
+      "sha256": "c6782aecfeb8c847c3bac93a2679861acb852a5a390d37f5aa3c3d7a83236fdc"
+    },
+    "wrapper-roughness.png": {
+      "bytes": 230757,
+      "sha256": "ac61e56e8f34936d89f9869c714a3680ebc977473bc1681fccc668d363cc4d9f"
+    }
+  }
+}
