@@ -990,6 +990,9 @@ def main():
     from wood_photo_v4 import refine_photo_wood
 
     refine_photo_wood(M)
+    from dresser_photo_v5 import refine_dresser_wood
+
+    refine_dresser_wood()
     from window_details_v3 import refine_blinds
 
     refine_blinds()

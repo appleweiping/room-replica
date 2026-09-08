@@ -1,0 +1,334 @@
+{
+  "version": "5.0-experimental",
+  "source_reference": 14,
+  "source_filename": "c2d339261e96b29ef5bc46021753e752.jpg",
+  "source_sha256": "0ece65e1ec057a963b1daf1605771350802263513a7a0cc18cc446f7d82bc9b5",
+  "method": "Three separate photographed wood interiors, each used once on its corresponding rigid drawer face. Masked cord, shadow and sticker filled from nearest observed same-row patch of the same drawer. First-order log illumination estimate; not measured albedo. No source photograph text or personal objects in delivered maps.",
+  "source_size": [
+    1707,
+    1280
+  ],
+  "exclusions": [
+    {
+      "name": "power cable and local shadow",
+      "polygon": [
+        [
+          753,
+          882
+        ],
+        [
+          780,
+          884
+        ],
+        [
+          773,
+          943
+        ],
+        [
+          773,
+          991
+        ],
+        [
+          770,
+          1049
+        ],
+        [
+          773,
+          1081
+        ],
+        [
+          771,
+          1124
+        ],
+        [
+          754,
+          1165
+        ],
+        [
+          735,
+          1162
+        ],
+        [
+          753,
+          1119
+        ],
+        [
+          754,
+          1082
+        ],
+        [
+          751,
+          1049
+        ],
+        [
+          753,
+          989
+        ],
+        [
+          755,
+          945
+        ]
+      ]
+    },
+    {
+      "name": "hanging sticker and edge shadow",
+      "polygon": [
+        [
+          726,
+          884
+        ],
+        [
+          763,
+          888
+        ],
+        [
+          763,
+          920
+        ],
+        [
+          735,
+          919
+        ]
+      ]
+    }
+  ],
+  "boards": [
+    {
+      "object": "Dresser drawer 1",
+      "source_quad_tl_tr_br_bl": [
+        [
+          474,
+          1074
+        ],
+        [
+          826,
+          1084
+        ],
+        [
+          824,
+          1159
+        ],
+        [
+          487,
+          1146
+        ]
+      ],
+      "homography_uv_to_source": [
+        [
+          312.62780127267695,
+          34.53879293308565,
+          474.0
+        ],
+        [
+          -41.67005256709217,
+          122.68471601912968,
+          1074.0
+        ],
+        [
+          -0.0476661001541441,
+          0.04422750088929291,
+          1.0
+        ]
+      ],
+      "rectified_size": [
+        512,
+        138
+      ],
+      "native_front_size_m": [
+        0.73462725,
+        0.1961064
+      ],
+      "inferred_fraction": 0.056739696557971016,
+      "fills": [
+        {
+          "component": 1,
+          "destination_xyxy": [
+            385,
+            0,
+            438,
+            138
+          ],
+          "horizontal_donor_offset_px": -53,
+          "pixels": 4009
+        }
+      ],
+      "first_order_log_illumination_coefficients": [
+        [
+          -2.1790065189447447,
+          -3.1423043791458634,
+          -4.917444331405296
+        ],
+        [
+          -0.17894512424175055,
+          -0.17068301661120858,
+          -0.051160561982904834
+        ],
+        [
+          -1.3076664748574984,
+          -1.3518501711511408,
+          -1.5001106532531174
+        ]
+      ]
+    },
+    {
+      "object": "Dresser drawer 2",
+      "source_quad_tl_tr_br_bl": [
+        [
+          458,
+          979
+        ],
+        [
+          828,
+          989
+        ],
+        [
+          826,
+          1069
+        ],
+        [
+          473,
+          1058
+        ]
+      ],
+      "homography_uv_to_source": [
+        [
+          354.1794635906872,
+          37.727832425164536,
+          458.0
+        ],
+        [
+          -8.896751822234819,
+          129.8373080461397,
+          979.0
+        ],
+        [
+          -0.019106928030571086,
+          0.04805038567688062,
+          1.0
+        ]
+      ],
+      "rectified_size": [
+        512,
+        138
+      ],
+      "native_front_size_m": [
+        0.73462725,
+        0.1961064
+      ],
+      "inferred_fraction": 0.055607450181159424,
+      "fills": [
+        {
+          "component": 1,
+          "destination_xyxy": [
+            404,
+            0,
+            437,
+            138
+          ],
+          "horizontal_donor_offset_px": -33,
+          "pixels": 3929
+        }
+      ],
+      "first_order_log_illumination_coefficients": [
+        [
+          -1.6843702441326565,
+          -2.6805882821452705,
+          -4.525701627201738
+        ],
+        [
+          -0.07234789819497976,
+          -0.08497965677514559,
+          -0.020374317923574987
+        ],
+        [
+          -0.34952431264261724,
+          -0.48642821211461645,
+          -0.5924933494148126
+        ]
+      ]
+    },
+    {
+      "object": "Dresser drawer 3",
+      "source_quad_tl_tr_br_bl": [
+        [
+          442,
+          892
+        ],
+        [
+          829,
+          903
+        ],
+        [
+          828,
+          974
+        ],
+        [
+          457,
+          962
+        ]
+      ],
+      "homography_uv_to_source": [
+        [
+          369.2894167646947,
+          34.68257883352939,
+          442.0
+        ],
+        [
+          -8.291503813607505,
+          111.43247448108374,
+          892.0
+        ],
+        [
+          -0.021363791598679467,
+          0.04306910029218685,
+          1.0
+        ]
+      ],
+      "rectified_size": [
+        512,
+        138
+      ],
+      "native_front_size_m": [
+        0.73462725,
+        0.1961064
+      ],
+      "inferred_fraction": 0.06899626358695653,
+      "fills": [
+        {
+          "component": 1,
+          "destination_xyxy": [
+            382,
+            0,
+            446,
+            138
+          ],
+          "horizontal_donor_offset_px": -64,
+          "pixels": 4875
+        }
+      ],
+      "first_order_log_illumination_coefficients": [
+        [
+          -1.373005908390476,
+          -2.248045083432274,
+          -3.849030332272618
+        ],
+        [
+          -0.12865322921335284,
+          -0.13249657182152605,
+          -0.07331401039571044
+        ],
+        [
+          -0.4569751559035823,
+          -0.6242221006801455,
+          -0.8205691319213777
+        ]
+      ]
+    }
+  ],
+  "limitations": [
+    "Manual sample quads are inset and approximate, not surveyed corners.",
+    "512x138 resampling adds no captured detail to roughly 350x80 source pixels.",
+    "Source illumination and smartphone color processing are unknown; remaining broad color will be checked in actual Cycles views.",
+    "Drawer mesh, original UV0, unobserved edge/back PBR and physical size remain unchanged."
+  ]
+}

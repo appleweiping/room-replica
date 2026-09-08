@@ -1,0 +1,110 @@
+{
+  "method": "Single first-order log-RGB response versus physical board height, jointly fitted to three front medians. Each rigid board uses that trend at its center. This estimates retained photographed vertical illumination under fixed native transport; no light/camera change or grain-scale per-pixel fit. The prior common-gain candidate over-darkened lower boards and is rejected.",
+  "common_gain_rejected": [
+    1.3143953084945679,
+    1.609113097190857,
+    2.2476203441619873
+  ],
+  "height_center_m": 0.39207448189457256,
+  "height_response_coefficients": [
+    [
+      0.27337672126789886,
+      0.47568312784036004,
+      0.8098719716072083
+    ],
+    [
+      -1.250309299039884,
+      -1.2779895659697782,
+      -0.7157877875730998
+    ]
+  ],
+  "board_center_gains": [
+    [
+      1.7006665280186481,
+      2.093904611235595,
+      2.604836599923265
+    ],
+    [
+      1.3143953387655123,
+      1.609113085234905,
+      2.2476202350230854
+    ],
+    [
+      1.0158575908301906,
+      1.2365629011601158,
+      1.9393909567743746
+    ]
+  ],
+  "diagnostic_by_board": [
+    {
+      "object": "Dresser drawer 1",
+      "target_rgb255": [
+        107.30826469607744,
+        67.99277881052878,
+        26.287476331093675
+      ],
+      "baseline_rgb255": [
+        74.30445741815122,
+        39.19914009974785,
+        3.9520384047752084
+      ],
+      "diagnostic_individual_gain": [
+        1.7032365798950195,
+        2.0753822326660156,
+        2.6034131050109863
+      ]
+    },
+    {
+      "object": "Dresser drawer 2",
+      "target_rgb255": [
+        121.62397087058967,
+        76.35563357806713,
+        28.257311147363897
+      ],
+      "baseline_rgb255": [
+        101.54862742539461,
+        53.33917480536088,
+        0.5041042106713494
+      ],
+      "diagnostic_individual_gain": [
+        1.310431718826294,
+        1.6379632949829102,
+        2.2500786781311035
+      ]
+    },
+    {
+      "object": "Dresser drawer 3",
+      "target_rgb255": [
+        141.64673959754842,
+        95.14563735622271,
+        44.8643550686489
+      ],
+      "baseline_rgb255": [
+        139.79541625392824,
+        82.6091187050871,
+        8.92487040654197
+      ],
+      "diagnostic_individual_gain": [
+        1.0173927545547485,
+        1.225624442100525,
+        1.938331127166748
+      ]
+    }
+  ],
+  "outputs": [
+    {
+      "path": "drawer-1-estimated-basecolor.png",
+      "sha256": "834e3caf8fbadec1be735fa26fb7972102dbcb93bb38b4118f37d5a4b383ad81"
+    },
+    {
+      "path": "drawer-2-estimated-basecolor.png",
+      "sha256": "01edb4cf4c359602022bf7ead3208e9e8da82ee416764b06592fc1ca4653f81b"
+    },
+    {
+      "path": "drawer-3-estimated-basecolor.png",
+      "sha256": "80d81ce7a8cf87ac8858a9caaeeec2638718c090508c7d02dda91ca94077a016"
+    }
+  ],
+  "ocio_config_sha256": "eaeb3b633cfc1ab190e0e7e1c9d6155ef43a08bb3b2e94fd5db7060bbfe59416",
+  "limitations": "Approximate fixed-transport appearance fit, not measured albedo. Manual source and native dimensions differ. Baseline precedes improved hidden-grain fill only; calibration patches exclude every altered fill pixel."
+}
