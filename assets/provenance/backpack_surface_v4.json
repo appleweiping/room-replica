@@ -1,0 +1,51 @@
+{
+  "asset": "Backpack V4 authored plain weave",
+  "origin": "Original deterministic procedural textile; no source photograph or downloaded material used.",
+  "recipe": {
+    "tile_width_m": 0.064,
+    "yarn_pitch_m": 0.0004,
+    "thread_count_each_axis": 160,
+    "height_scale_m": 2.6e-05,
+    "resolution": [
+      2048,
+      2048
+    ],
+    "normal_convention": "OpenGL tangent space"
+  },
+  "licensing": "Authored for this project; no third-party asset license. Follows the project asset licensing terms.",
+  "appearance_limit": "Generic woven polyester/nylon approximation. It is not a measured scan of the photographed backpack.",
+  "files": {
+    "assets/textures/backpack_v4/plain_weave_normal.png": {
+      "sha256": "755d74e93c8aab2f2e79aa0921a3677d5b6098bf5d2d0f9e279dea9df42b79a6",
+      "bytes": 309236
+    },
+    "assets/textures/backpack_v4/plain_weave_roughness.png": {
+      "sha256": "75acf8c003e28750cd9c9bfcea2966cbd7c9f99839cebcffe59fb4687d92e7ce",
+      "bytes": 40630
+    },
+    "assets/textures/backpack_v4/plain_weave_roughness_62.png": {
+      "sha256": "7b50cd5f54f86c8a67b329f3e2049d5ce23d92eb3d980e7ad47011c0cfb6cf0f",
+      "bytes": 39738
+    },
+    "assets/textures/backpack_v4/plain_weave_roughness_68.png": {
+      "sha256": "68e6086b8f615b2b0c278f5279bd8daa58c83e5dcfc2a41528e856c263e1aa9e",
+      "bytes": 41283
+    },
+    "assets/textures/backpack_v4/plain_weave_roughness_76.png": {
+      "sha256": "66c5398192760931957f09cb5a6154db9041c1221eb12f66db67c07d5ac6ce64",
+      "bytes": 39812
+    },
+    "assets/textures/backpack_v4/plain_weave_roughness_81.png": {
+      "sha256": "f455417180d96381e4499a7c5298905a9712b1d92e5e73f4b91fc06e7a784946",
+      "bytes": 41343
+    },
+    "assets/textures/backpack_v4/plain_weave_roughness_89.png": {
+      "sha256": "2d04626798e12c7a56e15a9656920fc406bb856c62fd59bdc4206bb88396ed4d",
+      "bytes": 42002
+    },
+    "assets/textures/backpack_v4/plain_weave_variation.png": {
+      "sha256": "68d6fd72bfeb3be7e00f2147f09fc3a4329231f8154b8b4fc185307b3de426be",
+      "bytes": 70918
+    }
+  }
+}

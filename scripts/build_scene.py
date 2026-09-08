@@ -964,6 +964,9 @@ def main():
     from backpack_shape_v3 import refine_backpack_shape
 
     refine_backpack_shape(M)
+    from backpack_surface_v4 import refine_backpack_surface
+
+    refine_backpack_surface()
     from chair_pillow_v4 import refine_chair_pillow
 
     refine_chair_pillow(M)
