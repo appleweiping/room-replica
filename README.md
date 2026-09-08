@@ -1,5 +1,9 @@
 # Room Replica
 
+> **项目已于 2026-09-08 按用户要求结束。** 当前结果没有达到“与实景难辨”；不再继续自动迭代。最新成果、版本对应关系、下载与已知差距见 **[项目收尾记录](docs/PROJECT_CLOSEOUT.md)** 和 **[收尾画廊](https://appleweiping.github.io/room-replica/closeout.html)**。
+
+**版本说明：** 下方原生 `scene/room.blend`、实时 GLB 和四张大图是保留的 **v1 演示基线**。后续改进源码已随仓库交付；最后完成整场景构建和实际渲染检查的 **r10 Blender 工程及其精确源码快照**在 [收尾 Release](https://github.com/appleweiping/room-replica/releases/tag/v1.1.0-closeout) 下载。r10 之后合入的地毯反光、桌面印刷和三抽柜包装改进只计入源码及对应局部预览，没有冒称已重建进 r10。
+
 [![Validate delivery](https://github.com/appleweiping/room-replica/actions/workflows/validate.yml/badge.svg)](https://github.com/appleweiping/room-replica/actions/workflows/validate.yml)
 [![Publish demo](https://github.com/appleweiping/room-replica/actions/workflows/pages.yml/badge.svg)](https://github.com/appleweiping/room-replica/actions/workflows/pages.yml)
 
@@ -11,7 +15,7 @@ A complete, editable Blender reconstruction of a lived-in student room, guided b
 
 **[打开交互演示 / Live demo](https://appleweiping.github.io/room-replica/)** · **[Blender 场景](scene/room.blend)** · **[浏览器模型](demo/public/models/room.glb)** · **[官方参考资料](docs/REFERENCE_RESEARCH.md)**
 
-无需运行代码即可使用 [Release 下载包](https://github.com/appleweiping/room-replica/releases/latest)：原生 `.blend`、独立 `.glb`、四视角成片和包含源码的完整项目包。每个发布附件提供 SHA-256 校验值。
+无需运行代码即可使用 [v1 下载包](https://github.com/appleweiping/room-replica/releases/tag/v1.0.0)：原生 `.blend`、独立 `.glb`、四视角成片和包含源码的完整项目包。每个发布附件提供 SHA-256 校验值。后续冻结原生工程另见上方收尾 Release。
 
 ## 交付内容
 
@@ -19,7 +23,7 @@ A complete, editable Blender reconstruction of a lived-in student room, guided b
 | --- | --- | --- |
 | 原生工程 | [`scene/room.blend`](scene/room.blend) | 可编辑几何、材质、分组、灯光、四个预设相机；贴图打包在文件内 |
 | 交互模型 | [`demo/public/models/room.glb`](demo/public/models/room.glb) | 嵌入贴图的 glTF 2.0 单文件，可用 Three.js / Blender 等打开 |
-| 最终成片 | [`renders/`](renders) | 卧室、入口厨房、书桌、空间剖切四个 Cycles 视角；1600 × 1200，64 samples，降噪 |
+| v1 预览成片 | [`renders/`](renders) | 卧室、入口厨房、书桌、空间剖切四个 Cycles 视角；1600 × 1200，64 samples，降噪 |
 | 完整演示 | [`demo/`](demo) | 中英界面、相机预设、剖切、曝光、画质、截图和模型下载 |
 | 可重复构建 | [`scripts/build_scene.py`](scripts/build_scene.py) | 从零建立同一房间，固定种子，不依赖私有照片 |
 | 材质来源 | [`assets/ASSET_SOURCES.json`](assets/ASSET_SOURCES.json) | CC0 贴图作者、URL、下载校验信息 |
@@ -43,7 +47,7 @@ A complete, editable Blender reconstruction of a lived-in student room, guided b
 
 这是根据多张照片进行的**人工参数化建模**，并非激光扫描或摄影测量网格。目标是保留这个房间的布局、日常状态和材料特征。遮挡部分、细小标签、柔性织物的具体褶皱均为依据照片重建的近似；电脑屏幕和门上公告使用原创通用内容。
 
-UMN 官方 [Yudof 页面](https://housing.umn.edu/yudof) 给出床垫 **36 × 80 英寸（0.9144 × 2.032 米）**，模型据此定标。未找到该具体房间的公开实测平面图；本版室内主体按 **3.00 × 4.15 × 2.82 米**估算，洗手台凹槽另计。官方公布的 efficiency 平均面积没有清晰说明统计边界，因此没有直接套到这一个私人房间上。完整证据和限制见 [参考核查](docs/REFERENCE_RESEARCH.md)。
+UMN 官方 [Yudof 页面](https://housing.umn.edu/yudof) 给出床垫 **36 × 80 英寸（0.9144 × 2.032 米）**，模型据此定标。未找到该具体房间的公开实测平面图。v1 主体估算为 **3.00 × 4.15 × 2.82 米**；后续 r10 和当前源码通过多视角校准调整为 **3.33 × 4.54 × 3.035 米**，仍属估算，不是现场测量。官方平均面积没有明确统计边界，没有直接套用。证据与限制见 [参考核查](docs/REFERENCE_RESEARCH.md) 和 [改进审查记录](docs/REALISM_REVIEW.md)。
 
 **Cycles 成片是材质与光照的主版本。** 浏览器使用实时 PBR、辅助灯光和环境反射，镜面、微观凹凸、透明介质以及间接光与 Cycles 有差别。GLB 可以观察与交互，不能替代最终渲染。没有将任一自动指标表述为“与照片完全一致”。
 

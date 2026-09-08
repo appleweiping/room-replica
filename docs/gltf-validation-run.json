@@ -10,8 +10,8 @@
   "sourceSha256": "3a4929cc584230f6aa932e40bb9ce99e716acc057689ae393ba37bf1970de7d8",
   "sourceSha256AfterValidation": "3a4929cc584230f6aa932e40bb9ce99e716acc057689ae393ba37bf1970de7d8",
   "sourceUnchangedDuringValidation": true,
-  "startedAt": "2026-09-08T03:22:25.000Z",
-  "completedAt": "2026-09-08T03:22:30.884Z",
+  "startedAt": "2026-09-08T22:04:20.446Z",
+  "completedAt": "2026-09-08T22:04:21.850Z",
   "options": {
     "uri": "demo/public/models/room.glb",
     "format": "glb",
