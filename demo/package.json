@@ -1,0 +1,22 @@
+{
+  "name": "room-replica-demo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "An interactive companion to a photograph-guided Blender room reconstruction",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "check": "node --check src/main.js && node --check src/viewer.js"
+  },
+  "dependencies": {
+    "three": "0.180.0"
+  },
+  "devDependencies": {
+    "vite": "7.3.6"
+  },
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  }
+}

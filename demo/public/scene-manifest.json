@@ -1,0 +1,83 @@
+{
+  "title": "Room Replica / Observed everyday interior",
+  "units": "meters",
+  "seed": 521,
+  "dimensions": {
+    "width": 3.0,
+    "length": 4.15,
+    "height": 2.82,
+    "status": "photo-estimated",
+    "mattress": [
+      2.032,
+      0.9144,
+      0.208
+    ],
+    "mattress_source": "https://housing.umn.edu/yudof"
+  },
+  "objects": 1303,
+  "meshes": 979,
+  "materials": 59,
+  "vertices_base": 137777,
+  "cameras": {
+    "bedroom": {
+      "position": [
+        -0.15000000596046448,
+        0.6700000166893005,
+        1.659999966621399
+      ],
+      "rotation_euler": [
+        1.3421528339385986,
+        4.001985409729514e-09,
+        -0.056331321597099304
+      ],
+      "lens_mm": 21.0
+    },
+    "kitchen": {
+      "position": [
+        -0.15000000596046448,
+        2.9100000858306885,
+        1.6200000047683716
+      ],
+      "rotation_euler": [
+        1.3976870775222778,
+        7.642251631523322e-08,
+        -3.1187829971313477
+      ],
+      "lens_mm": 21.0
+    },
+    "desk": {
+      "position": [
+        -0.6499999761581421,
+        1.2100000381469727,
+        1.5399999618530273
+      ],
+      "rotation_euler": [
+        1.2479653358459473,
+        -9.281305324293498e-08,
+        -1.2070536613464355
+      ],
+      "lens_mm": 30.0
+    },
+    "overview": {
+      "position": [
+        -5.099999904632568,
+        -4.699999809265137,
+        6.400000095367432
+      ],
+      "rotation_euler": [
+        0.9761039018630981,
+        -4.3136889615880136e-08,
+        -0.6420921087265015
+      ],
+      "lens_mm": 42.0
+    }
+  },
+  "engine": "Cycles",
+  "blender_version": "4.5.13 LTS",
+  "notes": [
+    "Geometry modeled from 16 user photographs; not a photogrammetry scan.",
+    "Room envelope is an estimate; official mattress dimensions anchor scale.",
+    "Original photos and screen content are excluded from public assets.",
+    "Browser glTF is a simplified material representation; Cycles renders are the visual master."
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "tool": "KhronosGroup glTF-Validator official npm package",
+  "package": "gltf-validator",
+  "packageVersion": "2.0.0-dev.3.10",
+  "validatorVersion": "2.0.0-dev.3.10",
+  "officialSource": "https://github.com/KhronosGroup/glTF-Validator",
+  "registry": "https://registry.npmjs.org",
+  "source": "demo/public/models/room.glb",
+  "sourceBytes": 41832444,
+  "sourceSha256": "3a4929cc584230f6aa932e40bb9ce99e716acc057689ae393ba37bf1970de7d8",
+  "sourceSha256AfterValidation": "3a4929cc584230f6aa932e40bb9ce99e716acc057689ae393ba37bf1970de7d8",
+  "sourceUnchangedDuringValidation": true,
+  "startedAt": "2026-09-08T03:22:25.000Z",
+  "completedAt": "2026-09-08T03:22:30.884Z",
+  "options": {
+    "uri": "demo/public/models/room.glb",
+    "format": "glb",
+    "maxIssues": 0,
+    "writeTimestamp": true
+  },
+  "externalResourceRequests": [],
+  "ignoredIssues": [],
+  "severityOverrides": {},
+  "fullReport": "docs/gltf-validation.json",
+  "reportWasFiltered": false
+}

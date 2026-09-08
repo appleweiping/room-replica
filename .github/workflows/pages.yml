@@ -1,0 +1,49 @@
+name: Publish interactive demo
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate delivered assets before publishing
+        run: python scripts/validate_delivery.py
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: demo/package-lock.json
+      - name: Install pinned glTF validator
+        run: npm install --prefix .local/gltf-validation --no-save --ignore-scripts gltf-validator@2.0.0-dev.3.10 --registry=https://registry.npmjs.org
+      - name: Validate glTF conformance before publishing
+        run: node scripts/validate_gltf.cjs
+      - run: npm ci
+        working-directory: demo
+      - run: npm run build
+        working-directory: demo
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: demo/dist
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4

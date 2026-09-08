@@ -1,0 +1,15 @@
+references/*
+!references/README.md
+scene/*.blend1
+scene/*.blend2
+*.log
+__pycache__/
+.venv/
+node_modules/
+demo/dist/
+renders/preview*
+renders/*.exr
+.DS_Store
+Thumbs.db
+.local/
+/docs/demo-*.png

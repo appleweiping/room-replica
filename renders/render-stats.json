@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "started_at": "2026-09-08T02:15:19+00:00",
+  "source_scene": "D:\\Company\\room-replica\\scene\\room.blend",
+  "source_scene_sha256_at_start": "707b59e0f27a8f87631ff4c6c439b9d26205066de67f595014c8d6c9129ac1ce",
+  "blender_version": "4.5.13 LTS",
+  "engine": "Cycles",
+  "device": "CPU",
+  "threads": 12,
+  "resolution": [
+    1600,
+    1200
+  ],
+  "samples": 64,
+  "denoising": true,
+  "adaptive_threshold": 0.02,
+  "requested_views": [
+    "bedroom",
+    "kitchen",
+    "desk",
+    "overview"
+  ],
+  "status": "complete",
+  "renders": [
+    {
+      "view": "bedroom",
+      "camera": "Camera_Bedroom",
+      "camera_position_m": [
+        -0.15000000596046448,
+        0.6700000166893005,
+        1.659999966621399
+      ],
+      "camera_lens_mm": 21.0,
+      "frame": 1,
+      "output": "renders/bedroom.jpg",
+      "resolution": [
+        1600,
+        1200
+      ],
+      "samples": 64,
+      "cutaway": false,
+      "started_at": "2026-09-08T02:15:21+00:00",
+      "status": "complete",
+      "bytes": 346340,
+      "sha256": "72bb1f0e219a386cb882c9a75a3a9adef2bac8d3560e5b5a2dcc3a5fad3a60a9",
+      "elapsed_seconds": 1499.185,
+      "finished_at": "2026-09-08T02:40:20+00:00"
+    },
+    {
+      "view": "kitchen",
+      "camera": "Camera_Kitchen",
+      "camera_position_m": [
+        -0.15000000596046448,
+        2.9100000858306885,
+        1.6200000047683716
+      ],
+      "camera_lens_mm": 21.0,
+      "frame": 61,
+      "output": "renders/kitchen.jpg",
+      "resolution": [
+        1600,
+        1200
+      ],
+      "samples": 64,
+      "cutaway": false,
+      "started_at": "2026-09-08T02:40:20+00:00",
+      "status": "complete",
+      "bytes": 335240,
+      "sha256": "ee303455dce67ad6eb2b37ec96f864c2cbfcfbc9c0146650ecfa5ffc3e5be3a2",
+      "elapsed_seconds": 1191.945,
+      "finished_at": "2026-09-08T03:00:12+00:00"
+    },
+    {
+      "view": "desk",
+      "camera": "Camera_Desk",
+      "camera_position_m": [
+        -0.6499999761581421,
+        1.2100000381469727,
+        1.5399999618530273
+      ],
+      "camera_lens_mm": 30.0,
+      "frame": 121,
+      "output": "renders/desk.jpg",
+      "resolution": [
+        1600,
+        1200
+      ],
+      "samples": 64,
+      "cutaway": false,
+      "started_at": "2026-09-08T03:00:13+00:00",
+      "status": "complete",
+      "bytes": 296303,
+      "sha256": "3803d945af8e2d7c4fde9b8353ea3654b2560b17533edea5ab9211a07781d440",
+      "elapsed_seconds": 952.975,
+      "finished_at": "2026-09-08T03:16:06+00:00"
+    },
+    {
+      "view": "overview",
+      "camera": "Camera_Overview",
+      "camera_position_m": [
+        -5.099999904632568,
+        -4.699999809265137,
+        6.400000095367432
+      ],
+      "camera_lens_mm": 42.0,
+      "frame": 181,
+      "output": "renders/overview.jpg",
+      "resolution": [
+        1600,
+        1200
+      ],
+      "samples": 64,
+      "cutaway": true,
+      "started_at": "2026-09-08T03:16:07+00:00",
+      "status": "complete",
+      "bytes": 216950,
+      "sha256": "ac05feb3f97e34133c5690b3b1fda36957f983a2c4c75cac01e6e9ff74f6b741",
+      "elapsed_seconds": 210.576,
+      "finished_at": "2026-09-08T03:19:37+00:00"
+    }
+  ],
+  "elapsed_seconds": 3857.87,
+  "finished_at": "2026-09-08T03:19:38+00:00"
+}

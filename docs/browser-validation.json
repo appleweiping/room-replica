@@ -1,0 +1,163 @@
+{
+  "schema_version": 1,
+  "checked_at_utc": "2026-09-08T01:48:47Z",
+  "url": "http://127.0.0.1:5173/",
+  "environment": {
+    "server": "Vite development server",
+    "tool": "agent-browser direct Windows CLI",
+    "session": "room-replica",
+    "node_engine": "^20.19.0 || >=22.12.0",
+    "dependency_lock_updated_without_upgrading_packages": true,
+    "npm_audit_vulnerabilities": 0
+  },
+  "interaction_status": "passed",
+  "checks": [
+    {
+      "id": "model-load",
+      "passed": true,
+      "evidence": { "stage_ready": true, "canvas_present": true, "source_meshes": 1276, "batched_meshes": 262 }
+    },
+    {
+      "id": "four-camera-presets",
+      "passed": true,
+      "evidence": [
+        { "view": "dollhouse", "selected": true, "cutaway": true, "canvas_sample_hash": 4032863371 },
+        { "view": "bedroom", "selected": true, "cutaway": false, "canvas_sample_hash": 2142433655 },
+        { "view": "kitchen", "selected": true, "cutaway": false, "canvas_sample_hash": 3163919777 },
+        { "view": "desk", "selected": true, "cutaway": false, "canvas_sample_hash": 4339406 }
+      ]
+    },
+    {
+      "id": "manual-cutaway",
+      "passed": true,
+      "evidence": "Real checkbox actions changed the selected interior view's cutaway state false → true → false."
+    },
+    {
+      "id": "lighting",
+      "passed": true,
+      "evidence": { "selected": "warm", "canvas_sample_hash": 4038894204, "restored": "daylight" }
+    },
+    {
+      "id": "keyboard-exposure",
+      "passed": true,
+      "evidence": { "action": "Focused slider, pressed ArrowRight", "before": "0.8", "after": "0.85", "visible_output": "0.85", "canvas_sample_hash_after": 2163516839, "restored": "0.8" }
+    },
+    {
+      "id": "quality",
+      "passed": true,
+      "evidence": { "high_sample_hash": 3123440762, "balanced_sample_hash": 1558592327, "selection_verified_in_accessibility_tree": true }
+    },
+    {
+      "id": "language",
+      "passed": true,
+      "evidence": {
+        "zh": { "document_lang": "zh-CN", "stored_preference": "zh", "title": "把日常，留在空间里。" },
+        "en": { "document_lang": "en", "stored_preference": "en", "title": "Room, remembered." },
+        "estimated_dimensions_visible": "3.00 × 4.15 × 2.82 m"
+      }
+    },
+    {
+      "id": "gallery-dialogs",
+      "passed": true,
+      "evidence": [
+        { "image": "bedroom.jpg", "dialog_open": true, "image_loaded": true, "escape_closed": true },
+        { "image": "kitchen.jpg", "dialog_open": true, "image_loaded": true, "escape_closed": true },
+        { "image": "desk.jpg", "dialog_open": true, "image_loaded": true, "escape_closed": true },
+        { "image": "overview.jpg", "dialog_open": true, "image_loaded": true, "escape_closed": true }
+      ],
+      "interaction_note": "The first bedroom click occurred while smooth scrolling was still moving the page. After an explicit instant scroll and a fresh snapshot, a real click opened the dialog. No application change was necessary."
+    },
+    {
+      "id": "desktop-layout",
+      "passed": true,
+      "evidence": { "viewport": [1440, 1100], "document_client_width": 1425, "document_scroll_width": 1425, "horizontal_overflow": false, "switch_label_horizontal": true }
+    },
+    {
+      "id": "mobile-layout",
+      "passed": true,
+      "evidence": { "viewport": [390, 844], "document_client_width": 375, "document_scroll_width": 375, "horizontal_overflow": false, "canvas_size": [335, 465], "quality": "balanced" }
+    },
+    {
+      "id": "console-and-page-errors",
+      "passed": true,
+      "evidence": { "page_errors": [], "console_errors": [], "console_warnings": [], "other_logs": "Vite debug connection and hot-update messages only." }
+    }
+  ],
+  "screenshots": {
+    "status": "final_render_set_captured_and_visually_inspected",
+    "captured_at_utc": "2026-09-08T03:30:00Z",
+    "desktop": { "path": "docs/interactive-desktop.png", "pixels": [1425, 3051], "language": "zh-CN", "quality": "high", "view": "dollhouse" },
+    "mobile": { "path": "docs/interactive-mobile.png", "pixels": [375, 3807], "language": "en", "quality": "balanced", "view": "dollhouse" },
+    "gallery_at_capture": "All four final JPEGs loaded at 1600 × 1200; the revised bedroom, kitchen, desk and overview renders are visible in both screenshots."
+  },
+  "new_glb_followup": {
+    "checked_at_utc": "2026-09-08T02:23:31Z",
+    "asset_bytes": 41832444,
+    "asset_sha256": "3a4929cc584230f6aa932e40bb9ce99e716acc057689ae393ba37bf1970de7d8",
+    "manifest_synchronized": true,
+    "manifest_object_count": 1303,
+    "stage_ready": true,
+    "source_meshes": 1280,
+    "batched_meshes": 262,
+    "desktop_dollhouse": { "viewport": [1440, 1100], "complete_room_framed": true },
+    "mobile_dollhouse": { "viewport": [390, 844], "document_client_width": 375, "document_scroll_width": 375, "complete_room_framed": true, "responsive_fov_correction_visually_verified": true, "quality": "balanced" },
+    "interior_camera": { "view": "bedroom", "selected": true, "cutaway": false, "image_visually_inspected": true },
+    "page_errors": [],
+    "console_errors": [],
+    "console_warnings": [],
+    "other_logs": "Vite connection debug messages only.",
+    "gallery_status": "Not revalidated in this short follow-up; final render synchronization remains pending.",
+    "cleanup": { "close_response": "Timed out awaiting response", "followup_session_list": "No active sessions", "task_browser_released": true }
+  },
+  "final_asset_validation": {
+    "checked_at_utc": "2026-09-08T03:30:00Z",
+    "source_meshes": 1280,
+    "batched_meshes": 262,
+    "gallery": [
+      { "image": "bedroom.jpg", "loaded": true, "pixels": [1600, 1200] },
+      { "image": "kitchen.jpg", "loaded": true, "pixels": [1600, 1200] },
+      { "image": "desk.jpg", "loaded": true, "pixels": [1600, 1200] },
+      { "image": "overview.jpg", "loaded": true, "pixels": [1600, 1200] }
+    ],
+    "desktop_horizontal_overflow": false,
+    "mobile_horizontal_overflow": false,
+    "auto_orbit": {
+      "passed": true,
+      "action": "Real checkbox check and uncheck actions, followed by canvas sampling.",
+      "enabled": { "checked": true, "sample_hashes_1200ms_apart": [534721468, 2125863852], "image_changed": true },
+      "disabled": { "checked": false, "settle_ms": 1500, "sample_hashes_1200ms_apart": [3710078086, 3710078086], "image_stable": true }
+    },
+    "save_png": {
+      "encoding_passed": true,
+      "actual_disk_download_verified": false,
+      "action": "Clicked the real Save this view control; a passive click listener observed the generated Blob download link and decoded the Blob.",
+      "filename": "room-dollhouse.png",
+      "mime": "image/png",
+      "bytes": 288721,
+      "pixels": [846, 804],
+      "png_signature": [137, 80, 78, 71, 13, 10, 26, 10],
+      "button_reenabled_after_encoding": true,
+      "implementation_change": "Encode asynchronously with toBlob and an object URL; await encoding errors and prevent duplicate clicks during encoding.",
+      "automation_limitation": "agent-browser's Windows download capture returned Download was canceled for both data URLs and Blob URLs. Chrome's download record showed a GUID destination with an escaped extended Windows path. A separate task-browser launch using a forward-slash --download-path and an ordinary real click also produced no disk file. Encoding and download intent are verified; disk delivery is not claimed."
+    },
+    "page_errors": [],
+    "console_errors": [],
+    "console_warnings": [],
+    "build": { "syntax_check": "passed", "production_build": "passed", "vite": "7.3.6", "warning": "Three.js vendor chunk is 529.25 kB minified / 133.58 kB gzip, above Vite's default 500 kB advisory." },
+    "cleanup": { "close_response": "Browser closed", "followup_session_list": "No active sessions", "task_browser_released": true }
+  },
+  "pending": [],
+  "limitations": [
+    "Canvas PNG sample hashes establish rendered-output changes, not photographic similarity or geometric accuracy.",
+    "No frame-rate benchmark was performed.",
+    "This pass tested the development server, not the deployed GitHub Pages site.",
+    "Fullscreen and GLB-download controls were not independently retested in this final interaction pass.",
+    "PNG encoding and its real download action were verified, but actual disk download was blocked by the automation environment as detailed above."
+  ],
+  "cleanup": {
+    "only_task_session_targeted": true,
+    "close_response": "Browser closed",
+    "followup_session_list": "No active sessions",
+    "task_browser_released": true
+  }
+}

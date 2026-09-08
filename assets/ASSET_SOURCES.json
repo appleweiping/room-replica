@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "notes": "Original third-party PBR maps. Base color is sRGB; roughness and OpenGL normals must use Non-Color. Cabinet stain is authored in shader to match reference photographs.",
+  "assets": [
+    {
+      "id": "kitchen_wood",
+      "name": "Kitchen Wood",
+      "provider": "Poly Haven",
+      "source_page": "https://polyhaven.com/a/kitchen_wood",
+      "license": "CC0-1.0",
+      "license_url": "https://polyhaven.com/license",
+      "authors": {
+        "Rob Tuytel": "All"
+      },
+      "dimensions": [
+        600.0000238418579,
+        600.0000238418579
+      ],
+      "downloaded_at": "2026-09-08T00:37:51.4711067Z",
+      "files": [
+        {
+          "map": "Diffuse",
+          "file": "textures/kitchen_wood_diff_2k.jpg",
+          "source_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/kitchen_wood/kitchen_wood_diff_2k.jpg",
+          "bytes": 3557700,
+          "md5": "e23ef649eda9bf19c44126b3ffdaaa8a",
+          "sha256": "da11d51f48e4a85959b6c45ac6a6f50e78bc0aac73f094ddbe1040d71633c4e6"
+        },
+        {
+          "map": "Rough",
+          "file": "textures/kitchen_wood_rough_2k.jpg",
+          "source_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/kitchen_wood/kitchen_wood_rough_2k.jpg",
+          "bytes": 3520436,
+          "md5": "c15c5f17129ea633ae63422e7d61c212",
+          "sha256": "1e50a610725aa193a9b2f25daf3892d13121b02d8f290085f9d613d3a8c4a86d"
+        },
+        {
+          "map": "nor_gl",
+          "file": "textures/kitchen_wood_nor_gl_2k.jpg",
+          "source_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/kitchen_wood/kitchen_wood_nor_gl_2k.jpg",
+          "bytes": 2817756,
+          "md5": "5dad69d0f1d07153e633000fc678e9c5",
+          "sha256": "4b861a9f40d9f3570cdf023ea873c8da74d710982406884e6f718769f1fac5f6"
+        }
+      ]
+    },
+    {
+      "id": "red_oak_veneer",
+      "name": "Red Oak Veneer",
+      "provider": "Poly Haven",
+      "source_page": "https://polyhaven.com/a/red_oak_veneer",
+      "license": "CC0-1.0",
+      "license_url": "https://polyhaven.com/license",
+      "authors": {
+        "Jenelle van Heerden": "All"
+      },
+      "dimensions": [
+        1000,
+        1000
+      ],
+      "downloaded_at": "2026-09-08T00:38:57.5977355Z",
+      "files": [
+        {
+          "map": "Diffuse",
+          "file": "textures/red_oak_veneer_diff_2k.jpg",
+          "source_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/red_oak_veneer/red_oak_veneer_diff_2k.jpg",
+          "bytes": 2426419,
+          "md5": "81802f7174b4b02eb67d85170015ce19",
+          "sha256": "adc970218b87a6435269f33bb60eb4bfbeb1d1863d668dfda8234f17f95481b7"
+        },
+        {
+          "map": "Rough",
+          "file": "textures/red_oak_veneer_rough_2k.jpg",
+          "source_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/red_oak_veneer/red_oak_veneer_rough_2k.jpg",
+          "bytes": 3517801,
+          "md5": "f18888d39ad698be87c8b275cf71dd44",
+          "sha256": "195b93ce92d421e1db0f6bb3faac6db064d307db9a8835e1fb49281c0765af2b"
+        },
+        {
+          "map": "nor_gl",
+          "file": "textures/red_oak_veneer_nor_gl_2k.jpg",
+          "source_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/red_oak_veneer/red_oak_veneer_nor_gl_2k.jpg",
+          "bytes": 1540444,
+          "md5": "f57742762e2cdf74ed408c174025d9e1",
+          "sha256": "507f359b9b5bd969278d59a9c70def1bf0df07c0022e5e20983b2995b8319559"
+        }
+      ]
+    }
+  ]
+}
