@@ -934,6 +934,9 @@ def main():
     from desktop_packages_v5 import refine_desktop_packages
 
     refine_desktop_packages()
+    from desktop_package_capture_v6 import refine_desktop_package_capture
+
+    refine_desktop_package_capture()
     from counter_props_v4 import refine_counter_props
 
     refine_counter_props(M)

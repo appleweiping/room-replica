@@ -22,3 +22,6 @@ SOFTWARE.
 
 Third-party texture maps retain their original CC0 terms. See assets/ASSET_SOURCES.json.
 User-supplied source photographs are not distributed or licensed by this repository.
+Masked photograph-derived texture regions are identified by their asset-folder
+provenance. They and any depicted product artwork or trademarks retain their
+underlying rights; they are not relicensed under MIT or CC0.

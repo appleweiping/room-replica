@@ -1,0 +1,48 @@
+{
+  "version": "6.0.0",
+  "source_photo_sha256": "34806dd6398fbdf2f544913048762659a3a981cdf3d7087634333b1bdbc765c5",
+  "source_photo": "references/5b4c730e13039177f55792c58cf74561.jpg",
+  "sampled_content": "Visible main potato-chip wrapper only: photographed Lay\u2019s logo, red band, black/gold printed film. No exact product model inferred.",
+  "excluded_content": "Laptop/tablet/phone contents, desk/background, overlaid small sachets and their unrelated print. Transparent output pixels are zero RGB.",
+  "sampling": "One manually constrained 4\u00d73 UV-to-photo control grid on the existing three-dimensional v5 wrapper. No camera-plane geometry or whole-photo billboard.",
+  "source_views": "Photograph12 supplies texels; 2 and 9 inform/verify appearance but are not stitched into this candidate.",
+  "captured_layer": "captured-front-panel.png retains original photographed illumination. It is diagnostic, not used directly by the material.",
+  "estimated_layer": "estimated-basecolor.png uses selective local highlight reduction and a common RGB gain under fixed Cycles/AgX/exposure. Residual captured shadows remain; this is not measured albedo.",
+  "unobserved_texels": "Explicitly flagged in inferred-texels.png; filled with plain sampled unprinted gold/dark color, without reconstructed hidden writing.",
+  "normal": "Authored deterministic shallow compression field, seed601. No luminance-to-height conversion of the brand/ink.",
+  "observed_texel_fraction_full_wrap": 0.37975311279296875,
+  "observed_texel_fraction_front_half": 0.7595062255859375,
+  "highlight_reduced_observed_fraction": 0.013897538925163235,
+  "basecolor_clipped_channel_fraction": 0.009858449300130209,
+  "license": "Photo-derived packaging artwork retains its underlying rights and trademarks; use is authorized by the user for this room reconstruction. Do not relabel the captured artwork CC0. The separate authored compression normal is original project artwork.",
+  "files": {
+    "captured-front-panel.png": {
+      "bytes": 389901,
+      "sha256": "bb456bb5ff3af067d0ea2012f7df2f9904ae04226866077e3c723145384c16f1"
+    },
+    "captured-highlight-reduction.png": {
+      "bytes": 8555,
+      "sha256": "80ab6f0ebf179ac7cfa75cceef878b0599108755484a52fd52df8f24bf87bf60"
+    },
+    "estimated-basecolor.png": {
+      "bytes": 340579,
+      "sha256": "c591838e7ec1a2cdca67a80fa7d4d04f85528632da1ae81258e37a3fc3916286"
+    },
+    "inferred-texels.png": {
+      "bytes": 3791,
+      "sha256": "9e975790797678c2928cb7f47fffe873d5775925129f10e9a3d5d22e0f7cb8fe"
+    },
+    "masked-source-package.png": {
+      "bytes": 79788,
+      "sha256": "bbf7bd072ed085730451d0a9922254f40262d66538adb5aeb50b13be9536250e"
+    },
+    "shallow-compression-normal.png": {
+      "bytes": 80056,
+      "sha256": "fe6f4f7176e3db1c372ba630aaa4235cd32762f95107733e27955eda37114c4d"
+    },
+    "source-package-mask.png": {
+      "bytes": 4080,
+      "sha256": "9d057e2d53e3aca5e01b72aa56635e792979dd0831b8f53150bf439560a75ee9"
+    }
+  }
+}

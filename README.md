@@ -172,4 +172,6 @@ GitHub Actions 提供交付检查和 Pages 发布两个流程。修改公开模�
 
 原创代码和随附原创模型资产使用 [MIT](LICENSE)；第三方木纹保持其 **CC0** 许可，并在 [素材清单](assets/ASSET_SOURCES.json) 中逐项记录。原始照片不随公开仓库分发，也没有向本仓库授予照片再许可。公开资产不包含原始照片路径、私人电脑屏幕内容或原图 EXIF。
 
+当前改进分支中的照片衍生贴图按各自目录的 `PROVENANCE.json` 和 README 标注来源、遮罩、推断区域及残留拍摄光照。它们属于估计表面颜色，不能称为实测反射率；其中照片区域、商品图案与商标保留原有权利，不适用本项目的 MIT 或第三方 CC0 许可。
+
 This project is an independent visual reconstruction. It is not an official university room survey or an affiliation claim. Native editable assets, reproducible source, offline renders and a self-contained web demo are included; dimensional accuracy beyond the published mattress anchor is not asserted.

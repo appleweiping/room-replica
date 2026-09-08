@@ -120,6 +120,9 @@ def refine_carpet_material(material, texture_dir):
     links.new(color.outputs["Color"], bs.inputs["Base Color"])
     links.new(separate.outputs["Green"], bs.inputs["Roughness"])
     bs.inputs["Sheen Weight"].default_value = 0.16
+    # The node-tree rebuild otherwise restores default-white fibre sheen,
+    # washing out charcoal tiles at the photographed grazing angles.
+    bs.inputs["Sheen Tint"].default_value = (0.16, 0.17, 0.19, 1.0)
     bs.inputs["Sheen Roughness"].default_value = 0.85
     bs.inputs["Diffuse Roughness"].default_value = 0.55
     bs.inputs["Specular IOR Level"].default_value = 0.16
@@ -140,7 +143,7 @@ def refine_carpet_material(material, texture_dir):
                     for j, axis in enumerate(axes)
                 )
         count += 1
-    material["carpet_profile"] = "3.0.0"
+    material["carpet_profile"] = "3.0.1"
     return {
         "tiles": count,
         "period_m": PERIOD_M,
