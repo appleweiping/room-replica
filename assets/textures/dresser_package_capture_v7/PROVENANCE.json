@@ -1,0 +1,70 @@
+{
+  "version": "7.0.0",
+  "source_file": "references/3fd34703dff8d7062feb2502878e14c3.jpg",
+  "source_sha256": "a7e2f9e9b8bb9cb8fbda1c18ba5313366579087b21d31c1574405c69417c17e8",
+  "method": "Hand-masked photograph11 household package surface samples mapped onto separately modeled volumes. References10/14 constrain/check placement; no multiview pixel stitch.",
+  "captured_vs_estimated": "Captured images retain photographed illumination. Estimated color uses one common RGB gain under unchanged scene AgX/exposure; not measured albedo. No changes to room lighting.",
+  "privacy": "Only necessary wet-wipe/snack surface pixels retained; alpha-zero pixels contain zero RGB. No original full photograph is copied into this asset folder.",
+  "unseen": "Explicit inference masks identify plain-color unobserved underside and edge fill. Hidden writing is not invented.",
+  "rights": "User-authorized photograph-derived packaging art retains underlying rights/trademarks. Do not describe it as CC0. Pressure normals are separately authored original project graphics, not writing converted to height.",
+  "packages": {
+    "wipes": {
+      "observed_atlas_fraction": 0.8689537048339844,
+      "clipped_basecolor_channel_fraction": 0.25324122111002606
+    },
+    "snack": {
+      "observed_atlas_fraction": 0.9962005615234375,
+      "clipped_basecolor_channel_fraction": 0.39792124430338544
+    }
+  },
+  "files": {
+    "snack-captured.png": {
+      "bytes": 195146,
+      "sha256": "8eaf9a2aae102f16eef4ec3d3ed877f3d3ea2a2ea74846a4f0267ac6694089dc"
+    },
+    "snack-estimated-basecolor.png": {
+      "bytes": 163542,
+      "sha256": "b2bdd053c2b5d09962d1f3366461a2c38779ea5ed3389707240b20922234ae15"
+    },
+    "snack-inferred-texels.png": {
+      "bytes": 578,
+      "sha256": "663578e6e4652008a246de956ad6511347469dc05a876fbd88ed5cc1735a606d"
+    },
+    "snack-masked-source.png": {
+      "bytes": 34516,
+      "sha256": "73956adffa402cf9fcac7f859a8a3a1b1645798b38503898cd788dd1b058cc57"
+    },
+    "snack-pressure-normal.png": {
+      "bytes": 22086,
+      "sha256": "24bd0b7a96dfabc2995920738244148ca82bd6e7bbf1d9c8a3949c1af938b810"
+    },
+    "snack-source-mask.png": {
+      "bytes": 2828,
+      "sha256": "363ebacf065b34016c8c1ad9cdf1337f8f4d04c695f7a4d5e6c08bdf0eb15f0c"
+    },
+    "wipes-captured.png": {
+      "bytes": 208808,
+      "sha256": "782239af16527cbda6de2e733464be529c7400e4538bb90c18e2134709daa943"
+    },
+    "wipes-estimated-basecolor.png": {
+      "bytes": 219853,
+      "sha256": "98bbcaab28a087b40db7c4f5c1572f53dc5481feaf971c3ae8250b185dd1f99b"
+    },
+    "wipes-inferred-texels.png": {
+      "bytes": 525,
+      "sha256": "e16946ccb88eccaffb1c2f63f1171bcbbc0d73776c360db93c2415aeccb99a6b"
+    },
+    "wipes-masked-source.png": {
+      "bytes": 27867,
+      "sha256": "6a3571ab41bdb16394a660d040ea9a679245ede5f5eb2c1306fc09765076a7da"
+    },
+    "wipes-pressure-normal.png": {
+      "bytes": 40969,
+      "sha256": "70e7c4d6329e5c87d54d30a58799d618c1a80f060bd22a0812869d82dab7d840"
+    },
+    "wipes-source-mask.png": {
+      "bytes": 2732,
+      "sha256": "a7615b20c2e14570b06b2a7e2a5498778881a8a3313479a2a136eafc41293c63"
+    }
+  }
+}

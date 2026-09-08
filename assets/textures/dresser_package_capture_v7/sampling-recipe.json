@@ -1,0 +1,223 @@
+{
+  "version": "7.0.0",
+  "source_file": "references/3fd34703dff8d7062feb2502878e14c3.jpg",
+  "source_sha256": "a7e2f9e9b8bb9cb8fbda1c18ba5313366579087b21d31c1574405c69417c17e8",
+  "source_size": [
+    1707,
+    1280
+  ],
+  "linear_rgb_gain": [
+    0.4531370896961815,
+    0.5319237111733659,
+    0.6483481618628637
+  ],
+  "gain_method": "Common RGB gain from known linear cyan old resealable flap material divided by inverse AgX existing r10 reference14 patch. Small low-resolution patch estimates fixed-room illumination; it is not measured diffuse reflectance. No trial lighting or extra baseline render.",
+  "gain_baseline_sha256": "59d74b105f693c6064031ca2c8050ab47c2505080cb90d740aad6bb33d9efda5",
+  "gain_ratio_p10": [
+    0.427777320753451,
+    0.5243564780622548,
+    0.643611176441749
+  ],
+  "gain_ratio_p90": [
+    0.4682854867918752,
+    0.5447711743832507,
+    0.6581544690253904
+  ],
+  "fixed_exposure_ev": 0.65,
+  "ocio_config_sha256": "eaeb3b633cfc1ab190e0e7e1c9d6155ef43a08bb3b2e94fd5db7060bbfe59416",
+  "packages": {
+    "wipes": {
+      "atlas_size": [
+        512,
+        512
+      ],
+      "source_mask": [
+        [
+          472,
+          692
+        ],
+        [
+          591,
+          669
+        ],
+        [
+          620,
+          672
+        ],
+        [
+          640,
+          677
+        ],
+        [
+          637,
+          722
+        ],
+        [
+          624,
+          745
+        ],
+        [
+          468,
+          769
+        ],
+        [
+          451,
+          759
+        ],
+        [
+          456,
+          728
+        ],
+        [
+          461,
+          705
+        ]
+      ],
+      "crop": [
+        447,
+        664,
+        644,
+        774
+      ],
+      "unobserved_srgb": [
+        0.43,
+        0.64,
+        0.7
+      ],
+      "surfaces": [
+        {
+          "name": "top",
+          "atlas_rows": [
+            0,
+            282
+          ],
+          "source_quad": [
+            [
+              469,
+              696
+            ],
+            [
+              611,
+              670
+            ],
+            [
+              630,
+              725
+            ],
+            [
+              457,
+              748
+            ]
+          ]
+        },
+        {
+          "name": "front_side",
+          "atlas_rows": [
+            298,
+            461
+          ],
+          "source_quad": [
+            [
+              457,
+              748
+            ],
+            [
+              630,
+              725
+            ],
+            [
+              624,
+              744
+            ],
+            [
+              464,
+              767
+            ]
+          ]
+        }
+      ]
+    },
+    "snack": {
+      "atlas_size": [
+        512,
+        256
+      ],
+      "source_mask": [
+        [
+          637,
+          762
+        ],
+        [
+          662,
+          759
+        ],
+        [
+          660,
+          726
+        ],
+        [
+          813,
+          690
+        ],
+        [
+          825,
+          728
+        ],
+        [
+          839,
+          744
+        ],
+        [
+          832,
+          750
+        ],
+        [
+          657,
+          800
+        ],
+        [
+          634,
+          790
+        ]
+      ],
+      "crop": [
+        630,
+        685,
+        845,
+        806
+      ],
+      "unobserved_srgb": [
+        0.56,
+        0.63,
+        0.08
+      ],
+      "surfaces": [
+        {
+          "name": "top",
+          "atlas_rows": [
+            0,
+            256
+          ],
+          "source_quad": [
+            [
+              663,
+              727
+            ],
+            [
+              815,
+              695
+            ],
+            [
+              833,
+              746
+            ],
+            [
+              658,
+              797
+            ]
+          ]
+        }
+      ]
+    }
+  }
+}

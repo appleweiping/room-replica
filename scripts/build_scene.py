@@ -976,6 +976,9 @@ def main():
     from backpack_surface_v4 import refine_backpack_surface
 
     refine_backpack_surface()
+    from dresser_package_capture_v7 import refine_dresser_packages
+
+    refine_dresser_packages()
     from chair_pillow_v4 import refine_chair_pillow
 
     refine_chair_pillow(M)
