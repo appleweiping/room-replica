@@ -767,5 +767,66 @@
         ]
       }
     ]
+  },
+  "right_bed_rails": {
+    "parameters": {
+      "middle_rail_top": 1.2619,
+      "lower_rail_top": 0.9184
+    },
+    "status": "Registered reference 2/3 triangulation constrains top elevations; translate the existing sections only. The physical scale remains estimated, not surveyed.",
+    "fixed": "Cross sections, post positions and top rail remain unchanged. Old authored bolt heights are not accurate anchors after this correction.",
+    "observations": {
+      "middle_rear_upper": {
+        "world_xyz": [
+          1.0646735769417122,
+          4.44971339033596,
+          1.2619352768051626
+        ],
+        "fit_views": [
+          2,
+          3
+        ],
+        "observations": {
+          "2": [
+            197,
+            685
+          ],
+          "3": [
+            1138,
+            594
+          ]
+        },
+        "errors_px": {
+          "2": 0.335289223197396,
+          "3": 0.46740465017023924
+        }
+      },
+      "lower_rear_upper": {
+        "world_xyz": [
+          1.0300644497744225,
+          4.3766351902054375,
+          0.9183995257398246
+        ],
+        "fit_views": [
+          2,
+          3
+        ],
+        "observations": {
+          "2": [
+            216,
+            791
+          ],
+          "3": [
+            1132,
+            671
+          ]
+        },
+        "errors_px": {
+          "2": 0.04098409357911031,
+          "3": 0.058031549924350716
+        }
+      }
+    },
+    "manual_reference_15_status": "The manual review camera was fitted against the former rail geometry and must not be used as a pixel-accurate oracle for the corrected rails."
   }
 }

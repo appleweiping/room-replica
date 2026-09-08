@@ -1,0 +1,25 @@
+{
+  "asset": "assets/uv/blue_quilt_print_v6.npz",
+  "kind": "source cloth chart metre coordinates and per-loop seam overrides",
+  "topology_sha256": "a52bccbf7dbeff5df5e7bb28f88c814f5dede609f89e7bf70c0e20d136e4a76c",
+  "sha256": "4bba22624801030233472e5baef75da5c70ab50dafc51f0252c12d2abd98c6f6",
+  "source_native_sha256": "90589108d275c9edaf7518bb1dd0d0e6a731fded89d874cbbec6bfe09eae3c9e",
+  "target_vertices": 675614,
+  "chart_count": 5,
+  "cache_bytes": 18717794,
+  "rebuild_tools": [
+    "scripts/bedding_print_tools/export_donors.py",
+    "scripts/bedding_print_tools/transfer_uv.py"
+  ],
+  "rebuild_requirements": "scripts/bedding_print_tools/requirements.txt",
+  "verified_rebuild": "all arrays and compressed cache bytes identical",
+  "scope": "Exact current quilt topology; no geometric coordinates are changed by the print pass. Metre normalization removes per-shell image zoom but retains local distortion of the padded construction surfaces.",
+  "compatibility": "Exact calibrated coordinates/topology or strictly gated world-vertex, face-centre and per-face chart correspondence. Handles the verified 675614-to-675610 cleanup variation; never an unchecked topology whitelist.",
+  "spatial_gate_m": {
+    "vertex_max": 0.0012,
+    "vertex_p99": 5e-05,
+    "face_centre_max": 0.0025,
+    "face_centre_p99": 5e-05,
+    "bounds": 0.0005
+  }
+}

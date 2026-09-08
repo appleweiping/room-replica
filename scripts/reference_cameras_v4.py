@@ -815,6 +815,15 @@ def add_manual_reference_cameras_v4():
         camera["fit_status"] = (
             "Approximate model-conditioned appearance review; not SfM registration"
         )
+        corrected_rails = number == 15 and (
+            bpy.data.objects.get("RailShirtV5_Continuous_double_panel_Tshirt") is not None
+        )
+        camera["fit_geometry_status"] = (
+            "Historical r05 rail/bolt geometry; residuals do not validate the corrected rails"
+            if corrected_rails
+            else "Model-conditioned fit against the recorded source native"
+        )
+        camera["residuals_apply_to_current_geometry"] = not corrected_rails
         camera["fit_rmse_px"] = fit["fit"]["rmse_euclidean_px"]
         camera["held_out_rmse_px"] = fit["held_out"]["rmse_euclidean_px"]
         camera["held_out_max_px"] = fit["held_out"]["max_px"]

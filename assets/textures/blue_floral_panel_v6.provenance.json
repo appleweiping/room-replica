@@ -1,0 +1,30 @@
+{
+  "kind": "generated planar textile albedo",
+  "tool": "built-in image_gen",
+  "date": "2026-09-08",
+  "reference_assets": [
+    "assets/textures/blue_floral_reference_v3.png",
+    "user reference photographs 10 and 13"
+  ],
+  "generation_iterations": [
+    {
+      "purpose": "Complete flat duvet panel with open blue centre, side groups of small pink peonies and green branches; no room scene, folds, shading or embossed relief.",
+      "output": "exec-96e975ab-8763-42ca-86cb-57bec5f279fe.png"
+    },
+    {
+      "purpose": "Reduce individual flower heads to 60 percent linear size and fade central blue linework; preserve negative space and pigment palette.",
+      "output": "exec-d3ee9729-5ec6-44d1-9b59-2bf6c43fdeb7.png"
+    }
+  ],
+  "asset_size_px": [
+    1470,
+    1070
+  ],
+  "sha256": "0c7d0d8b4bd32c7e4f81bbad1dd0011b77a4d93ba505a1f46396bd6e8df026cf",
+  "use_status": "Reference-informed editable alternative; not an exact scanned original fabric or measured albedo. No generated room render used.",
+  "asset": "assets/textures/blue_floral_panel_v6.png",
+  "default_texture_period_m": [
+    2.5,
+    1.825
+  ]
+}

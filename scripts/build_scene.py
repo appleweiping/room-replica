@@ -843,6 +843,10 @@ def validate_and_manifest(cameras, bed_support=None):
                 "method": o.get("fit_status", o.get("calibration_method", "unclassified")),
                 "fit_rmse_px": o.get("fit_rmse_px"),
                 "held_out_rmse_px": o.get("held_out_rmse_px"),
+                "fit_geometry_status": o.get("fit_geometry_status"),
+                "residuals_apply_to_current_geometry": o.get(
+                    "residuals_apply_to_current_geometry"
+                ),
                 "exposure_ev": o.get("exposure_ev"),
             }
             for o in scene.objects
@@ -935,6 +939,12 @@ def main():
     from bedding_surface_v5 import refine_bedding_surface
 
     refine_bedding_surface()
+    from bedding_print_v6 import refine_bedding_print
+
+    refine_bedding_print()
+    from rail_shirt_v5 import refine_rail_shirt_v5
+
+    refine_rail_shirt_v5(M, CALIBRATION["right_bed_rails"]["parameters"])
     from bed_guard_v4 import refine_bed_guard
 
     refine_bed_guard()

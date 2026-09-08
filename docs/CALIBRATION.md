@@ -69,3 +69,9 @@ Four backpack views support a uniform scale of 0.894 and a base pivot near (−1
 References 12 (desktop) and 15 (right bed frame) do not have reliable automatic SfM registration. The new `reference_cameras_v4` module fits manually identified static furniture and rigid-object landmarks using the existing 677.778580 px focal length. It does not replace the thirteen registered reference cameras.
 
 Reference 12 has six fitted points (20.3 px RMS) and six independent held-out points (64.6 px RMS). Existing desktop prop positions are approximate, so this is only a rough appearance-review camera. Reference 15 has eight fitted points (24.0 px RMS) and three held-out screw centres (14.5 px RMS). These errors are measured at 1707 × 1280. Neither camera establishes surveyed geometry or successful SfM recovery. Coordinates, observation descriptions and residuals are embedded in the module. Exposure remains provisional.
+
+### Right bed rails after the manual camera fit
+
+Two registered photographs (2 and 3) place the middle rail's upper rear intersection at Z 1.26194 m, with 0.34 and 0.47 px triangulation residuals. The final translated model corner retains its existing XY location, so its actual reprojection residuals are larger: 12.11 and 6.90 px. The lower rail's upper edge is provisionally Z 0.9184 m. The `right_bed_rails` configuration records both absolute targets and the original observations. Cross sections are retained; the respective translations are +85.7 and +107.2 mm.
+
+These changes invalidate the old rail and bolt coordinates used by the approximate reference-15 fit. Its historical 24.0/14.5 px statistics describe the former model only. That camera remains available for rough appearance review, but must not be treated as a pixel-accurate validation camera for the corrected bed frame. Registered references 2 and 3 take priority. Absolute dimensions still depend on the shared inferred room scale.
