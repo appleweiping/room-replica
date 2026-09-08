@@ -1,0 +1,38 @@
+{
+  "authorship": "Original scripted neutral UI and material graphics; no reference-screen pixels or text copied, no generative model used.",
+  "reference_use": "Supplied photos12/2/9 informed relative detail scale and device finish only. Device placement is inherited unchanged from the calibrated native model.",
+  "font_rasterizer": {
+    "file_used": "consola.ttf",
+    "sha256": "cf00b507b3286870cc5064ebd0633c303f70b491a4af25eec2d32df413db0179",
+    "hand_font": "segoepr.ttf",
+    "font_file_redistributed": false
+  },
+  "license": "Project-authored graphics and layout; no third-party photo textures in this set. Font files are not bundled.",
+  "limitations": "Generic authored content replaces personal display content. Compact keyboard is photograph-informed, not a measured product CAD layout. Noise/handwear is subtle authored variation, not captured wear.",
+  "files": {
+    "anodized-handwear-roughness.png": {
+      "bytes": 125430,
+      "sha256": "f1cde9d005e8b6f1e127e205230868e72f6ee3621f31229c9c1536959297bbf9"
+    },
+    "display-subtle-roughness.png": {
+      "bytes": 67358,
+      "sha256": "731deee093f58a86efc2e85fc34d3c96cb2daa01d54ec9bb0ad459dc4cbc956b"
+    },
+    "keyboard-layout.json": {
+      "bytes": 26183,
+      "sha256": "5308ee9b5f4476aafb9c00842f103c6c43168f4c9b4b6534c4fd1f03d4f6867d"
+    },
+    "keycap-legends.png": {
+      "bytes": 143325,
+      "sha256": "3826a777c86ad2b57eb88608e004070b139cf607c30bf45bf162c5cabca24962"
+    },
+    "laptop-neutral-workspace.png": {
+      "bytes": 88153,
+      "sha256": "f44b05d59b58c2a609a4bba80cf25d764a38e709377998a19717d6e7afbf70d0"
+    },
+    "tablet-neutral-notes.png": {
+      "bytes": 22696,
+      "sha256": "8792f97e297cf45d54efd2012f3aacfaf3f53c022b3e1bd6415953f4a10ef575"
+    }
+  }
+}

@@ -928,6 +928,9 @@ def main():
     from desktop_pose_v4 import refine_desktop_pose
 
     refine_desktop_pose(M)
+    from desktop_surface_v4 import refine_desktop_surfaces
+
+    refine_desktop_surfaces()
     from counter_props_v4 import refine_counter_props
 
     refine_counter_props(M)
