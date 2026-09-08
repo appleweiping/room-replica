@@ -1,0 +1,814 @@
+{
+  "version": "4.1.0",
+  "authorship": "Deterministic derivatives of user-supplied photographs; no generative image model.",
+  "rights": "User-supplied source photography; included derivative surface assets are not CC0 or third-party stock. No additional rights are asserted.",
+  "scope": "Entry own full-board front + side-door local sample + wardrobe local sample.",
+  "method": "Side door/wardrobe: selected unobstructed local samples with separately archived raw RGB, estimated log-linear gradient removal and periodic boundary correction. Entry front: one own full-board planar sample with explicit source/fill masks, same-board inferred occluded wood, separately archived first-order gradient estimate; no tiling or periodicisation. Each class then uses one common linear RGB gain under fixed native lighting/AgX.",
+  "limitations": "Editable base-colour estimates, not measured reflectance. Raw captures retain lighting and white-balance effects; removal and class gains are estimates. Finite original pixel resolution limits detail. Unobserved entry edges use original PBR; side/wardrobe edges use repeated local samples. Entry ref6 remains darker after ref1-only calibration.",
+  "sources": [
+    {
+      "name": "door_cathedral",
+      "reference": 14,
+      "filename": "c2d339261e96b29ef5bc46021753e752.jpg",
+      "plane_x": -1.459,
+      "y_span": [
+        1.79,
+        2.51
+      ],
+      "z_span": [
+        1.26,
+        2.095
+      ],
+      "pixels": [
+        720,
+        835
+      ],
+      "source_sha256": "0ece65e1ec057a963b1daf1605771350802263513a7a0cc18cc446f7d82bc9b5",
+      "source_size": [
+        1707,
+        1280
+      ],
+      "source_pixel_quadrilateral": [
+        [
+          133.23988599043219,
+          158.8084632134345
+        ],
+        [
+          455.7871769215353,
+          158.07882557758757
+        ],
+        [
+          507.62041825167836,
+          538.0827871187479
+        ],
+        [
+          227.37818703937512,
+          536.8329057678503
+        ]
+      ],
+      "approximate_physical_size_m": [
+        0.7199999999999998,
+        0.8350000000000002
+      ],
+      "linear_log_illumination_plane_coefficients": [
+        [
+          -0.4448598998187309,
+          -1.254510280079163,
+          -2.910213998785869
+        ],
+        [
+          -0.040169245441011414,
+          -0.046618862947814754,
+          0.015131054686149836
+        ],
+        [
+          -0.3471055441130245,
+          -0.4571956700209638,
+          -0.9441892790069286
+        ]
+      ],
+      "raw_rectified_sha256": "acb7b8f8203f8a18597ec9e81b00bdce9e28634250cd3d6b81386367d4f9a3ba",
+      "normalized_sha256": "be674659578ea5012c0364cd7a668a4387dc8c0f64cea0926035f94eeec848e2",
+      "tile_sha256": "a77d11ff08a0149f25ec08ce1c40745d667b315ab1a178cefa266e288971ac98",
+      "median_srgb_raw": [
+        0.8271105498370406,
+        0.5736552567965572,
+        0.2589556297371718
+      ],
+      "mean_periodic_delta_linear": 0.0032785231103865777,
+      "source_patch_edge_lengths_px": [
+        322.54811619055124,
+        383.52274468897474,
+        280.24501843608454,
+        389.5696329194028
+      ],
+      "resolution_note": "Output raster is resampled from the finite original JPEG; interpolation creates no new photographed detail."
+    },
+    {
+      "name": "wardrobe_straight",
+      "reference": 2,
+      "filename": "b946496d8abaf0aefca2007f77250986.jpg",
+      "plane_x": 1.209,
+      "y_span": [
+        2.915,
+        3.175
+      ],
+      "z_span": [
+        0.24,
+        1.745
+      ],
+      "pixels": [
+        260,
+        1505
+      ],
+      "source_sha256": "c2a6ce67b47285c8e60e2bcf4f960b88fcdf9448758a379adfd569c2369dcbab",
+      "source_size": [
+        1707,
+        1280
+      ],
+      "source_pixel_quadrilateral": [
+        [
+          644.3684849036301,
+          525.1891181976321
+        ],
+        [
+          565.4440724043504,
+          527.414560933438
+        ],
+        [
+          594.4809864617381,
+          990.2336025838002
+        ],
+        [
+          667.9226400409248,
+          998.6602858111019
+        ]
+      ],
+      "approximate_physical_size_m": [
+        0.2599999999999998,
+        1.5050000000000001
+      ],
+      "linear_log_illumination_plane_coefficients": [
+        [
+          -1.3597761905501993,
+          -2.225069822948609,
+          -3.757122731850445
+        ],
+        [
+          -0.19044887752697673,
+          -0.20111465682488375,
+          -0.11457067984038515
+        ],
+        [
+          -1.4689638499355093,
+          -1.8184172525554647,
+          -2.336064584087118
+        ]
+      ],
+      "raw_rectified_sha256": "8def343f24bcfb7590acfdb24df8fb9277cff7651249488405d385fb2cf275db",
+      "normalized_sha256": "4d4cafe2fdcec8b5beb2476695319f5bd108be35aa7415391f64487507651fc6",
+      "tile_sha256": "5622f092d23026b166fef4d2b332352c9559c6b8a9fb2c1542d0c4f7cc79fe31",
+      "median_srgb_raw": [
+        0.5725490196078431,
+        0.38630805690507675,
+        0.18452030630509914
+      ],
+      "mean_periodic_delta_linear": 0.0047149173910981685,
+      "source_patch_edge_lengths_px": [
+        78.95578182582203,
+        463.7290239915288,
+        73.9235109465084,
+        474.0566894217338
+      ],
+      "resolution_note": "Output raster is resampled from the finite original JPEG; interpolation creates no new photographed detail."
+    }
+  ],
+  "color_calibration": {
+    "method": "Single common linear RGB gain per entry door, side door and wardrobe class. Gains are ratios of robust broad-region RGB medians after inversion of the exact bundled AgX+Medium High Contrast OpenColorIO display transform. Lighting/EV/cameras/geometry are fixed. No per-triangle repainting.",
+    "status": "One-step material estimate; the native illumination and specular transport are not inverted exactly. These are estimated base colours, not measured reflectance.",
+    "ocio_version": "2.5.2",
+    "ocio_config_sha256": "eaeb3b633cfc1ab190e0e7e1c9d6155ef43a08bb3b2e94fd5db7060bbfe59416",
+    "source_baseline": "Existing fallback five-view fixed-light native render set, 640x480 16spp; no extra trial baseline render.",
+    "gain_bounds": [
+      0.06,
+      2.5
+    ],
+    "cases": [
+      {
+        "name": "side",
+        "reference": 4,
+        "photo": "a7f2c17d9c6951a425a3aa121bb9dda4.jpg",
+        "baseline": "heldout-reference04.png",
+        "texture": "door_cathedral",
+        "regions": [
+          {
+            "axis": 0,
+            "fixed": -1.459,
+            "horizontal": [
+              1.82,
+              2.49
+            ],
+            "z": [
+              1.25,
+              2.015
+            ],
+            "photo_pixel_quadrilateral": [
+              [
+                751.9753930246466,
+                441.144732172341
+              ],
+              [
+                965.8170762015512,
+                446.9361360903149
+              ],
+              [
+                958.9610381774197,
+                686.42392203147
+              ],
+              [
+                752.2042090529526,
+                686.0416164506389
+              ]
+            ]
+          }
+        ],
+        "photo_median_srgb": [
+          0.8366291338385068,
+          0.6,
+          0.3082343690318332
+        ],
+        "baseline_median_srgb": [
+          0.8863372624310752,
+          0.6929655960769139,
+          0.5105458418912505
+        ],
+        "inverse_agx_scene_linear_medians": [
+          [
+            0.8880594372749329,
+            0.35411185026168823,
+            0.045964598655700684
+          ],
+          [
+            1.333695650100708,
+            0.5321105718612671,
+            0.12396585941314697
+          ]
+        ],
+        "raw_rgb_gain": [
+          0.6658636331558228,
+          0.6654854416847229,
+          0.37078434228897095
+        ],
+        "applied_linear_rgb_gain": [
+          0.6658636331558228,
+          0.6654854416847229,
+          0.37078434228897095
+        ],
+        "baseline_median_rgb_error": 0.11499506584296655,
+        "texture_sha256": "0f965e67c35c50419ba8f9d169c46acb9db2e9786c04cb824c43981be722b338"
+      },
+      {
+        "name": "wardrobe",
+        "reference": 2,
+        "photo": "b946496d8abaf0aefca2007f77250986.jpg",
+        "baseline": "source-reference02.png",
+        "texture": "wardrobe_straight",
+        "regions": [
+          {
+            "axis": 0,
+            "fixed": 1.209,
+            "horizontal": [
+              2.47,
+              2.7
+            ],
+            "z": [
+              0.34,
+              1.7
+            ],
+            "photo_pixel_quadrilateral": [
+              [
+                789.2551443422988,
+                537.1099049686494
+              ],
+              [
+                713.2236150723334,
+                538.8989587988791
+              ],
+              [
+                730.0695553343993,
+                976.2391513416549
+              ],
+              [
+                800.8625929162849,
+                983.7403863698346
+              ]
+            ]
+          },
+          {
+            "axis": 0,
+            "fixed": 1.209,
+            "horizontal": [
+              2.915,
+              3.175
+            ],
+            "z": [
+              0.34,
+              1.7
+            ],
+            "photo_pixel_quadrilateral": [
+              [
+                645.1297050257407,
+                540.5016267024562
+              ],
+              [
+                566.3807401581267,
+                542.355532583195
+              ],
+              [
+                592.6881230335225,
+                961.6783659651666
+              ],
+              [
+                666.4709300358593,
+                969.4990892742097
+              ]
+            ]
+          }
+        ],
+        "photo_median_srgb": [
+          0.596616825472997,
+          0.403120853208105,
+          0.1880721817103151
+        ],
+        "baseline_median_srgb": [
+          0.6742295307768909,
+          0.41090272962148633,
+          0.10534881886735659
+        ],
+        "inverse_agx_scene_linear_medians": [
+          [
+            0.29915767908096313,
+            0.1525121033191681,
+            0.05375219136476517
+          ],
+          [
+            0.3986879885196686,
+            0.15954038500785828,
+            0.03533162921667099
+          ]
+        ],
+        "raw_rgb_gain": [
+          0.7503553628921509,
+          0.955946683883667,
+          1.5213618278503418
+        ],
+        "applied_linear_rgb_gain": [
+          0.7503553628921509,
+          0.955946683883667,
+          1.5213618278503418
+        ],
+        "baseline_median_rgb_error": 0.05603931485341124,
+        "texture_sha256": "a521bb8c0b2c2800f6aaae9cfec12b725ca715860a506782592f55c0aa7f8621"
+      }
+    ],
+    "reference3_role": "Cross-view check, not blind held-out, since it has already been inspected."
+  },
+  "files": {
+    "side-rectified-raw.png": {
+      "sha256": "acb7b8f8203f8a18597ec9e81b00bdce9e28634250cd3d6b81386367d4f9a3ba",
+      "bytes": 217875
+    },
+    "side-estimated-normalized.png": {
+      "sha256": "be674659578ea5012c0364cd7a668a4387dc8c0f64cea0926035f94eeec848e2",
+      "bytes": 380243
+    },
+    "side-estimated-tile.png": {
+      "sha256": "a77d11ff08a0149f25ec08ce1c40745d667b315ab1a178cefa266e288971ac98",
+      "bytes": 381793
+    },
+    "side-estimated-basecolor.png": {
+      "sha256": "0f965e67c35c50419ba8f9d169c46acb9db2e9786c04cb824c43981be722b338",
+      "bytes": 363226
+    },
+    "wardrobe-rectified-raw.png": {
+      "sha256": "8def343f24bcfb7590acfdb24df8fb9277cff7651249488405d385fb2cf275db",
+      "bytes": 91740
+    },
+    "wardrobe-estimated-normalized.png": {
+      "sha256": "4d4cafe2fdcec8b5beb2476695319f5bd108be35aa7415391f64487507651fc6",
+      "bytes": 152137
+    },
+    "wardrobe-estimated-tile.png": {
+      "sha256": "5622f092d23026b166fef4d2b332352c9559c6b8a9fb2c1542d0c4f7cc79fe31",
+      "bytes": 150324
+    },
+    "wardrobe-estimated-basecolor.png": {
+      "sha256": "a521bb8c0b2c2800f6aaae9cfec12b725ca715860a506782592f55c0aa7f8621",
+      "bytes": 158535
+    },
+    "entry-raw-masked.png": {
+      "sha256": "8864bde4ad32df0a8e3f3bc1ed574aa22d7e4f0e96e5d4afe123bb8205174027",
+      "bytes": 216383
+    },
+    "entry-filled-captured.png": {
+      "sha256": "f50f67c3cef0d81b60069a29a4979c410b04df9ff85ef4822dde5078d4f44de9",
+      "bytes": 241324
+    },
+    "entry-inferred-fill-mask.png": {
+      "sha256": "cfe2a1d47af0278121f6c8aeef61a8b30bbc1bbcc8766c8a864e5893a7388510",
+      "bytes": 1390
+    },
+    "entry-estimated-basecolor-uncalibrated.png": {
+      "sha256": "2011b2f3e8fcdd506a8e677777856d7812e30aa451a6573005d075fb0ab85e9c",
+      "bytes": 335151
+    },
+    "entry-estimated-basecolor.png": {
+      "sha256": "9920ae07a202aa2d27c4a2780637559e8a2d43bf3133b31386bb062af5f5a188",
+      "bytes": 315557
+    },
+    "entry-illumination-estimate.npz": {
+      "sha256": "142baea3d9947aa7f5cee2b8e10415155a158b60f08224d3aabc3f5d6cf17ed7",
+      "bytes": 5456038
+    },
+    "entry-illumination-estimate-visualization.png": {
+      "sha256": "bb52b66c60408eae1ab8152fa4bf8f92e82de08d7f613bbdd95ea98f5940d222",
+      "bytes": 94247
+    },
+    "rectified-sample-mask.png": {
+      "sha256": "8accad67832805d17b08f29ce0e0a61988e1ce45394e7860f6cdb3be5d19e8ae",
+      "bytes": 2707
+    },
+    "source-sample-mask.png": {
+      "sha256": "f8a6bcdfc1d687689ac4ce9cad7965d2bb94b18ef88f672991507f1548e8500e",
+      "bytes": 3842
+    }
+  },
+  "uv": "Separate UV1 in metres, original UV0 retained for roughness; direct sRGB image to Principled Base Color. Existing PBR coat/specular/roughness retained; incompatible synthetic normal disconnected.",
+  "entry_whole_board_sampling": {
+    "source": "User photograph reference 1, own closed entrance door; no generative model",
+    "source_filename": "33605d630636d52985e837473e6252bc.jpg",
+    "source_sha256": "6be3c2d1b49817f8f23161853604d141aee1fe34c766024caf71b71cf6a30707",
+    "source_size": [
+      1707,
+      1280
+    ],
+    "source_quad_photo_tl_tr_br_bl": [
+      [
+        966.0,
+        427.5
+      ],
+      [
+        1256.0,
+        425.5
+      ],
+      [
+        1225.0,
+        1059.0
+      ],
+      [
+        957.0,
+        1058.0
+      ]
+    ],
+    "homography_uv_to_source": [
+      [
+        283.89045339175186,
+        69.02123562355357,
+        966.0
+      ],
+      [
+        -4.069754842205043,
+        716.7554517133956,
+        427.5
+      ],
+      [
+        -0.0048642887008344664,
+        0.08152689197863486,
+        1.0
+      ]
+    ],
+    "rectified_size": [
+      460,
+      1080
+    ],
+    "physical_leaf_size_m": [
+      0.919,
+      2.16
+    ],
+    "native_world_bounds": {
+      "x": [
+        -1.3615,
+        -0.4425
+      ],
+      "y_front": 0.031,
+      "z": [
+        0.002653448,
+        2.162653597
+      ]
+    },
+    "orientation": "U=0 is world X max, U=1 is world X min; V=0 bottom in Blender",
+    "boundary_note": "Manual source quadrilateral is inset 1\u20134px from wood/jamb boundaries. Native corners are approximate and are not exact measured correspondence.",
+    "exclusions": [
+      {
+        "name": "door closer and small contact shadow",
+        "polygon": [
+          [
+            1149,
+            424
+          ],
+          [
+            1259,
+            423
+          ],
+          [
+            1257,
+            469
+          ],
+          [
+            1148,
+            469
+          ]
+        ]
+      },
+      {
+        "name": "notice and paper edge shadow",
+        "polygon": [
+          [
+            1077,
+            631
+          ],
+          [
+            1134,
+            629
+          ],
+          [
+            1137,
+            706
+          ],
+          [
+            1076,
+            710
+          ]
+        ]
+      },
+      {
+        "name": "peephole",
+        "polygon": [
+          [
+            1100,
+            612
+          ],
+          [
+            1114,
+            612
+          ],
+          [
+            1114,
+            627
+          ],
+          [
+            1100,
+            627
+          ]
+        ]
+      },
+      {
+        "name": "lock handle and short contact shadow",
+        "polygon": [
+          [
+            972,
+            742
+          ],
+          [
+            1002,
+            741
+          ],
+          [
+            1003,
+            779
+          ],
+          [
+            1028,
+            779
+          ],
+          [
+            1028,
+            811
+          ],
+          [
+            970,
+            813
+          ]
+        ]
+      }
+    ],
+    "fill_fraction": 0.06898148148148148,
+    "fills": [
+      {
+        "component": 1,
+        "masked_pixels": 11812,
+        "destination_xyxy": [
+          289,
+          0,
+          460,
+          70
+        ],
+        "source_same_board_xyxy": [
+          289,
+          70,
+          460,
+          140
+        ],
+        "vertical_offset_px": 70
+      },
+      {
+        "component": 2,
+        "masked_pixels": 653,
+        "destination_xyxy": [
+          221,
+          299,
+          247,
+          326
+        ],
+        "source_same_board_xyxy": [
+          221,
+          272,
+          247,
+          299
+        ],
+        "vertical_offset_px": -27
+      },
+      {
+        "component": 3,
+        "masked_pixels": 12803,
+        "destination_xyxy": [
+          185,
+          327,
+          288,
+          464
+        ],
+        "source_same_board_xyxy": [
+          185,
+          464,
+          288,
+          601
+        ],
+        "vertical_offset_px": 137
+      },
+      {
+        "component": 4,
+        "masked_pixels": 9002,
+        "destination_xyxy": [
+          15,
+          515,
+          114,
+          641
+        ],
+        "source_same_board_xyxy": [
+          15,
+          389,
+          114,
+          515
+        ],
+        "vertical_offset_px": -126
+      }
+    ],
+    "fill_method": "Nearest fully observed vertical donor rectangle on same board, same columns, gentle per-column boundary mean matching. Inferred regions are independently marked, not photographed grain. Native hardware and generic notice stay separate geometry.",
+    "lighting_method": "One first-order per-channel log-linear plane estimated from valid wood only; global captured mean retained. No higher-order correction or periodicisation. Not measured albedo.",
+    "illumination_coefficients": [
+      [
+        -1.2256732316268766,
+        -1.976661980387466,
+        -3.3517514124956613
+      ],
+      [
+        -0.450874970513098,
+        -0.5713541502827959,
+        -0.8657500395619646
+      ],
+      [
+        -0.5100467540604084,
+        -0.6486464337546303,
+        -0.7047073260168585
+      ]
+    ],
+    "limitations": "Original board is only approximately 290x635 source pixels. 460x1080 resampling adds no photographed detail. Hidden wood is inferred; shadows and reflected lighting may remain. Exterior/back/edge wood is unobserved.",
+    "files": {
+      "entry-estimated-basecolor-uncalibrated.png": {
+        "sha256": "2011b2f3e8fcdd506a8e677777856d7812e30aa451a6573005d075fb0ab85e9c",
+        "bytes": 335151
+      },
+      "entry-filled-captured.png": {
+        "sha256": "f50f67c3cef0d81b60069a29a4979c410b04df9ff85ef4822dde5078d4f44de9",
+        "bytes": 241324
+      },
+      "entry-illumination-estimate-visualization.png": {
+        "sha256": "bb52b66c60408eae1ab8152fa4bf8f92e82de08d7f613bbdd95ea98f5940d222",
+        "bytes": 94247
+      },
+      "entry-illumination-estimate.npz": {
+        "sha256": "142baea3d9947aa7f5cee2b8e10415155a158b60f08224d3aabc3f5d6cf17ed7",
+        "bytes": 5456038
+      },
+      "entry-inferred-fill-mask.png": {
+        "sha256": "cfe2a1d47af0278121f6c8aeef61a8b30bbc1bbcc8766c8a864e5893a7388510",
+        "bytes": 1390
+      },
+      "entry-raw-masked.png": {
+        "sha256": "8864bde4ad32df0a8e3f3bc1ed574aa22d7e4f0e96e5d4afe123bb8205174027",
+        "bytes": 216383
+      },
+      "rectified-sample-mask.png": {
+        "sha256": "8accad67832805d17b08f29ce0e0a61988e1ce45394e7860f6cdb3be5d19e8ae",
+        "bytes": 2707
+      },
+      "source-sample-mask.png": {
+        "sha256": "f8a6bcdfc1d687689ac4ce9cad7965d2bb94b18ef88f672991507f1548e8500e",
+        "bytes": 3842
+      }
+    },
+    "source_mask_note": "255 only selected board footprint with 2px nearest-sample margin, minus excluded hardware; 0 elsewhere. Clipping unsampled source space does not change any rectified valid pixel."
+  },
+  "entry_single_color_calibration": {
+    "method": "Exactly one common linear RGB gain on the full-board image. Gain estimated from the bare upper-board region after bundled AgX+Medium High Contrast inverse. No per-face/per-column tint and no light/exposure change.",
+    "source_region_world": {
+      "x": [
+        -1.27,
+        -0.53
+      ],
+      "y": 0.031,
+      "z": [
+        1.6,
+        1.94
+      ]
+    },
+    "source_region_pixels": [
+      [
+        1227.4577058097914,
+        494.2816887939732
+      ],
+      [
+        995.7297773493304,
+        495.1319630651626
+      ],
+      [
+        994.1096217218769,
+        600.9411877069821
+      ],
+      [
+        1222.8590820693028,
+        600.5973182859132
+      ]
+    ],
+    "target_srgb_median": [
+      0.6251605163111392,
+      0.4498833875380842,
+      0.23117588079296536
+    ],
+    "baseline_srgb_median": [
+      0.7883310567704341,
+      0.582316146658453,
+      0.3721588472638891
+    ],
+    "applied_linear_rgb_gain": [
+      0.4755163788795471,
+      0.5819299817085266,
+      0.6889075040817261
+    ],
+    "baseline_median_error": 0.1455287553501958,
+    "ocio_version": "2.5.2",
+    "ocio_config_sha256": "eaeb3b633cfc1ab190e0e7e1c9d6155ef43a08bb3b2e94fd5db7060bbfe59416",
+    "output_sha256": "9920ae07a202aa2d27c4a2780637559e8a2d43bf3133b31386bb062af5f5a188",
+    "limitations": "Editable estimated base colour under fixed native transport/AgX; not measured reflectance or exact inversion of lighting. Median colour improvement does not by itself validate cathedral-grain fidelity."
+  },
+  "entry_actual_render_checks": {
+    "checks": [
+      {
+        "reference": 1,
+        "role": "Single calibration-view check",
+        "world_region": [
+          -1.27,
+          -0.53,
+          1.6,
+          1.94
+        ],
+        "source_median_srgb": [
+          0.6261123363531816,
+          0.4508173507447212,
+          0.2316738523131968
+        ],
+        "render_median_srgb": [
+          0.6426540575403161,
+          0.48066760440720235,
+          0.2625135657002013
+        ],
+        "median_rgb_mean_absolute_error": 0.025743896078873386
+      },
+      {
+        "reference": 6,
+        "role": "Additional registered viewpoint check, not a blind study",
+        "world_region": [
+          -1.22,
+          -0.65,
+          1.62,
+          1.9
+        ],
+        "source_median_srgb": [
+          0.5422308920252006,
+          0.37437228921253785,
+          0.18058795893122592
+        ],
+        "render_median_srgb": [
+          0.4354601353437943,
+          0.2964385043482162,
+          0.09952349648102499
+        ],
+        "median_rgb_mean_absolute_error": 0.08858966799864294
+      }
+    ],
+    "gain_was_not_changed_after_review": true,
+    "macrograin_status": "Single full-board source projection, U/V each span exactly 0..1 once. No side-door texture or periodic tile on the observed entry front. Real macrograin survives; 6.90% hidden areas remain explicitly inferred.",
+    "limitations": "Regional median errors do not measure complete-image realism. Actual source and native generic notice/hardware positions differ slightly, so inferred wood may show near geometry. Output interpolation cannot add source resolution."
+  },
+  "entry_limitations": "Reference1 calibration improves its RGB median; reference6 remains darker (median RGB MAE0.0886). Cross-view illumination is unresolved. Macrograin is one full entry board; no side-door tile is applied there."
+}

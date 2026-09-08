@@ -934,6 +934,9 @@ def main():
     from puffer_shape_v5 import rebuild_puffer_shape
 
     rebuild_puffer_shape()
+    from puffer_shape_v6 import refine_puffer_shape
+
+    refine_puffer_shape()
     from bed_support_v4 import refine_bed_support
 
     bed_support = refine_bed_support(CALIBRATION["bed_support"]["parameters"])
@@ -975,6 +978,9 @@ def main():
 
     refine_wood_materials(M, T)
     refine_wood_uvs()
+    from wood_photo_v4 import refine_photo_wood
+
+    refine_photo_wood(M)
     from window_details_v3 import refine_blinds
 
     refine_blinds()

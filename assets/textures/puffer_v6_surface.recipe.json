@@ -1,0 +1,38 @@
+{
+  "authorship": "Original numerical procedural asset; no external or photographic raster input",
+  "generator": "scripts/puffer_shape_v6.py::_maps",
+  "version": "r3 tilted small panels",
+  "random_seeds": [
+    6019,
+    6020,
+    6021
+  ],
+  "coupon_size_m": 0.24,
+  "dimensions_px": [
+    1024,
+    1024
+  ],
+  "panel_pitch_m": [
+    0.005,
+    0.01,
+    0.015
+  ],
+  "grid_node_height_standard_deviation_m": [
+    0.00042,
+    0.0005,
+    0.00038
+  ],
+  "surface_method": "Warped piecewise triangular height fields with rounded crease transitions; not a cloth simulation",
+  "normal_map_convention": "OpenGL tangent +Y, image rows flipped at save",
+  "roughness_pixel_min_median_max": [
+    0.2901960784313726,
+    0.3411764705882353,
+    0.4196078431372549
+  ],
+  "normal_strength": 0.7,
+  "files": {
+    "assets/textures/puffer_v6_crumpled_nylon_normal_r3.png": "0d46ed5aefe3fc927df999ad3522b0bd78258bb201480ca4a7c3fbfa633080db",
+    "assets/textures/puffer_v6_crumpled_nylon_roughness_r3.png": "fa5797a02428f17a4808317dfe4a8cdf3287b933a51ac7d417a185a08f715762"
+  },
+  "status": "Increment integrated after actual Reference-3, 10 and 16 review; not visually approved as photoreal"
+}
