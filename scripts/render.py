@@ -58,7 +58,14 @@ def parse_arguments(argv=None):
     parser = argparse.ArgumentParser(
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
     )
-    parser.add_argument("--view", choices=(*CAMERAS, "all"), default="bedroom")
+    framing = parser.add_mutually_exclusive_group()
+    framing.add_argument("--view", choices=(*CAMERAS, "all"), default="bedroom")
+    framing.add_argument(
+        "--reference",
+        type=int,
+        choices=(1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 13, 14, 16),
+        help="render the calibrated camera corresponding to one supplied photograph",
+    )
     parser.add_argument(
         "--resolution",
         type=bounded_integer(64, 8192),
@@ -73,8 +80,7 @@ def parse_arguments(argv=None):
     )
     parser.add_argument(
         "--threads",
-        type=int,
-        choices=(8, 12),
+        type=bounded_integer(1, 64),
         default=12,
         help="fixed CPU rendering threads (default: 12)",
     )
@@ -110,12 +116,17 @@ def main(argv=None) -> int:
         )
     scene = bpy.context.scene
     views = list(CAMERAS) if args.view == "all" else [args.view]
+    camera_names = dict(CAMERAS)
+    if args.reference is not None:
+        name = f"reference-{args.reference:02d}"
+        views = [name]
+        camera_names[name] = f"Camera_Reference_{args.reference:02d}"
     cameras = {}
     for view in views:
-        camera = scene.objects.get(CAMERAS[view])
+        camera = scene.objects.get(camera_names[view])
         if camera is None or camera.type != "CAMERA":
             raise RuntimeError(
-                f"Saved scene is missing {CAMERAS[view]}; rebuild scene/room.blend first."
+                f"Saved scene is missing {camera_names[view]}; rebuild scene/room.blend first."
             )
         cameras[view] = camera
 
@@ -147,6 +158,8 @@ def main(argv=None) -> int:
     shell_objects = [o for o in scene.objects if o.name.startswith("Shell_")]
     cutaway_objects = [o for o in scene.objects if o.name.startswith(CUTAWAY_PREFIXES)]
     initial_camera, initial_frame = scene.camera, scene.frame_current
+    initial_exposure = scene.view_settings.exposure
+    marker_bindings = [(marker, marker.camera) for marker in scene.timeline_markers]
     source_scene = Path(bpy.data.filepath).resolve()
     stats = {
         "schema_version": 1,
@@ -168,6 +181,11 @@ def main(argv=None) -> int:
     started = time.perf_counter()
     write_stats(stats_path, stats)
     try:
+        # Render frame evaluation can reapply a marker even after scene.camera
+        # was assigned. Temporarily unbind the rig, then restore it in finally.
+        # This is essential for calibrated reference cameras without a marker.
+        for marker, _ in marker_bindings:
+            marker.camera = None
         for view in views:
             for obj in shell_objects + cutaway_objects:
                 obj.hide_render = False
@@ -176,10 +194,11 @@ def main(argv=None) -> int:
                     obj.hide_render = True
             # Use the rig's matching marker frame so frame evaluation cannot
             # silently switch the requested camera back to another marker.
-            marker = next((m for m in scene.timeline_markers if m.camera == cameras[view]), None)
+            marker = next((m for m, cam in marker_bindings if cam == cameras[view]), None)
             if marker is not None:
                 scene.frame_set(marker.frame)
             scene.camera = cameras[view]
+            scene.view_settings.exposure = float(cameras[view].get("exposure_ev", initial_exposure))
             destination = output / f"{view}.jpg"
             scene.render.filepath = str(destination)
             record = {
@@ -187,6 +206,9 @@ def main(argv=None) -> int:
                 "camera": cameras[view].name,
                 "camera_position_m": list(cameras[view].matrix_world.translation),
                 "camera_lens_mm": cameras[view].data.lens,
+                "exposure_ev": scene.view_settings.exposure,
+                "view_transform": scene.view_settings.view_transform,
+                "view_look": scene.view_settings.look,
                 "frame": scene.frame_current,
                 "output": f"renders/{view}.jpg",
                 "resolution": [width, height],
@@ -205,6 +227,10 @@ def main(argv=None) -> int:
             view_started = time.perf_counter()
             try:
                 result = bpy.ops.render.render(write_still=True)
+                if scene.camera != cameras[view]:
+                    raise RuntimeError(
+                        f"Render camera changed from {cameras[view].name} to {scene.camera.name}"
+                    )
                 if (
                     "FINISHED" not in result
                     or not destination.is_file()
@@ -237,8 +263,11 @@ def main(argv=None) -> int:
     finally:
         for obj in shell_objects + cutaway_objects:
             obj.hide_render = False
+        for marker, camera in marker_bindings:
+            marker.camera = camera
         scene.frame_set(initial_frame)
         scene.camera = initial_camera
+        scene.view_settings.exposure = initial_exposure
         stats["elapsed_seconds"] = round(time.perf_counter() - started, 3)
         stats["finished_at"] = timestamp()
         write_stats(stats_path, stats)

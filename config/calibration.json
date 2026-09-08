@@ -1,0 +1,771 @@
+{
+  "schema_version": 2,
+  "status": "multi-view SfM constrained architectural estimate; not a survey",
+  "room": {
+    "width": 3.33,
+    "left": -1.49,
+    "right": 1.84,
+    "length": 4.54,
+    "height": 3.035,
+    "floor_transition_y": 1.16,
+    "chase_right_x": 1.14,
+    "chase_start_y": 3.24
+  },
+  "window": {
+    "center_x": -0.374,
+    "width": 1.38,
+    "bottom": 0.85,
+    "top": 2.423,
+    "frame_y": 4.617,
+    "blind_slats": 68,
+    "blind_tilt_degrees": 64.0,
+    "blind_count_status": "reference-13 dark-gap profiles support 68 to 69 strips; headrail occludes first edge"
+  },
+  "front_wall": {
+    "entry_center_x": -1.01135,
+    "kitchen_anchor_x": 1.41,
+    "kitchen_scale_x": 0.84719
+  },
+  "cameras": {
+    "bedroom": {
+      "position": [
+        -0.2533566302877579,
+        1.3522975122018814,
+        1.5882367743559724
+      ],
+      "rotation_world_to_cv": [
+        [
+          0.9999843453718442,
+          -0.004203930708778285,
+          -0.003692692491935013
+        ],
+        [
+          -0.0043517983400377346,
+          -0.16948305226803445,
+          -0.985523493806778
+        ],
+        [
+          0.00351722368521638,
+          0.9855241356560003,
+          -0.16949869373255258
+        ]
+      ],
+      "lens_mm": 14.294100106103018,
+      "photo_size": [
+        1707,
+        1280
+      ],
+      "exposure_ev": 0.65,
+      "exposure_status": "first-pass match to a corresponding bare-wall region"
+    },
+    "kitchen": {
+      "position": [
+        -0.10271408902248794,
+        2.249112707746124,
+        1.6572578541301093
+      ],
+      "rotation_world_to_cv": [
+        [
+          -0.9999010688173113,
+          -0.01394132593717929,
+          -0.0018686918182425508
+        ],
+        [
+          0.000705463939894682,
+          0.08298008918967442,
+          -0.9965509556057348
+        ],
+        [
+          0.01404830589885282,
+          -0.9964536839357798,
+          -0.08296204476858826
+        ]
+      ],
+      "lens_mm": 14.294100106103018,
+      "photo_size": [
+        1707,
+        1280
+      ],
+      "exposure_ev": 1.65,
+      "exposure_status": "first-pass match to a corresponding bare-wall region"
+    },
+    "desk": {
+      "position": [
+        -0.4499143409866216,
+        1.5446954841210547,
+        1.4276757479965294
+      ],
+      "rotation_world_to_cv": [
+        [
+          0.2859876907910228,
+          -0.9578594390339089,
+          -0.026764449735869063
+        ],
+        [
+          -0.638211773135494,
+          -0.16956749790322,
+          -0.7509544568654548
+        ],
+        [
+          0.7147704340186903,
+          0.23184511793110302,
+          -0.6598113881589541
+        ]
+      ],
+      "lens_mm": 14.294100106103018,
+      "photo_size": [
+        1707,
+        1280
+      ],
+      "exposure_ev": 0.65,
+      "exposure_status": "provisional shared baseline; not individually fitted"
+    }
+  },
+  "notes": [
+    "Official Yudof mattress dimensions are 36 x 80 inches (0.9144 x 2.032 m).",
+    "SfM registered 13 of 15 non-ceiling photographs; camera reprojection RMS 0.8515 px is a sparse feature metric, not visual fidelity.",
+    "Absolute SfM scale 0.3025935 m/unit assumes a 2.14 m bed-post span; this span is not surveyed. Door aspect provides a conditional cross-check, not an independent absolute scale.",
+    "Gravity from 16 architectural edges in 8 photographs; direction is fixed across all reference cameras.",
+    "Window visible perimeter, dresser three-corner and desk front-edge landmarks constrain their model geometry; obscured edges remain authored estimates.",
+    "Right rear chase and ceiling envelope are estimates from calibrated rays; uncertainty includes manual pick and shared camera calibration error."
+  ],
+  "layout": {
+    "entry": {
+      "center_x": -0.902,
+      "leaf_width": 0.919,
+      "leaf_height": 2.16,
+      "opening_width": 1.023,
+      "opening_height": 2.218
+    },
+    "side_door": {
+      "center_y": 2.16,
+      "leaf_width": 0.88,
+      "leaf_height": 2.175,
+      "opening_width": 0.985,
+      "opening_height": 2.236
+    },
+    "dresser": {
+      "center_xy": [
+        -1.138,
+        2.985
+      ],
+      "width": 0.775,
+      "depth": 0.613,
+      "top": 0.741
+    },
+    "backpack": {
+      "base_axis_pivot": [
+        -1.271,
+        2.8618,
+        0.741
+      ],
+      "uniform_scale": 0.894,
+      "status": "four-view silhouette estimate; front compartments need separate shape fit"
+    },
+    "desk": {
+      "center_xy": [
+        1.414,
+        1.889
+      ],
+      "width": 1.087,
+      "top": 0.741
+    },
+    "wardrobe": {
+      "center_xy": [
+        1.499,
+        2.8
+      ],
+      "top": 1.861
+    },
+    "bed": {
+      "center_x": 0.00011,
+      "center_y": 3.98993,
+      "yaw_degrees": 1.666,
+      "post_spacing_y": 0.92302,
+      "surface_z": 0.643,
+      "post_top": 1.736,
+      "guard_top": 0.754,
+      "guard_y": 3.4645
+    },
+    "floor_props": {
+      "status": "reference-photo placement estimates; floor remains unchanged; see private multi-view check",
+      "upright_case": {
+        "center_xy": [
+          -1.16,
+          1.1
+        ],
+        "yaw_degrees": -11,
+        "depth": 0.335
+      },
+      "chair": {
+        "center_xy": [
+          0.48,
+          2.22
+        ],
+        "yaw_degrees": -11
+      },
+      "storage": {
+        "center_xy": [
+          0.8144,
+          1.3443
+        ],
+        "yaw_degrees": 14.8,
+        "lid_width": 0.3925,
+        "lid_length": 0.6134,
+        "lid_top": 0.3194
+      },
+      "wastebasket": {
+        "center_xy": [
+          -0.06,
+          0.42
+        ],
+        "body_height": 0.36
+      },
+      "left_shoe": {
+        "center_xy": [
+          -0.45,
+          0.7
+        ],
+        "yaw_degrees": 140
+      },
+      "right_shoe": {
+        "center_xy": [
+          -0.47,
+          0.86
+        ],
+        "yaw_degrees": 145
+      }
+    }
+  },
+  "reference_cameras": {
+    "1": {
+      "position": [
+        -0.10271408902248794,
+        2.249112707746124,
+        1.6572578541301093
+      ],
+      "rotation_world_to_cv": [
+        [
+          -0.9999010688173113,
+          -0.01394132593717929,
+          -0.0018686918182425508
+        ],
+        [
+          0.000705463939894682,
+          0.08298008918967442,
+          -0.9965509556057348
+        ],
+        [
+          0.01404830589885282,
+          -0.9964536839357798,
+          -0.08296204476858826
+        ]
+      ],
+      "lens_mm": 14.294100106103018,
+      "photo_size": [
+        1707,
+        1280
+      ],
+      "exposure_ev": 1.65,
+      "exposure_status": "first-pass match to a corresponding bare-wall region"
+    },
+    "2": {
+      "position": [
+        -0.674331230790256,
+        1.9214535492536249,
+        1.623536576547346
+      ],
+      "rotation_world_to_cv": [
+        [
+          0.18933557921257438,
+          -0.9817889206920833,
+          -0.015574134021296244
+        ],
+        [
+          -0.11363051819295643,
+          -0.006153395161490221,
+          -0.9935040216643246
+        ],
+        [
+          0.9753154073321305,
+          0.18987535631108338,
+          -0.11272624045136939
+        ]
+      ],
+      "lens_mm": 14.294100106103018,
+      "photo_size": [
+        1707,
+        1280
+      ],
+      "exposure_ev": 0.65,
+      "exposure_status": "provisional shared baseline; not individually fitted"
+    },
+    "3": {
+      "position": [
+        -0.2533566302877579,
+        1.3522975122018814,
+        1.5882367743559724
+      ],
+      "rotation_world_to_cv": [
+        [
+          0.9999843453718442,
+          -0.004203930708778285,
+          -0.003692692491935013
+        ],
+        [
+          -0.0043517983400377346,
+          -0.16948305226803445,
+          -0.985523493806778
+        ],
+        [
+          0.00351722368521638,
+          0.9855241356560003,
+          -0.16949869373255258
+        ]
+      ],
+      "lens_mm": 14.294100106103018,
+      "photo_size": [
+        1707,
+        1280
+      ],
+      "exposure_ev": 0.65,
+      "exposure_status": "first-pass match to a corresponding bare-wall region"
+    },
+    "4": {
+      "position": [
+        0.7006821251618293,
+        1.9895094155868254,
+        1.608540149115134
+      ],
+      "rotation_world_to_cv": [
+        [
+          0.06942950547067948,
+          0.9974969066836578,
+          0.013396452016534072
+        ],
+        [
+          0.09656010153434955,
+          0.006646070864674844,
+          -0.9953049665975439
+        ],
+        [
+          -0.9929026591573683,
+          0.07039709439029526,
+          -0.09585696917611611
+        ]
+      ],
+      "lens_mm": 14.294100106103018,
+      "photo_size": [
+        1707,
+        1280
+      ],
+      "exposure_ev": 0.65,
+      "exposure_status": "provisional shared baseline; not individually fitted"
+    },
+    "6": {
+      "position": [
+        0.24385001602328232,
+        1.6767695662071467,
+        1.8779874063889443
+      ],
+      "rotation_world_to_cv": [
+        [
+          -0.9995394111407023,
+          0.028144508542471528,
+          0.011351308973033379
+        ],
+        [
+          -0.02111475541232988,
+          -0.37630082828246186,
+          -0.9262569048259832
+        ],
+        [
+          -0.021797538401755533,
+          -0.9260699613273483,
+          0.3767217727272849
+        ]
+      ],
+      "lens_mm": 14.294100106103018,
+      "photo_size": [
+        1707,
+        1280
+      ],
+      "exposure_ev": 0.65,
+      "exposure_status": "provisional shared baseline; not individually fitted"
+    },
+    "7": {
+      "position": [
+        -0.49205792898270506,
+        0.5345140487400393,
+        1.436018442689139
+      ],
+      "rotation_world_to_cv": [
+        [
+          -0.09295386190272985,
+          0.9954963687131646,
+          0.018616106904278323
+        ],
+        [
+          0.2390662576273017,
+          0.04046496853033271,
+          -0.970159734675644
+        ],
+        [
+          -0.9665437931213698,
+          -0.08572961099143324,
+          -0.24175096644649158
+        ]
+      ],
+      "lens_mm": 14.294100106103018,
+      "photo_size": [
+        1707,
+        1280
+      ],
+      "exposure_ev": 0.65,
+      "exposure_status": "provisional shared baseline; not individually fitted"
+    },
+    "8": {
+      "position": [
+        -0.45815528657124305,
+        0.5555149948028166,
+        1.5590133495406249
+      ],
+      "rotation_world_to_cv": [
+        [
+          -0.1396471063229498,
+          0.9901806751075013,
+          0.006396588096769236
+        ],
+        [
+          -0.1312683471754539,
+          -0.012109386331266982,
+          -0.9912729108537691
+        ],
+        [
+          -0.9814618213284974,
+          -0.13926806312408133,
+          0.13167042138694496
+        ]
+      ],
+      "lens_mm": 14.294100106103018,
+      "photo_size": [
+        1707,
+        1280
+      ],
+      "exposure_ev": 0.65,
+      "exposure_status": "provisional shared baseline; not individually fitted"
+    },
+    "9": {
+      "position": [
+        -0.4499143409866216,
+        1.5446954841210547,
+        1.4276757479965294
+      ],
+      "rotation_world_to_cv": [
+        [
+          0.2859876907910228,
+          -0.9578594390339089,
+          -0.026764449735869063
+        ],
+        [
+          -0.638211773135494,
+          -0.16956749790322,
+          -0.7509544568654548
+        ],
+        [
+          0.7147704340186903,
+          0.23184511793110302,
+          -0.6598113881589541
+        ]
+      ],
+      "lens_mm": 14.294100106103018,
+      "photo_size": [
+        1707,
+        1280
+      ],
+      "exposure_ev": 0.65,
+      "exposure_status": "provisional shared baseline; not individually fitted"
+    },
+    "10": {
+      "position": [
+        -0.39579173446935006,
+        2.1287420276540177,
+        1.3215974033914535
+      ],
+      "rotation_world_to_cv": [
+        [
+          0.9914355740923684,
+          0.1258027264694587,
+          -0.03505961261888753
+        ],
+        [
+          0.0754286359954716,
+          -0.7707552999733824,
+          -0.6326506053382103
+        ],
+        [
+          -0.10661155329512155,
+          0.6245878173450006,
+          -0.7736433513759489
+        ]
+      ],
+      "lens_mm": 14.294100106103018,
+      "photo_size": [
+        1707,
+        1280
+      ],
+      "exposure_ev": 0.65,
+      "exposure_status": "provisional shared baseline; not individually fitted"
+    },
+    "11": {
+      "position": [
+        -0.3979319260762558,
+        2.860967799684267,
+        1.2491117335676654
+      ],
+      "rotation_world_to_cv": [
+        [
+          0.4036447354298506,
+          0.9148878641624627,
+          0.007150074685840902
+        ],
+        [
+          0.47626229620034605,
+          -0.203439435824649,
+          -0.8554452765486068
+        ],
+        [
+          -0.7811818948092306,
+          0.34870129331506033,
+          -0.5178438522012833
+        ]
+      ],
+      "lens_mm": 14.294100106103018,
+      "photo_size": [
+        1707,
+        1280
+      ],
+      "exposure_ev": 0.65,
+      "exposure_status": "provisional shared baseline; not individually fitted"
+    },
+    "13": {
+      "position": [
+        0.35914605095005586,
+        3.4240063789679707,
+        1.5976818287852694
+      ],
+      "rotation_world_to_cv": [
+        [
+          0.9646478175858418,
+          0.26325285597872267,
+          -0.012349973518929198
+        ],
+        [
+          0.010723282964249634,
+          -0.08603008385169485,
+          -0.9962348296837142
+        ],
+        [
+          -0.26332413339711375,
+          0.9608833219967533,
+          -0.08581166750007112
+        ]
+      ],
+      "lens_mm": 14.294100106103018,
+      "photo_size": [
+        1707,
+        1280
+      ],
+      "exposure_ev": 0.65,
+      "exposure_status": "provisional shared baseline; not individually fitted"
+    },
+    "14": {
+      "position": [
+        0.2566965473024608,
+        3.4103536785519557,
+        1.4847639250248907
+      ],
+      "rotation_world_to_cv": [
+        [
+          -0.012872822569422801,
+          0.9999132209425452,
+          0.002800182744202339
+        ],
+        [
+          0.2736703046641624,
+          0.006216674235097422,
+          -0.9618034712489238
+        ],
+        [
+          -0.9617374146741513,
+          -0.011614798567321106,
+          -0.2737265819574707
+        ]
+      ],
+      "lens_mm": 14.294100106103018,
+      "photo_size": [
+        1707,
+        1280
+      ],
+      "exposure_ev": 0.65,
+      "exposure_status": "provisional shared baseline; not individually fitted"
+    },
+    "16": {
+      "position": [
+        0.4426873321350502,
+        3.0703172650823642,
+        1.3446878404287625
+      ],
+      "rotation_world_to_cv": [
+        [
+          -0.9335255822114065,
+          0.32226864809964595,
+          0.15707611469883687
+        ],
+        [
+          0.1718685443959813,
+          0.786793943197939,
+          -0.5928039257581255
+        ],
+        [
+          -0.3146286554083436,
+          -0.5264011867378964,
+          -0.7898801173576108
+        ]
+      ],
+      "lens_mm": 14.294100106103018,
+      "photo_size": [
+        1707,
+        1280
+      ],
+      "exposure_ev": 0.65,
+      "exposure_status": "provisional shared baseline; not individually fitted"
+    }
+  },
+  "lighting": {
+    "window_power_w": 50,
+    "window_color_linear": [
+      0.38,
+      0.66,
+      1.0
+    ],
+    "fluorescent_color_linear": [
+      1,
+      0.94,
+      0.81
+    ],
+    "status": "authored first-pass look development; not radiometrically measured"
+  },
+  "bed_support": {
+    "status": "multi-view photo estimate, not surveyed",
+    "construction_mattress_top": 0.643,
+    "resolved_mattress_top": 0.586,
+    "resolved_mattress_center": 0.482,
+    "sheet_nominal_top": 0.601,
+    "parameters": {
+      "lowering_m": 0.057,
+      "bed_center_x": 0.00011,
+      "bed_center_y": 3.98993,
+      "bed_yaw_degrees": 1.666,
+      "sheet_front_retraction_m": 0.05,
+      "sheet_retraction_start_y": -0.36,
+      "sheet_retraction_span_m": 0.16,
+      "right_cover_ridge_m": 0.014,
+      "right_cover_ridge_x": 0.83,
+      "right_cover_ridge_width_m": 0.048,
+      "quilt_lower_band_z": 0.66,
+      "quilt_retained_upper_z": 0.735
+    }
+  },
+  "vinyl_grid": {
+    "parameters": {
+      "origin_xy_m": [
+        -1.5601572155939576,
+        0.03536370993154974
+      ],
+      "yaw_deg": -0.19114753258130074,
+      "pitch_m": 0.3066270606346134
+    },
+    "observed_gray_cells": [
+      [
+        3,
+        0
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        6,
+        1
+      ],
+      [
+        6,
+        3
+      ],
+      [
+        9,
+        2
+      ]
+    ],
+    "status": "Photo-estimated: five hand-picked reference-01 corners fitted on existing floor plane; reference-09 and reference-16 visually checked. Not a survey. Occluded cell colors remain inferred cream.",
+    "fit_world_rms_m": 0.001073578871212222,
+    "fit_observations": [
+      {
+        "reference": 1,
+        "pixel": [
+          940.5,
+          1132.0
+        ],
+        "grid_corner": [
+          4,
+          1
+        ]
+      },
+      {
+        "reference": 1,
+        "pixel": [
+          1041.5,
+          1133.0
+        ],
+        "grid_corner": [
+          3,
+          1
+        ]
+      },
+      {
+        "reference": 1,
+        "pixel": [
+          1145.5,
+          1134.5
+        ],
+        "grid_corner": [
+          2,
+          1
+        ]
+      },
+      {
+        "reference": 1,
+        "pixel": [
+          1249.0,
+          1135.5
+        ],
+        "grid_corner": [
+          1,
+          1
+        ]
+      },
+      {
+        "reference": 1,
+        "pixel": [
+          1195.0,
+          1232.5
+        ],
+        "grid_corner": [
+          2,
+          2
+        ]
+      }
+    ]
+  }
+}

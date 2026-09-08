@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "status": "candidate material; visual comparison pending",
+  "assets": [
+    {
+      "path": "assets/textures/oak_honey_straight_reference_v3.png",
+      "sha256": "c4867fbbd9ff2f423c412ea2f60b0b551c8bb01dd07438634908d91512ca502f",
+      "authorship": "AI-assisted reference reconstruction generated with image_gen from user photographs 1 and 2",
+      "content": "Flat honey-colored straight-grain oak albedo, 1254 x 1254 pixels",
+      "source_photographs_published": false,
+      "seamless": false,
+      "mapping": "Single-board UV crops constrained inside the image; no repeated wrap",
+      "derivation": "Native shader preparation rotates grain into U and normalizes linear-light mean/relative contrast; no photographed room pixels are projected"
+    }
+  ]
+}

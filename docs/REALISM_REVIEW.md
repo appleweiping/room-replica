@@ -1,0 +1,84 @@
+# Realism refinement log
+
+Goal active: reach visual realism close enough to be difficult to distinguish from the supplied room photographs, across corresponding interior views. Build/CI/format validation is necessary but does not establish this visual criterion.
+
+Published baseline: v1.0.0 / c04b28f. Candidate source is on refine-photoreal; candidate native files and preview renders stay in .local/iterations/ until visually reviewed.
+
+## Round 01 — reviewed, superseded
+
+- Furniture/soft objects: remove balloon-like chair cushion, symmetric inflated puffer, block-like backpack and closed shoe uppers.
+- Bedding: replace the old single-valued duvet height field with a closed folded quilt, irregular sheet drape and continuous over-rail fabrics.
+- Materials: calibrate wood grain at physical scale; integrate actual roughness maps; reduce hard carpet seams and add fibre-scale shading; restore countertop granularity.
+- Architecture: eliminate the duplicate coplanar wall surface beside the sink; use two rigid door-closer links; compare a 2.94 m ceiling / offset window / shallow rear service-chase hypothesis against the photos. These remain estimates.
+- Cameras: manually picked structural landmarks generate candidate camera transforms. Bedroom candidate fits selected points at about 8 px RMS; kitchen about 36 px RMS on 1707x1280 references. The kitchen mismatch remains significant. This geometric residual is not a photographic-similarity score.
+
+No realism-completion decision has been made. Rendered previews must be compared with references, then revised. Camera/dimension candidates are not final survey data.
+
+## Round 02 — reviewed, substantial visual gaps remain
+
+The complete native candidate contains 1,513 objects and 636,496 base vertices. Bedroom and kitchen were rendered at 960 × 720, 32 Cycles samples. Wide oak grain, a closed quilt, thinner pillow, modeled door hardware and microwave details improved the first revision. The sink-side coplanar wall artifact and bright rectangle reflected on the blinds were corrected.
+
+The render still reads as computer-generated. Puffer sleeves are thin bands; bedding is too flat; soft shopping bags have sharp unnatural ridges; dresser/wardrobe relationships and room proportions are inaccurate. These are visual failures even where geometry checks pass. Candidate outputs remain private.
+
+## Round 03 — reviewed; layout improved, appearance not yet accepted
+
+Sparse multi-view reconstruction now supplies 13 actual camera poses. Independently reviewed window, door, furniture and gravity landmarks replace the earlier manual camera fit. The working envelope is 3.33 × 4.54 m with a 3.035 m ceiling and a right rear wall projection. Absolute scale and several obscured dimensions remain estimates; see [CALIBRATION.md](CALIBRATION.md).
+
+The native candidate contains 1,547 objects and 659,328 base vertices. Its source snapshot deliberately uses the last validated cloth mesh while a thicker folded revision is tested separately. Reference-guided flat textile print assets replace the earlier simple flower artwork. All room appearance continues to be rendered from Blender geometry, material nodes and lighting.
+
+Review has already identified further corrections: move the backpack to the door side of the dresser, turn the standing suitcase toward the room, lower the bed safety rail, place the high ventilation grille using calibrated photo rays, and remove gaps between the puffer collar, shoulder and sleeve. Engineering validity does not establish completion; the active visual goal has not been reached.
+
+The actual bedroom and kitchen images confirm substantially better window and furniture alignment. They still expose flat or regular textile folds, unconvincing packed clothes, overly uniform surface finish and incorrect capture brightness. A 32-bit Cycles radiance preview was used to compare Blender view transforms and exposure values without re-tracing unchanged geometry. The AgX view transform is retained; per-camera exposure estimates are stored separately from the light setup.
+
+Before the next whole-room candidate, local previews introduced a connected puffer shell, a thicker folded duvet, softer counter bags, denser small rose print and curved aluminium blind strips. The blind direction was reversed after a close-up revealed daylight gaps in the wrong half of the window. The 180 W exterior-light trial over-brightened those gaps; the next whole-room candidate uses 50 W. These are candidate refinements, not a declaration of photographic equivalence.
+
+A new calibrated-camera render initially captured the timeline's default camera despite the requested camera being assigned. That image and its statistics are explicitly retained as invalid experimental evidence. The render code now temporarily unbinds marker cameras and verifies the actual camera; a real Blender two-color-panel regression passed. This regression checks capture correctness, not visual realism.
+
+## Round 04 — whole-room views reviewed; still visibly synthetic
+
+The frozen candidate builds in 89.7 seconds and contains 1,563 objects, 1,347,551 base vertices and 89 materials. Its native file is 79,195,689 bytes; SHA-256 is `bc5216efa4b58a82a44425f9f9e1fbe453d4d883335b6e77377a488fea60f18c`. All source hashes stayed unchanged during construction. This candidate includes the thicker quilt, connected puffer, packed garments, revised floor props, denser sheet print, curved blinds, camera exposure estimates and bed yaw correction.
+
+Bedroom, kitchen, desk and side-wall views have been inspected against the supplied photographs. The cabinet and door colors are too strongly patterned, several soft props retain overly regular silhouettes, the packed garments look too evenly stacked, and the blind contrast remains weak. The microwave's top vent region and door proportions need further reference matching. The left checked towel and black trousers were still in the wrong order in this candidate; that is corrected in source for the next build. The backpack's shape and scale require a separate check. None of these rendered views meets the active visual target.
+
+A subsequent material candidate separates reference-informed straight furniture veneer from the CC0 cathedral oak used on door panels. The generated straight-grain swatch is explicitly **not seamless**; board UV crops are constrained within its image bounds. Independent grain phases and post-layout physical UV scale address the repeated patterns rather than hiding them with exposure. The first preview revealed accidental removal of the new image node during cleanup; the corrected `wood-lookdev-v3b` preview retains the grain and now includes the dresser's parented drawer objects. That controlled material improvement is integrated into source. It does not establish photographic equivalence.
+
+## Next candidate preparation — not yet rendered as a complete scene
+
+- Reference 6 independently supports the microwave's lower edge and the short cabinet's extension: projected line RMS improves from 60.62 to 5.08 pixels and 25.01 to 1.28 pixels, respectively, at the original 1707-pixel width. A remaining upper-shell discrepancy motivated a further 12.5 mm upward shell extension while keeping the lower edge fixed. The complete revised appliance still needs visual review.
+- Four backpack silhouettes support a 0.894 uniform scale and a 61.8 mm move toward the window. The front-pocket label triangulates about 81 mm behind and 32 mm above its resulting model position, so local pocket reshaping is required in addition to the whole-bag fit.
+- A material-only reference-13 preview replaces uniformly distributed cotton bump noise with sparse, elongated creases. Its contribution is subtle at 960 pixels; major quilt shape and print/color differences remain.
+- Corresponding wall and blue-fabric patch comparisons reveal view-dependent capture color and spatial lighting differences. A shared exposure value for uncalibrated detail views is provisional. Adjusting one albedo to hide those capture differences would not provide a reliable match.
+
+These source refinements have not been promoted to the public baseline. The goal remains active.
+
+Subsequent controlled comparisons accepted the backpack's shaped crown, thinner zipper binding and smaller front compartments as incremental improvements. A quilt-only fit substantially improved three silhouettes but compressed the right fold against an overly high bed. Independent exposed-cover tracks then justified a 57 mm lower support. The combined support/quilt candidate preserves the upper silhouette while recovering lower-layer thickness; its three actual camera previews were reviewed before integration. The remaining front bed-rail appearance needs a separate object-level check.
+
+Carpet look development rejected the full-scale scan because its coarse mottling did not match the photographs. The accepted increment retains the authored directional stripes, strengthens their contrast and combines them with finer registered CC0 loop relief. Colour, roughness and tangent normal are baked to compatible image maps. A real Blender GLB export regression verifies all three textures and the physical UV dimensions of a rotated, clipped tile. This establishes portability, not visual completion.
+
+The `realism-05-preflight` build contains 1,587 objects and 1,350,746 base vertices and takes 85.3 seconds on the current machine. Its reference-1 and reference-6 kitchen renders include the revised microwave and restrained wood materials. They were inspected: appliance proportions improve, but cabinet joinery profiles, counter clutter, surface finish and capture colour still need work. This preflight predates the integrated support and carpet changes and is not a final whole-room candidate.
+
+Warmer-main-light trials improved selected wall patches but worsened the white fabric/paper anchors. Those trials remain diagnostic and were not adopted as a global lighting change. Correspondence review also rejected low-coverage automatic matches for the two unregistered close-ups: several tracks referred to entirely different room objects. No camera is claimed from those matches.
+
+A two-step cabinet-profile preview replaces four narrow applied moulding strips per door with a broad sloped raised centre. The final increment narrows the stiles/rails while preserving the door perimeter and cabinet placement. Eight fields retain continuous vertical grain through the slope; native reference-6 previews were reviewed before source integration. Profile depth is still an authored estimate. Further whole-room visual review remains required.
+
+## Round 05 — integrated views reviewed; goal remains unmet
+
+The frozen `realism-05-integration` candidate builds in 110.7 seconds and contains 1,553 objects, 1,394,558 base vertices and 95 materials. Its native file is 101,120,301 bytes, SHA-256 `90589108d275c9edaf7518bb1dd0d0e6a731fded89d874cbbec6bfe09eae3c9e`. References 1, 3, 4, 10 and 13 were rendered with their actual registered cameras at 960 × 720, 32 Cycles samples and four CPU threads. Every view was inspected against the corresponding photograph.
+
+The composition and major object placement improve, but the images remain clearly synthetic. The puffer's continuous sleeves and corrected pose still surround an overly complete, smooth front panel. Bedding lacks pressure folds and has locally stretched print motifs. Counter packages look too flat, and the old steel support passes through the sheet. The latter has since been corrected in an independently rendered guard/support increment; this correction and the new pillowcase print are not present in the frozen round-05 images.
+
+The pillowcase finish increment retains the reviewed draped geometry and adds an explicitly AI-assisted flat damask print, portable satin normal/roughness maps and black chair support tubes. An actual GLB export retained all three image payloads and passed the official validator with zero errors/warnings. Its real camera preview improves the surface appearance, while the large folds are still too smooth.
+
+A separate window diagnostic found that the exterior area-light card was hidden from camera rays but remained visible after glass transmission. Reducing environment strength alone did not remove the bright blind-gap rectangle. Disabling **only** the area card's transmission visibility did remove it while preserving its illumination. The single-variable Cycles crop was visually reviewed, and this lighting correction is integrated into source. The outdoor view itself is not reconstructed from photographs.
+
+A darker ivory wall / neutral main-light hypothesis improves selected white-cloth and paper anchors as well as wall patches, but it over-brightens the blind surfaces and remains **unaccepted**. The source retains the earlier wall albedo, light colour and capture exposures while that coupled material/lighting issue is investigated. A separate vinyl grid/aggregate experiment is also under review; neither experiment is evidence that the visual goal has been reached.
+
+## Round 06 preparation — reviewed local increments
+
+The counter package pass now has separate cord handles, folded carrier edges, a crushed black bag, a hazy PET bottle and a wallet with visible thickness. An earlier version produced upward spikes because its approximate support mapping was discontinuous. The corrected version queries actual white-bag triangles; the spikes are absent in the inspected Cycles preview. The white carrier still reads too much like folded paper and the black plastic needs finer pressure wrinkles. The actual isolated GLB passes the official validator with zero errors and warnings.
+
+The blue-quilt surface pass adds 46 sparse pressure-fold paths while locking low contact vertices and preserving the outer silhouette. Actual changes are bounded to roughly 16–18 mm. The corresponding reference-13 crop improves local valleys but exposes a separate print-scale problem: different cloth parts map drastically different physical widths to the same floral image. This surface pass is integrated; the print correction remains independent work.
+
+The resilient-tile grid is now fitted to five visible reference-1 corners and visually checked in references 9 and 16. Its 306.627 mm pitch and 0.191 degree rotation are estimates on the existing floor plane, not site measurements. Only visible grey-cell assignments are recorded; occluded colors remain inferred. Three actual material previews replace uniform surfaces with seeded mineral chips and subtle pigment clusters. This improves the near-floor surface structure, while exposure/color matching remains unresolved. No reference photograph pixels are used as floor textures.
+
+The main-build dependency tree was formatted with syntax-tree equality checks; source lint and all 16 delivery-validation tests pass. These checks preserve reproducibility and evidence integrity. They do not establish that any render meets the active photographic target. The public v1 baseline remains unchanged while this work continues.

@@ -12,6 +12,16 @@ import random
 
 import bpy
 from mathutils import Matrix, Vector
+from props_helpers_v2 import (
+    backpack as build_backpack,
+    chair_pillow as build_chair_pillow,
+    desktop_wrappers as build_desktop_wrappers,
+    entry_wastebasket as build_entry_wastebasket,
+    kitchen_soft_packages as build_kitchen_packages,
+    sink_toiletries as build_sink_toiletries,
+    puffer as build_puffer,
+    sneaker as build_sneaker,
+)
 
 
 def build(ctx):
@@ -66,12 +76,13 @@ def build(ctx):
     paper = material("uncoated paper", (0.87, 0.86, 0.80), 0.87, bump=0.0007, scale=310)
     tissue = material("soft white tissue", (0.93, 0.93, 0.88), 0.94, bump=0.0006)
     navy = material(
-        "violet navy ripstop puffer", (0.019, 0.013, 0.067), 0.29, bump=0.0007, scale=290
+        "violet navy ripstop puffer", (0.018, 0.015, 0.057), 0.47, bump=0.00018, scale=350
     )
+    navy.node_tree.nodes.get("Principled BSDF").inputs["Specular IOR Level"].default_value = 0.31
     navy_seam = material("puffer stitched seams", (0.010, 0.009, 0.032), 0.55)
     cotton = material("grey marl knit", (0.32, 0.35, 0.37), 0.92, bump=0.0012, scale=380)
     ivory_fabric = material("cream canvas", (0.68, 0.65, 0.53), 0.88, bump=0.001, scale=300)
-    backpack = material("dusty periwinkle nylon", (0.17, 0.22, 0.35), 0.67, bump=0.0006)
+    backpack = material("dusty periwinkle nylon", (0.16, 0.195, 0.285), 0.76, bump=0.00025)
     backpack_piping = material("bag cream piping", (0.68, 0.66, 0.47), 0.61, bump=0.0003)
     sky = material("wipes turquoise wrapper", (0.24, 0.57, 0.69), 0.33, bump=0.0003)
     green = material("green bottle label", (0.014, 0.26, 0.11), 0.35)
@@ -91,7 +102,7 @@ def build(ctx):
     pink = material("chair pillow pale mauve", (0.54, 0.40, 0.43), 0.82, bump=0.0009)
     pink_seam = material("pillow embroidery", (0.21, 0.13, 0.16), 0.91)
     sole = material("sneaker sole off white", (0.71, 0.70, 0.65), 0.8, bump=0.0005)
-    shoeupper = material("sneaker knitted grey", (0.32, 0.31, 0.29), 0.85, bump=0.001, scale=300)
+    shoeupper = material("sneaker knitted grey", (0.39, 0.38, 0.35), 0.89, bump=0.0004, scale=440)
     screen = material("laptop dark screen", (0.011, 0.016, 0.025), 0.24, emission=0.17)
     blue_screen = material("tablet note paper blue", (0.18, 0.33, 0.47), 0.32, emission=0.3)
     code_colors = [
@@ -234,7 +245,8 @@ def build(ctx):
 
     def cloth(name, loc, size, mat, drop=0, waves=0.007, res=(34, 32), angle=0):
         """A thin, draped textile patch with large folds and fine wrinkles."""
-        nx, ny = res
+        # Resolve the shortest crease smoothly; coarse high-frequency grids made jagged hems.
+        nx, ny = max(res[0], 56), max(res[1], 48)
         vertices, faces = [], []
         for iy in range(ny + 1):
             v = iy / ny
@@ -244,9 +256,9 @@ def build(ctx):
                 edge = max(0, (abs(u - 0.5) - 0.30) / 0.2)
                 z = -0.5 * drop * edge**1.3
                 z += waves * (
-                    math.sin(17 * u + 6 * v)
-                    + 0.46 * math.sin(39 * u - 23 * v)
-                    + 0.23 * math.sin(79 * u + 11 * v)
+                    math.sin(13 * u + 5 * v)
+                    + 0.32 * math.sin(29 * u - 17 * v)
+                    + 0.12 * math.sin(47 * u + 9 * v)
                 )
                 y += waves * 0.35 * math.sin(20 * u + 10 * v)
                 vertices.append(
@@ -271,6 +283,9 @@ def build(ctx):
             if v.co.length:
                 v.co *= 1 + 0.13 * math.sin(v.co.x * 43 + v.co.y * 51 + v.co.z * 37)
         return ob
+
+    # Capture the shared private helpers without introducing a second collection owner.
+    detail = locals().copy()
 
     # ------------------------------------------------------------------ desk
     group("Props / Study desk electronics")
@@ -340,22 +355,23 @@ def build(ctx):
     for y in (1.67, 1.72, 1.91, 1.94):
         B("Laptop edge port", (1.14, y, 0.786), (0.016, 0.004, 0.003), rubber, 0.0008)
 
-    B("Tablet folio rim", (1.015, 1.410, 0.791), (0.236, 0.170, 0.013), rubber, 0.009)
-    B("Tablet dark glass border", (1.013, 1.410, 0.799), (0.226, 0.160, 0.002), M["black"], 0.008)
-    B("Tablet note display", (1.013, 1.410, 0.8005), (0.210, 0.143, 0.001), blue_screen, 0.006)
-    for i in range(9):
+    # Landscape tablet directly in front of the laptop, slightly toward viewer-left.
+    B("Tablet folio rim", (0.931, 1.843, 0.783), (0.170, 0.236, 0.013), rubber, 0.009)
+    B("Tablet dark glass border", (0.931, 1.843, 0.791), (0.160, 0.226, 0.002), M["black"], 0.008)
+    B("Tablet note display", (0.931, 1.843, 0.7925), (0.143, 0.210, 0.001), blue_screen, 0.006)
+    for i in range(8):
         B(
             "Tablet ruled paper line",
-            (0.923 + i * 0.022, 1.41, 0.8012),
-            (0.0008, 0.135, 0.0002),
+            (0.868 + i * 0.017, 1.843, 0.7932),
+            (0.0006, 0.204, 0.0002),
             code_colors[0],
             0,
         )
     text(
         "Tablet authored title",
         "scene notes",
-        (1.095, 1.47, 0.8018),
-        0.011,
+        (0.986, 1.931, 0.7938),
+        0.010,
         keymat,
         right=(0, -1, 0),
         up=(1, 0, 0),
@@ -435,7 +451,7 @@ def build(ctx):
 
     group("Props / Paper and food packaging")
     # Hollow kitchen-paper roll lies parallel to the edge of the desk.
-    roll_center = (1.272, 1.19, 0.850)
+    roll_center = (1.272, 1.30, 0.838)
     before = {o.name for o in bpy.data.objects}
     roll = lathe(
         "Embossed paper towel roll",
@@ -445,11 +461,25 @@ def build(ctx):
         64,
     )
     roll.rotation_euler[1] = math.pi / 2
-    roll.location = (1.17, 1.19, 0.85)
-    for xx in (1.171, 1.374):
-        ring("Paper roll cardboard core", (xx, 1.19, 0.85), 0.021, 0.002, ivory_fabric, "X")
+    roll.location = (roll_center[0] - 0.1025, roll_center[1], roll_center[2])
+    for xx in (roll_center[0] - 0.1015, roll_center[0] + 0.1015):
+        ring(
+            "Paper roll cardboard core",
+            (xx, roll_center[1], roll_center[2]),
+            0.021,
+            0.002,
+            ivory_fabric,
+            "X",
+        )
         for r in (0.029, 0.036, 0.044, 0.052):
-            ring("Visible rolled paper layers", (xx, 1.19, 0.85), r, 0.0003, paper, "X")
+            ring(
+                "Visible rolled paper layers",
+                (xx, roll_center[1], roll_center[2]),
+                r,
+                0.0003,
+                paper,
+                "X",
+            )
     cloth(
         "Unrolled paper towel",
         (1.125, 2.07, 0.783),
@@ -518,105 +548,11 @@ def build(ctx):
         ivory_fabric,
     )
 
+    build_desktop_wrappers(detail)
+
     # ------------------------------------------------------------ dresser bag
     group("Props / Dresser travel bag")
-    softbox(
-        "Backpack padded main body",
-        (-1.263, 2.805, 1.105),
-        (0.232, 0.322, 0.443),
-        backpack,
-        n=44,
-        rings=28,
-        wrinkle=0.0026,
-    )
-    softbox(
-        "Backpack cream crown panel",
-        (-1.265, 2.805, 1.265),
-        (0.225, 0.30, 0.114),
-        ivory_fabric,
-        n=40,
-        rings=20,
-        wrinkle=0.002,
-    )
-    softbox(
-        "Backpack front pocket",
-        (-1.119, 2.805, 1.073),
-        (0.100, 0.265, 0.287),
-        backpack,
-        n=40,
-        rings=24,
-        wrinkle=0.0018,
-    )
-    # Two arched zipper paths, their running chain and two independently modelled pulls.
-    for n, (x, w, zbase, h) in enumerate(
-        [(-1.060, 0.253, 0.963, 0.238), (-1.133, 0.303, 1.065, 0.215)]
-    ):
-        pts = []
-        for i in range(45):
-            a = math.pi * i / 44
-            pts.append(
-                (x + 0.007 * math.sin(a), 2.805 + w / 2 * math.cos(a), zbase + h * math.sin(a))
-            )
-        tube("Backpack cream zipper piping %d" % n, pts, 0.0033, backpack_piping)
-        tube(
-            "Backpack metal zip chain %d" % n,
-            [(p[0] + 0.001, p[1], p[2] + 0.003) for p in pts],
-            0.0009,
-            silver,
-        )
-        for side in (0, -1):
-            px, py, pz = pts[side]
-            pull = B(
-                "Backpack zipper pull",
-                (px + 0.004, py, pz - 0.011),
-                (0.006, 0.010, 0.025),
-                silver,
-                0.002,
-            )
-    tube(
-        "Backpack top carry handle",
-        [
-            (-1.263, 2.702, 1.315),
-            (-1.267, 2.72, 1.365),
-            (-1.268, 2.78, 1.382),
-            (-1.266, 2.849, 1.365),
-            (-1.263, 2.869, 1.321),
-        ],
-        0.012,
-        backpack,
-    )
-    for yy in (2.690, 2.918):
-        tube(
-            "Backpack padded shoulder strap",
-            [(-1.365, yy, 1.279), (-1.436, yy, 1.17), (-1.438, yy, 0.988), (-1.351, yy, 0.918)],
-            0.021,
-            backpack,
-        )
-        B("Backpack strap adjuster", (-1.418, yy, 0.999), (0.017, 0.039, 0.028), shellrim, 0.004)
-    B(
-        "Backpack fabric identity patch",
-        (-1.059, 2.805, 1.085),
-        (0.001, 0.073, 0.029),
-        tissue,
-        0.003,
-    )
-    text(
-        "Backpack neutral woven label",
-        "TRAVEL",
-        (-1.0575, 2.776, 1.079),
-        0.011,
-        backpack,
-        right=(0, 1, 0),
-        up=(0, 0, 1),
-    )
-    for yy in (2.628, 2.982):
-        softbox(
-            "Backpack mesh side pocket",
-            (-1.25, yy, 1.038),
-            (0.12, 0.028, 0.133),
-            backpack,
-            wrinkle=0.001,
-        )
+    build_backpack(detail)
     # White narrow shopping bag, hollow opening and rope handles.
     for dx, dy, dz, wx, wy, wz in [
         (0, 0, 0, 0.13, 0.096, 0.003),
@@ -830,168 +766,13 @@ def build(ctx):
             0.002,
         )
         B("Suitcase compression buckle", (-0.10, yy, 0.171), (0.038, 0.032, 0.008), rubber, 0.004)
-    # Folded clothes establish layered thickness under the rumpled jacket.
-    for i, (x, y, w, h, mat) in enumerate(
-        [
-            (-0.08, 2.62, 0.34, 0.37, ivory_fabric),
-            (-0.12, 2.57, 0.38, 0.41, backpack),
-            (-0.38, 2.39, 0.38, 0.45, ivory_fabric),
-            (-0.36, 2.63, 0.38, 0.45, rubber),
-        ]
-    ):
-        z = 0.166 + i * 0.027
-        softbox("Folded clothing %02d" % i, (x, y, z), (w, h, 0.047), mat, wrinkle=0.003)
-        cloth(
-            "Folded clothing soft top %02d" % i,
-            (x, y, z + 0.027),
-            (w * 0.96, h * 0.96),
-            mat,
-            waves=0.004,
-            res=(24, 24),
-            angle=0.05 * (i - 2),
-        )
-    cloth(
-        "Grey shirt spills over open case",
-        (-0.48, 2.79, 0.255),
-        (0.44, 0.31),
-        cotton,
-        drop=0.12,
-        waves=0.012,
-        res=(42, 32),
-        angle=0.23,
-    )
-    cloth(
-        "Light blue loose garment",
-        (-0.51, 2.35, 0.226),
-        (0.35, 0.31),
-        sky,
-        waves=0.011,
-        res=(34, 28),
-        angle=-0.22,
-    )
+    # Reference-informed packed garments retain raycast support names for the puffer.
+    from luggage_textiles_v3 import build_luggage_textiles
 
-    # Jacket torso: quilt channels are actual inflated geometry, not dark stripes.
-    verts, faces = [], []
-    nx, ny = 62, 75
-    for j in range(ny + 1):
-        v = j / ny
-        y = 2.30 + v * 0.59
-        width = 0.37 + 0.072 * math.sin(v * math.pi) - 0.045 * math.exp(-(((v - 0.95) / 0.10) ** 2))
-        for i in range(nx + 1):
-            u = i / nx
-            x = -0.26 + (u - 0.5) * width + 0.020 * math.sin(8 * v)
-            edge = math.sin(math.pi * u) ** 0.6
-            puff = (0.013 + 0.024 * math.sin(v * math.pi * 8) ** 2) * edge
-            macro = 0.030 * math.sin(5 * u + 9 * v) + 0.014 * math.sin(13 * u - 7 * v)
-            wrinkle = 0.0035 * math.sin(95 * u + 40 * v) * math.sin(math.pi * u)
-            z = 0.294 + 0.10 * edge + puff + macro + wrinkle
-            verts.append((x, y, z))
-    for j in range(ny):
-        for i in range(nx):
-            a = j * (nx + 1) + i
-            faces.append((a, a + 1, a + nx + 2, a + nx + 1))
-    jacket = mesh("Navy puffer wrinkled quilted torso", verts, faces, navy)
-    solid = jacket.modifiers.new("Jacket padded shell", "SOLIDIFY")
-    solid.thickness = 0.019
-    for j in range(1, 8):
-        row = round(j * ny / 8)
-        pts = [
-            (
-                verts[row * (nx + 1) + i][0],
-                verts[row * (nx + 1) + i][1],
-                verts[row * (nx + 1) + i][2] + 0.0008,
-            )
-            for i in range(nx + 1)
-        ]
-        tube("Puffer transverse sewn channel %02d" % j, pts, 0.0011, navy_seam)
-    zipper = []
-    for j in range(ny + 1):
-        p = verts[j * (nx + 1) + nx // 2]
-        zipper.append((p[0] + 0.023, p[1], p[2] + 0.0018))
-    tube("Puffer center zip tape", zipper, 0.004, navy_seam)
-    tube(
-        "Puffer center metal zipper", [(p[0], p[1], p[2] + 0.001) for p in zipper], 0.00085, silver
-    )
-    B(
-        "Puffer zipper slider",
-        (zipper[10][0], zipper[10][1], zipper[10][2] + 0.005),
-        (0.010, 0.021, 0.004),
-        silver,
-        0.002,
-    )
+    build_luggage_textiles(detail)
 
-    def sleeve(name, centers, radii):
-        vv, ff = [], []
-        sides = 32
-        path = []
-        # Smoothly interpolate the control path, preserving independently bent arms.
-        for k in range(len(centers) - 1):
-            for step in range(12):
-                t = step / 12
-                p = Vector(centers[k]).lerp(Vector(centers[k + 1]), t)
-                r = radii[k] * (1 - t) + radii[k + 1] * t
-                path.append((p, r))
-        path.append((Vector(centers[-1]), radii[-1]))
-        for i, (p, r) in enumerate(path):
-            tangent = (path[min(i + 1, len(path) - 1)][0] - path[max(i - 1, 0)][0]).normalized()
-            side = tangent.cross(Vector((0, 0, 1))).normalized()
-            up = side.cross(tangent).normalized()
-            puff = 0.88 + 0.12 * math.sin(i * math.pi / 5) ** 2
-            for k in range(sides):
-                a = 2 * math.pi * k / sides
-                cr = math.cos(a) * r * puff
-                sr = math.sin(a) * r * 0.68 * puff
-                q = p + side * cr + up * sr
-                q.z += 0.0018 * math.sin(a * 12 + i * 1.5)
-                vv.append(tuple(q))
-        for i in range(len(path) - 1):
-            for k in range(sides):
-                a = i * sides + k
-                ff.append(
-                    (a, a + sides, (i + 1) * sides + (k + 1) % sides, i * sides + (k + 1) % sides)
-                )
-        ff += [
-            tuple(range(sides)),
-            tuple((len(path) - 1) * sides + k for k in range(sides - 1, -1, -1)),
-        ]
-        mesh(name, vv, ff, navy)
-        for i in range(3, len(path) - 1, 5):
-            polyloop(
-                name + " quilt seam", [vv[i * sides + k] for k in range(sides)], 0.001, navy_seam
-            )
-        polyloop(
-            name + " elastic cuff",
-            [vv[(len(path) - 1) * sides + k] for k in range(sides)],
-            0.004,
-            navy_seam,
-        )
-
-    sleeve(
-        "Puffer left bent sleeve",
-        [
-            (-0.42, 2.76, 0.37),
-            (-0.55, 2.72, 0.36),
-            (-0.62, 2.55, 0.32),
-            (-0.54, 2.37, 0.33),
-            (-0.41, 2.45, 0.43),
-        ],
-        [0.078, 0.071, 0.063, 0.054, 0.044],
-    )
-    sleeve(
-        "Puffer right bent sleeve",
-        [
-            (-0.08, 2.80, 0.38),
-            (0.075, 2.79, 0.35),
-            (0.12, 2.60, 0.33),
-            (0.01, 2.51, 0.44),
-            (-0.08, 2.64, 0.46),
-        ],
-        [0.075, 0.070, 0.06, 0.052, 0.039],
-    )
-    softbox(
-        "Puffer rumpled collar", (-0.254, 2.871, 0.373), (0.205, 0.102, 0.109), navy, wrinkle=0.005
-    )
-    E("Puffer collar dark opening", (-0.247, 2.872, 0.418), (0.066, 0.030, 0.005), navy_seam)
+    # Folded, compressed garment surfaces use curved channels and sewn edges.
+    build_puffer(detail)
     for x, y in [(-0.57, 2.16), (-0.52, 2.23), (-0.63, 2.29)]:
         B("Small travel carton", (x, y, 0.195), (0.092, 0.053, 0.065), paper, 0.001)
         B(
@@ -1105,30 +886,7 @@ def build(ctx):
     )
     for yy in (1.616, 1.944):
         C("Chair back hardware", (0.178, yy, 0.621), 0.005, 0.003, silver, (0, math.pi / 2, 0))
-    # Pillow tipped over the back, with gathered fabric and embroidered piping.
-    softbox(
-        "Pink patterned pillow on chair",
-        (0.128, 1.782, 0.805),
-        (0.175, 0.472, 0.258),
-        pink,
-        n=44,
-        rings=24,
-        wrinkle=0.004,
-    )
-    for zz in (0.708, 0.902):
-        pts = []
-        for i in range(81):
-            y = 1.573 + 0.414 * i / 80
-            pts.append((0.224 + 0.004 * math.sin(i * 0.8), y, zz + 0.006 * math.sin(i * 0.37)))
-        tube("Pillow ornamental border", pts, 0.0016, pink_seam)
-    for j in range(13):
-        center_y = 1.592 + j * 0.032
-        pts = []
-        for i in range(35):
-            a = i * 2 * math.pi / 34
-            r = 0.009 * (1 + 0.23 * math.cos(5 * a))
-            pts.append((0.22, center_y + r * math.cos(a), 0.875 + r * math.sin(a)))
-        tube("Pillow paisley stitch motif", pts, 0.0008, pink_seam)
+    build_chair_pillow(detail)
 
     # ------------------------------------------------------------ storage bin
     group("Props / Transparent storage box")
@@ -1208,88 +966,15 @@ def build(ctx):
     # --------------------------------------------------------------- sneakers
     group("Props / Entry sneakers")
 
-    def sneaker(name, center, angle=0, scale=1):
-        before = {o.name for o in bpy.data.objects}
-        x, y, z = center
-        softbox(
-            name + " sculpted sole",
-            (x, y, z + 0.025),
-            (0.104 * scale, 0.260 * scale, 0.043 * scale),
-            sole,
-            n=40,
-            rings=16,
-            wrinkle=0.0003,
-        )
-        softbox(
-            name + " knitted upper",
-            (x, y - 0.007 * scale, z + 0.065 * scale),
-            (0.095 * scale, 0.237 * scale, 0.082 * scale),
-            shoeupper,
-            n=40,
-            rings=20,
-            wrinkle=0.0015,
-        )
-        E(
-            name + " ankle opening",
-            (x, y + 0.073 * scale, z + 0.099 * scale),
-            (0.032 * scale, 0.043 * scale, 0.008),
-            rubber,
-        )
-        softbox(
-            name + " tongue",
-            (x, y + 0.008 * scale, z + 0.111 * scale),
-            (0.039 * scale, 0.083 * scale, 0.025),
-            cotton,
-            n=24,
-            rings=14,
-            wrinkle=0.001,
-        )
-        for i in range(6):
-            yy = y - 0.054 * scale + i * 0.020 * scale
-            zz = z + 0.103 * scale + 0.009 * scale * math.sin(i / 5 * math.pi)
-            tube(
-                name + " crossed lace",
-                [
-                    (x - 0.026 * scale, yy, zz),
-                    (x, yy + 0.012 * scale, zz + 0.006 * scale),
-                    (x + 0.025 * scale, yy + 0.018 * scale, zz),
-                ],
-                0.0017,
-                sole,
-            )
-            for xx in (x - 0.028 * scale, x + 0.028 * scale):
-                E(name + " eyelet", (xx, yy, zz), (0.0035, 0.0035, 0.001), silver)
-        for yy in (y - 0.086 * scale, y - 0.025 * scale, y + 0.047 * scale):
-            tube(
-                name + " sole relief",
-                [
-                    (x - 0.050 * scale, yy, z + 0.021 * scale),
-                    (x + 0.050 * scale, yy, z + 0.021 * scale),
-                ],
-                0.001,
-                shoeupper,
-            )
-        for side in (-1, 1):
-            tube(
-                name + " side stitched seam",
-                [
-                    (x + side * 0.046 * scale, y - 0.09 * scale, z + 0.059 * scale),
-                    (x + side * 0.049 * scale, y + 0.007 * scale, z + 0.071 * scale),
-                    (x + side * 0.036 * scale, y + 0.092 * scale, z + 0.096 * scale),
-                ],
-                0.0007,
-                sole,
-            )
-        transform_group(before, (x, y, z), angle)
-
-    sneaker("Entry left sneaker", (-0.36, 0.63, 0.001), -0.22)
-    sneaker("Entry right sneaker", (-0.22, 0.68, 0.001), 0.16)
-    sneaker("Under dresser white sneaker", (-0.83, 2.97, 0.001), -0.05, 0.88)
+    build_sneaker(detail, "Entry left sneaker", (-0.36, 0.91, 0.001), -0.22)
+    build_sneaker(detail, "Entry right sneaker", (-0.22, 0.95, 0.001), 0.16)
+    build_sneaker(detail, "Under dresser white sneaker", (-0.83, 2.97, 0.001), -0.05, 0.88)
 
     # ------------------------------------------------------ kitchen incidents
     group("Props / Kitchen counter details")
     # The bottle has a petaloid base, shoulder, molded rings, water and cap flutes.
-    bottle = (0.52, 0.31, 0.941)
+    bottle_before = set(bpy.data.objects)
+    bottle = (0.64, 0.31, 0.941)
     profile = [
         (0, 0.028),
         (0.006, 0.036),
@@ -1304,61 +989,52 @@ def build(ctx):
     lathe("Clear water bottle PET shell", bottle, profile, bottleplastic, 56)
     lathe(
         "Bottle water volume",
-        (0.52, 0.31, 0.946),
+        (0.64, 0.31, 0.946),
         [(0, 0.031), (0.121, 0.033), (0.126, 0.032)],
         water,
         48,
     )
     lathe(
         "Green bottle wraparound label",
-        (0.52, 0.31, 0.941),
+        (0.64, 0.31, 0.941),
         [(0.079, 0.0356), (0.130, 0.0356)],
         green,
         56,
     )
-    C("Bottle green screw cap", (0.52, 0.31, 1.184), 0.0145, 0.018, green)
+    C("Bottle green screw cap", (0.64, 0.31, 1.184), 0.0145, 0.018, green)
     for i in range(28):
         a = i * 2 * math.pi / 28
         tube(
             "Bottle cap flute",
             [
-                (0.52 + 0.0147 * math.cos(a), 0.31 + 0.0147 * math.sin(a), 1.177),
-                (0.52 + 0.0147 * math.cos(a), 0.31 + 0.0147 * math.sin(a), 1.191),
+                (0.64 + 0.0147 * math.cos(a), 0.31 + 0.0147 * math.sin(a), 1.177),
+                (0.64 + 0.0147 * math.cos(a), 0.31 + 0.0147 * math.sin(a), 1.191),
             ],
             0.0005,
             green,
         )
     for zz in (0.965, 0.978, 1.093):
-        ring("Bottle molded grip ring", (0.52, 0.31, zz), 0.036, 0.0008, bottleplastic)
-    C("Cream insulated travel bottle", (0.69, 0.37, 1.025), 0.026, 0.175, paper)
-    C("Travel bottle cap", (0.69, 0.37, 1.119), 0.027, 0.025, tissue)
-    ring("Travel bottle steel rim", (0.69, 0.37, 1.105), 0.0265, 0.0012, silver)
-    cloth(
-        "Kitchen white bag",
-        (0.91, 0.34, 0.943),
-        (0.34, 0.26),
-        paper,
-        waves=0.012,
-        res=(34, 30),
-        angle=0.17,
+        ring("Bottle molded grip ring", (0.64, 0.31, zz), 0.036, 0.0008, bottleplastic)
+    # The reference is a large PET soft-drink bottle, about 31 cm above the worktop.
+    # Scale the complete assembly about its grounded base, including label and liquid.
+    bpy.context.view_layer.update()
+    bottle_transform = (
+        Matrix.Translation(Vector(bottle))
+        @ Matrix.Diagonal((1.23, 1.23, 1.23, 1))
+        @ Matrix.Translation(-Vector(bottle))
     )
-    tube(
-        "Kitchen shopping bag handle",
-        [(0.80, 0.30, 0.958), (0.84, 0.241, 1.003), (0.95, 0.267, 1.027), (1.02, 0.34, 0.96)],
-        0.005,
-        scarlet,
-    )
-    softbox("Kitchen dark pouch", (0.83, 0.54, 0.962), (0.17, 0.09, 0.037), rubber, wrinkle=0.0005)
-    softbox(
-        "Folded olive fabric cap",
-        (0.39, 0.41, 0.970),
-        (0.143, 0.124, 0.060),
-        ivory_fabric,
-        wrinkle=0.004,
-    )
-    cloth(
-        "Olive cap brim", (0.35, 0.47, 0.943), (0.12, 0.12), ivory_fabric, waves=0.003, res=(20, 20)
-    )
+    for ob in set(bpy.data.objects) - bottle_before:
+        ob.matrix_world = bottle_transform @ ob.matrix_world
+    C("Cream insulated travel bottle", (0.465, 0.455, 1.0285), 0.026, 0.175, paper)
+    C("Travel bottle cap", (0.465, 0.455, 1.1225), 0.027, 0.025, tissue)
+    ring("Travel bottle steel rim", (0.465, 0.455, 1.1085), 0.0265, 0.0012, silver)
+    build_kitchen_packages(detail)
+
+    group("Props / Sink toiletries")
+    build_sink_toiletries(detail)
+
+    group("Props / Entry wastebasket")
+    build_entry_wastebasket(detail)
 
     # Open yellow recycling bin, corresponding to the bright object beside the desk.
     group("Props / Utility objects")

@@ -1,14 +1,34 @@
 """Rebuild the photographed room as editable geometry. Run with Blender --background --python."""
 
 from pathlib import Path
-import sys, math, random, json, argparse, time
+import sys
+import math
+import random
+import json
+import argparse
+import time
+
+import bpy
+from mathutils import Vector
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
-import bpy
-from mathutils import Vector
-from common import *
-from gltf_cleanup import cleanup_unused_tangents
+# Blender's --python execution needs the repository script directory first.
+from common import (  # noqa: E402
+    area,
+    box,
+    collection,
+    curve,
+    cyl,
+    image_material,
+    material,
+    mesh,
+    noise_bump,
+    point_camera,
+    uvball,
+)
+from gltf_cleanup import cleanup_unused_tangents  # noqa: E402
+from calibration import CALIBRATION  # noqa: E402
 
 P = argparse.ArgumentParser()
 P.add_argument(
@@ -17,7 +37,14 @@ P.add_argument(
 P.add_argument("--samples", type=int, default=96)
 P.add_argument("--resolution", type=int, default=1600)
 P.add_argument("--skip-export", action="store_true")
+P.add_argument(
+    "--output-dir",
+    type=Path,
+    default=ROOT,
+    help="Candidate output root; source textures/config always come from the repository",
+)
 ARGS = P.parse_args(sys.argv[sys.argv.index("--") + 1 :] if "--" in sys.argv else [])
+OUTPUT_ROOT = ARGS.output_dir.resolve()
 random.seed(521)
 T = ROOT / "assets" / "textures"
 bpy.ops.object.select_all(action="SELECT")
@@ -64,10 +91,10 @@ def setup_materials():
     for k in ["fabric_blue", "fabric_cream", "navy"]:
         noise_bump(M[k], 210, 0.2, 0.0007)
     M["oak"] = image_material(
-        "Honey oak / CC0 red oak veneer", T / "red_oak_veneer_diff_2k.jpg", 0.32
+        "Honey oak / CC0 Oak Veneer 01", T / "red_oak_veneer_diff_2k.jpg", 0.32
     )
     n = M["oak"].node_tree.nodes
-    l = M["oak"].node_tree.links
+    links = M["oak"].node_tree.links
     bs = n.get("Principled BSDF")
     img = next(a for a in n if a.type == "TEX_IMAGE")
     # glTF recognizes a modern RGBA Multiply node with factor 1 and a constant
@@ -79,8 +106,8 @@ def setup_materials():
     mix.blend_type = "MULTIPLY"
     mix.inputs[0].default_value = 1
     mix.inputs[7].default_value = (0.80, 0.47, 0.16, 1)
-    l.new(img.outputs["Color"], mix.inputs[6])
-    l.new(mix.outputs[2], bs.inputs["Base Color"])
+    links.new(img.outputs["Color"], mix.inputs[6])
+    links.new(mix.outputs[2], bs.inputs["Base Color"])
     bs.inputs["Coat Weight"].default_value = 0.17
     bs.inputs["Coat Roughness"].default_value = 0.28
     normal = n.new("ShaderNodeTexImage")
@@ -90,8 +117,8 @@ def setup_materials():
     normal.image.colorspace_settings.name = "Non-Color"
     normalmap = n.new("ShaderNodeNormalMap")
     normalmap.inputs["Strength"].default_value = 0.23
-    l.new(normal.outputs["Color"], normalmap.inputs["Color"])
-    l.new(normalmap.outputs["Normal"], bs.inputs["Normal"])
+    links.new(normal.outputs["Color"], normalmap.inputs["Color"])
+    links.new(normalmap.outputs["Normal"], bs.inputs["Normal"])
     M["rose"] = image_material("Small roses on cotton", T / "rose_cotton.png", 0.91, (1.6, 1.0, 1))
     noise_bump(M["rose"], 230, 0.18, 0.0007)
     M["floral"] = image_material(
@@ -126,15 +153,15 @@ def group(name, fn, loc=(0, 0, 0), rz=0):
 
 def panel(name, x, y, z, w, h):
     # Solid oak five-piece raised panel with recessed field and beveled frame.
-    box(name + " field", (x, y - 0.009, z), (w - 0.088, 0.032, h - 0.095), M["oak"], 0.009)
+    box(name + " field", (x, y - 0.009, z), (w - 0.088, 0.032, h - 0.095), M["oak"], 0.006)
     for xx in [x - w / 2 + 0.028, x + w / 2 - 0.028]:
-        box(name + " stile", (xx, y + 0.006, z), (0.056, 0.050, h), M["oak"], 0.008)
+        box(name + " stile", (xx, y + 0.006, z), (0.056, 0.050, h), M["oak"], 0.003)
     for zz in [z - h / 2 + 0.031, z + h / 2 - 0.031]:
-        box(name + " rail", (x, y + 0.006, zz), (w - 0.08, 0.050, 0.062), M["oak"], 0.008)
+        box(name + " rail", (x, y + 0.006, zz), (w - 0.08, 0.050, 0.062), M["oak"], 0.003)
     for xx in [x - w / 2 + 0.063, x + w / 2 - 0.063]:
-        box(name + " inner molding", (xx, y + 0.004, z), (0.014, 0.042, h - 0.09), M["oak"], 0.004)
+        box(name + " inner molding", (xx, y + 0.004, z), (0.014, 0.042, h - 0.09), M["oak"], 0.002)
     for zz in [z - h / 2 + 0.065, z + h / 2 - 0.065]:
-        box(name + " inner molding", (x, y + 0.004, zz), (w - 0.116, 0.042, 0.014), M["oak"], 0.004)
+        box(name + " inner molding", (x, y + 0.004, zz), (w - 0.116, 0.042, 0.014), M["oak"], 0.002)
 
 
 def cabinet(name, loc, w, d, h, rz=0, drawers=False):
@@ -256,7 +283,7 @@ def door(name, loc, rz=0, notice=False):
                 M["darkmetal"],
                 (math.pi / 2, 0, 0),
             )
-            q = mesh(
+            mesh(
                 name + " generic notice",
                 [
                     (-0.10, 0.024, 0.995),
@@ -271,12 +298,22 @@ def door(name, loc, rz=0, notice=False):
             box(
                 name + " closer", (-0.29, 0.065, 1.974), (0.31, 0.075, 0.072), M["darkmetal"], 0.009
             )
-            curve(
-                name + " closer articulated arm",
-                [(-0.31, 0.075, 2.025), (-0.35, 0.27, 2.06), (-0.12, 0.04, 2.09)],
-                0.012,
-                M["metal"],
-            )
+            # Two rigid stamped-steel links and their hinge, not a bent tube.
+            arm = [
+                Vector(p)
+                for p in [(-0.31, 0.075, 2.025), (-0.35, 0.24, 2.065), (-0.12, 0.035, 2.085)]
+            ]
+            for i, (a, b) in enumerate(zip(arm, arm[1:])):
+                link = box(
+                    name + " closer arm link " + str(i),
+                    (a + b) / 2,
+                    (0.019, 0.007, (b - a).length),
+                    M["darkmetal"],
+                    0.001,
+                )
+                link.rotation_euler = (b - a).to_track_quat("Z", "Y").to_euler()
+            for i, co in enumerate(arm):
+                cyl(name + " closer hinge " + str(i), co, 0.010, 0.009, M["metal"])
 
     group(name, create, loc, rz)
 
@@ -294,20 +331,21 @@ def architecture():
                 continue
             b = box(
                 "Floor_Carpet_%d_%d" % (i, j),
-                (x, y - 0.25 + dep / 2, 0.009),
-                (0.498, dep - 0.002, 0.018),
+                (x, y - 0.25 + dep / 2, 0.015),
+                (0.4997, dep - 0.0003, 0.006),
                 M["carpet"],
-                0.0005,
+                0.00008,
             )
             b.rotation_euler.z = (i + j) % 2 * math.pi / 2 if dep == 0.5 else 0
     for i in range(10):
         for j in range(3):
             x = -1.35 + i * 0.30
-            y = 0.125 + j * 0.25
+            tile_depth = 0.30 if j < 2 else 0.15
+            y = j * 0.30 + tile_depth / 2
             box(
                 "Floor_Vinyl_%d_%d" % (i, j),
                 (x, y, 0.007),
-                (0.299, 0.249, 0.014),
+                (0.2995, tile_depth - 0.0005, 0.014),
                 M["tilegray" if (i + j * 3) % 7 in [1, 4] else "tilecream"],
                 0.0005,
             )
@@ -329,7 +367,9 @@ def architecture():
     box("Shell_Wall_Left_AlcoveHeader", (-1.575, 0.56, 2.58), (0.15, 0.86, 0.48), M["wall"], 0)
     box("Shell_Wall_Alcove_Back", (-2.05, 0.56, 1.41), (0.15, 0.98, 2.82), M["wall"], 0)
     for y in [0.07, 1.05]:
-        box("Shell_Wall_Alcove_Return", (-1.8, y, 1.41), (0.58, 0.12, 2.82), M["wall"], 0)
+        # Terminate against the left-wall segment rather than overlapping it.
+        # The old coplanar double surface produced a pitch-black strip in Cycles.
+        box("Shell_Wall_Alcove_Return", (-1.85, y, 1.41), (0.40, 0.12, 2.82), M["wall"], 0)
     box("Floor_Alcove", (-1.77, 0.56, 0.008), (0.55, 0.89, 0.016), M["tilecream"], 0)
     # Window aperture, reveals, steel frame and sill.
     for x in [-1.065, 1.065]:
@@ -358,8 +398,10 @@ def architecture():
     box("Window_Sill", (0, 4.108, 0.917), (1.39, 0.24, 0.026), M["laminate"], 0.004)
     box("Window_Glass", (0, 4.232, 1.59), (1.24, 0.008, 1.3), M["glass"], 0.001)
     box("Blind_Headrail", (0, 4.119, 2.231), (1.25, 0.045, 0.035), M["blinds"], 0.003)
-    for i in range(62):
-        z = 2.197 - i * 0.0202
+    slat_count = CALIBRATION["window"].get("blind_slats", 68)
+    slat_step = (2.197 - 0.9648) / (slat_count - 1)
+    for i in range(slat_count):
+        z = 2.197 - i * slat_step
         b = box("Blind_Slat_%02d" % i, (0, 4.102, z), (1.231, 0.025, 0.0013), M["blinds"], 0.0005)
         b.rotation_euler.x = math.radians(64)
     box("Blind_Bottomrail", (0, 4.092, 0.947), (1.239, 0.03, 0.018), M["blinds"], 0.002)
@@ -370,12 +412,12 @@ def architecture():
             0.0011,
             M["fabric_cream"],
         )
-        for i in range(0, 62, 2):
+        for i in range(0, slat_count, 2):
             curve(
                 "Blind_Ladder_rung",
                 [
-                    (x - 0.003, 4.08, 2.197 - i * 0.0202),
-                    (x + 0.003, 4.115, 2.197 - i * 0.0202 - 0.01),
+                    (x - 0.003, 4.08, 2.197 - i * slat_step),
+                    (x + 0.003, 4.115, 2.197 - i * slat_step - 0.01),
                 ],
                 0.0006,
                 M["fabric_cream"],
@@ -447,10 +489,10 @@ def kitchen():
     for x in [-0.07, 0.10]:
         cyl("Hob_control", (x, 0.526, 0.963), 0.025, 0.012, M["white"])
     # Refrigerator: rounded enameled two-door unit, separate gasket, recessed handles.
-    box("Fridge_housing", (0.99, 0.325, 0.423), (0.472, 0.526, 0.822), M["white"], 0.025)
+    box("Fridge_housing", (0.99, 0.325, 0.423), (0.472, 0.526, 0.822), M["white"], 0.013)
     box("Fridge_gasket", (0.99, 0.596, 0.447), (0.457, 0.014, 0.775), M["taupe"], 0.022)
     for z, h in [(0.335, 0.53), (0.724, 0.222)]:
-        box("Fridge_door", (0.99, 0.613, z), (0.454, 0.047, h), M["white"], 0.017)
+        box("Fridge_door", (0.99, 0.613, z), (0.454, 0.047, h), M["white"], 0.011)
     box("Fridge_division", (0.99, 0.641, 0.606), (0.43, 0.005, 0.009), M["taupe"], 0.002)
     box("Fridge_handle", (0.99, 0.646, 0.624), (0.331, 0.023, 0.014), M["white"], 0.006)
     cyl("Fridge_badge", (0.99, 0.641, 0.18), 0.015, 0.003, M["metal"], (math.pi / 2, 0, 0))
@@ -466,8 +508,6 @@ def kitchen():
     box("Microwave_window", (0.079, 0.456, 1.77), (0.49, 0.007, 0.191), M["taupe"], 0.034)
     box("Microwave_window_inner", (0.079, 0.461, 1.77), (0.452, 0.004, 0.161), M["glass"], 0.032)
     # Mesh screen pinholes add scale without duplicating thousands of objects.
-    nm = M["glass"].node_tree.nodes
-    lk = M["glass"].node_tree.links
     curve(
         "Microwave_handle",
         [(0.348, 0.472, 1.899), (0.334, 0.505, 1.858), (0.334, 0.52, 1.68), (0.35, 0.473, 1.624)],
@@ -492,6 +532,9 @@ def kitchen():
             M["taupe"],
             0.001,
         )
+    from appliance_details import microwave_details
+
+    microwave_details(M)
     # Photo-facing order: hob/microwave at the outer corner, fridge/tall upper
     # doors toward entry. Reflect the assembly around its countertop midpoint.
     kitchen_objects = set(bpy.data.objects) - before_kitchen
@@ -604,7 +647,7 @@ def furniture():
         box("Wardrobe_body", (0, 0, 0.914), (0.86, 0.53, 1.828), M["oak"], 0.005)
         box("Wardrobe_cap", (0, 0.006, 1.837), (0.884, 0.55, 0.023), M["laminate"], 0.004)
         for x in [-0.218, 0.218]:
-            box("Wardrobe_slab_door", (x, 0.278, 0.921), (0.419, 0.024, 1.797), M["oak"], 0.009)
+            box("Wardrobe_slab_door", (x, 0.278, 0.921), (0.419, 0.024, 1.797), M["oak"], 0.003)
             for z in [0.2, 1.65]:
                 box(
                     "Wardrobe_hinge",
@@ -708,95 +751,10 @@ def bedding():
             M["white"],
         )
 
-    def sheet(u, v):
-        x = (u - 0.5) * 2.19
-        y = 3.035 + v * 1.057
-        dropx = max(0, abs(x) - 0.981) / 0.114
-        dropy = max(0, 3.166 - y) / 0.131
-        z = (
-            0.65
-            - 0.235 * max(dropx, dropy)
-            + 0.007 * math.sin(x * 49 + v * 6) * (0.2 + dropy)
-            + 0.004 * math.sin(v * 90 + x * 6)
-        )
-        return (x, y, z)
+    from textiles_v2 import build_bedding
 
-    cloth_grid("Bed_rose_sheet_draped", sheet, M["rose"])
+    build_bedding(M)
 
-    # Authored non-flat rumpled duvet surface, folded ridges and fine wrinkles.
-    def duvet(u, v):
-        x = -0.87 + u * 1.72
-        y = 3.29 + v * 0.73 + 0.037 * math.sin(u * 10 + v * 4)
-        wave = 0.095 * math.sin(u * 11 + v * 7) + 0.060 * math.sin(v * 13 - u * 6)
-        ridge = 0.12 * math.exp(-(((u - 0.47 - 0.13 * math.sin(v * 5)) / 0.095) ** 2))
-        z = (
-            0.733
-            + wave * 0.6
-            + ridge
-            + 0.009 * math.sin(u * 53 + v * 23)
-            + 0.0028 * math.sin(u * 148 - v * 39)
-        )
-        z += 0.045 * math.sin(v * math.pi)
-        # Smooth lower envelope keeps the padded quilt clear of the fitted sheet.
-        delta = z - 0.706
-        z = 0.706 + 0.5 * (delta + math.sqrt(delta * delta + 0.00012))
-        x += 0.027 * math.sin(v * 18 + u * 8)
-        return (x, y, z)
-
-    quilt = cloth_grid("Bed_blue_floral_duvet", duvet, M["floral"], 150, 90)
-    quilt.modifiers["Cloth thickness"].thickness = 0.023
-    # Pillows as subdivided quilted, asymmetrical superellipsoid surfaces.
-    for j, (x, y, angle) in enumerate([(-0.64, 3.86, 0.13), (0.66, 3.76, -0.25)]):
-        ob = uvball("Bed_floral_pillow_" + str(j), (x, y, 0.746), (0.30, 0.19, 0.09), M["floral"])
-        ob.rotation_euler.z = angle
-        for v in ob.data.vertices:
-            p = v.co
-            p.z += 0.025 * math.sin(p.x * 15 + p.y * 13) * (1 - abs(p.z))
-
-    # Draped fabrics over end rails: side-facing u runs along y.
-    def towel(u, v, side, kind):
-        y = 3.24 + u * 0.47
-        x = side * (1.04 - 0.01 * math.sin(u * 25))
-        if v < 0.16:
-            a = v / 0.16 * math.pi
-            x += side * 0.028 * math.sin(a)
-            z = 1.16 + 0.033 * math.cos(a)
-        else:
-            t = (v - 0.16) / 0.84
-            x -= side * (0.045 + 0.014 * math.sin(u * 21 + t * 8))
-            z = 1.12 - t * 0.48
-        x += 0.014 * math.sin(u * 33) * (v + 0.2)
-        return x, y, z
-
-    cloth_grid("Bed_right_white_tshirt", lambda u, v: towel(u, v, 1, "white"), M["towel"], 55, 60)
-    cloth_grid(
-        "Bed_left_black_trousers",
-        lambda u, v: (lambda p: (p[0], p[1] + 0.22, p[2] - 0.15 * v))(towel(u, v, -1, "black")),
-        M["black"],
-        55,
-        60,
-    )
-    cloth_grid(
-        "Bed_left_white_checked_towel",
-        lambda u, v: (lambda p: (p[0] - 0.016, p[1] - 0.16, p[2] + 0.035 * v))(
-            towel(u, v, -1, "white")
-        ),
-        M["towel"],
-        55,
-        60,
-    )
-    for u in [0.05, 0.18, 0.68, 0.81, 0.95]:
-        pts = []
-        for j in range(50):
-            p = towel(u, j / 49, -1, "white")
-            pts.append((p[0] - 0.019, p[1] - 0.16, p[2] + 0.035 * j / 49))
-        curve("Towel_woven_check_vertical", pts, 0.0013, M["navy"])
-    for v in [0.29, 0.5, 0.72, 0.92]:
-        pts = []
-        for j in range(45):
-            p = towel(j / 44, v, -1, "white")
-            pts.append((p[0] - 0.019, p[1] - 0.16, p[2] + 0.035 * v))
-        curve("Towel_woven_check_cross", pts, 0.0012, M["navy"])
     # Black steel safety rail with the familiar oak cap.
     for x in [-0.16, 0.16]:
         box("Bed_guard_upright", (x, 3.005, 0.62), (0.03, 0.035, 0.48), M["black"], 0.006)
@@ -829,6 +787,20 @@ def lighting_and_cameras():
         "desk": point_camera("Camera_Desk", (-0.65, 1.21, 1.54), (1.11, 1.88, 0.91), 30),
         "overview": point_camera("Camera_Overview", (-5.1, -4.7, 6.4), (0, 2.12, 0.64), 42),
     }
+    from architecture_v2 import apply_matched_camera
+    from lighting_v2 import refine_lighting
+
+    for name, record in CALIBRATION["cameras"].items():
+        apply_matched_camera(cams[name], record)
+    for number, record in CALIBRATION.get("reference_cameras", {}).items():
+        cam = point_camera(
+            "Camera_Reference_" + number.zfill(2), record["position"], (0, 2, 1), record["lens_mm"]
+        )
+        apply_matched_camera(cam, record)
+        cam["reference_number"] = int(number)
+        cam["calibration_method"] = "shared-intrinsic COLMAP SfM plus constrained room alignment"
+    bpy.data.objects["Light_Fluorescent"].location.z += CALIBRATION["room"]["height"] - 2.82
+    refine_lighting()
     scene.camera = cams["bedroom"]
     for name, cam in cams.items():
         marker = scene.timeline_markers.new(name, frame=list(cams).index(name) * 60 + 1)
@@ -836,19 +808,20 @@ def lighting_and_cameras():
     return cams
 
 
-def validate_and_manifest(cameras):
+def validate_and_manifest(cameras, bed_support=None):
     meshes = [o for o in scene.objects if o.type == "MESH"]
     data = {
         "title": "Room Replica / Observed everyday interior",
         "units": "meters",
         "seed": 521,
         "dimensions": {
-            "width": 3.0,
-            "length": 4.15,
-            "height": 2.82,
+            "width": CALIBRATION["room"]["width"],
+            "length": CALIBRATION["room"]["length"],
+            "height": CALIBRATION["room"]["height"],
             "status": "photo-estimated",
             "mattress": [2.032, 0.9144, 0.208],
             "mattress_source": "https://housing.umn.edu/yudof",
+            "resolved_bed_support": bed_support,
         },
         "objects": len(scene.objects),
         "meshes": len(meshes),
@@ -862,10 +835,23 @@ def validate_and_manifest(cameras):
             }
             for name, o in cameras.items()
         },
+        "reference_cameras": {
+            o.name: {
+                "position": list(o.location),
+                "rotation_euler": list(o.rotation_euler),
+                "lens_mm": o.data.lens,
+                "method": o.get("fit_status", o.get("calibration_method", "unclassified")),
+                "fit_rmse_px": o.get("fit_rmse_px"),
+                "held_out_rmse_px": o.get("held_out_rmse_px"),
+                "exposure_ev": o.get("exposure_ev"),
+            }
+            for o in scene.objects
+            if o.type == "CAMERA" and o.name.startswith("Camera_Reference_")
+        },
         "engine": "Cycles",
         "blender_version": bpy.app.version_string,
         "notes": [
-            "Geometry modeled from 16 user photographs; not a photogrammetry scan.",
+            "Authored editable geometry constrained by multi-view photo reconstruction; not a dense photogrammetry mesh.",
             "Room envelope is an estimate; official mattress dimensions anchor scale.",
             "Original photos and screen content are excluded from public assets.",
             "Browser glTF is a simplified material representation; Cycles renders are the visual master.",
@@ -873,7 +859,7 @@ def validate_and_manifest(cameras):
     }
     assert all(math.isfinite(v) for o in meshes for v in o.location), "Nonfinite object position"
     assert len(meshes) > 300, "Incomplete scene"
-    (ROOT / "scene" / "scene-manifest.json").write_text(
+    (OUTPUT_ROOT / "scene" / "scene-manifest.json").write_text(
         json.dumps(data, indent=2), encoding="utf-8"
     )
     return data
@@ -882,6 +868,8 @@ def validate_and_manifest(cameras):
 def render_views(cameras):
     """Use the same camera logic and auditable statistics as saved-scene renders."""
     import render as saved_renderer
+
+    saved_renderer.ROOT = OUTPUT_ROOT
 
     # main() has already saved the packed master and preserved these named
     # cameras. Calling the shared renderer keeps both documented workflows
@@ -902,8 +890,19 @@ def render_views(cameras):
 
 def main():
     t = time.time()
+    for subdirectory in ("scene", "renders"):
+        (OUTPUT_ROOT / subdirectory).mkdir(parents=True, exist_ok=True)
     setup_materials()
+    from materials_v2 import apply_material_upgrades
+
+    apply_material_upgrades(M, T)
+    from cotton_relief_v3 import refine_cotton_relief
+
+    refine_cotton_relief(list(M.values()))
     architecture()
+    from architecture_v2 import refine_architecture
+
+    refine_architecture(M)
     kitchen()
     furniture()
     bedding()
@@ -912,7 +911,66 @@ def main():
     props.build(
         {"box": box, "uvball": uvball, "cyl": cyl, "curve": curve, "M": M, "collection": collection}
     )
+    from soft_packages_v3 import refine_soft_packages
+
+    refine_soft_packages(M)
+    from floor_prop_details_v3 import refine_floor_prop_geometry
+
+    refine_floor_prop_geometry(M)
+    from fittings_v2 import refine_fittings
+
+    refine_fittings(M)
+    from layout_v3 import refine_layout
+
+    refine_layout(M)
+    from counter_props_v4 import refine_counter_props
+
+    refine_counter_props(M)
+    from puffer_shape_v5 import rebuild_puffer_shape
+
+    rebuild_puffer_shape()
+    from bed_support_v4 import refine_bed_support
+
+    bed_support = refine_bed_support(CALIBRATION["bed_support"]["parameters"])
+    from bedding_surface_v5 import refine_bedding_surface
+
+    refine_bedding_surface()
+    from bed_guard_v4 import refine_bed_guard
+
+    refine_bed_guard()
+    from carpet_material_v3 import refine_carpet_material
+
+    refine_carpet_material(M["carpet"], T)
+    from vinyl_layout_v4 import refine_vinyl_layout
+    from vinyl_material_v4 import refine_vinyl_material
+
+    vinyl = CALIBRATION["vinyl_grid"]
+    refine_vinyl_layout(M, CALIBRATION["room"], vinyl["parameters"], vinyl["observed_gray_cells"])
+    refine_vinyl_material(M)
+    from backpack_shape_v3 import refine_backpack_shape
+
+    refine_backpack_shape(M)
+    from chair_pillow_v4 import refine_chair_pillow
+
+    refine_chair_pillow(M)
+    from chair_pillow_finish_v4 import refine_chair_pillow_finish
+
+    refine_chair_pillow_finish(M)
+    from cabinet_profiles_v4 import refine_cabinet_profiles
+
+    refine_cabinet_profiles()
+    from wood_materials_v3 import refine_wood_materials
+    from wood_uv_v3 import refine_wood_uvs
+
+    refine_wood_materials(M, T)
+    refine_wood_uvs()
+    from window_details_v3 import refine_blinds
+
+    refine_blinds()
     cameras = lighting_and_cameras()
+    from reference_cameras_v4 import add_manual_reference_cameras_v4
+
+    add_manual_reference_cameras_v4()
     scene.render.engine = "CYCLES"
     scene.cycles.device = "CPU"
     scene.cycles.samples = max(96, ARGS.samples)
@@ -932,7 +990,7 @@ def main():
     scene.render.resolution_percentage = 100
     scene.render.image_settings.file_format = "JPEG"
     scene.render.image_settings.quality = 95
-    manifest = validate_and_manifest(cameras)
+    manifest = validate_and_manifest(cameras, bed_support)
     # Embed textures so the native master opens on any machine.
     bpy.ops.file.pack_all()
     for screen in bpy.data.screens:
@@ -940,10 +998,10 @@ def main():
             if a.type == "VIEW_3D":
                 a.spaces.active.region_3d.view_perspective = "CAMERA"
                 a.spaces.active.overlay.show_overlays = False
-    bpy.ops.wm.save_as_mainfile(filepath=str(ROOT / "scene" / "room.blend"), compress=True)
+    bpy.ops.wm.save_as_mainfile(filepath=str(OUTPUT_ROOT / "scene" / "room.blend"), compress=True)
     print("SCENE_READY", json.dumps(manifest), flush=True)
     if not ARGS.skip_export:
-        dest = ROOT / "demo" / "public" / "models"
+        dest = OUTPUT_ROOT / "demo" / "public" / "models"
         dest.mkdir(parents=True, exist_ok=True)
         # Keep the same oak stain graph: its constant Multiply exports as a
         # portable glTF baseColorFactor, preserving the Cycles amber finish.

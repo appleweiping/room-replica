@@ -1,0 +1,18 @@
+{
+  "generation_date": "2026-09-08",
+  "method": "Built-in image generation, reference-guided flat base-color textile reconstruction",
+  "assets": [
+    {
+      "path": "textures/blue_floral_reference_v3.png",
+      "reference": "User photograph 13, blue duvet print only",
+      "description": "Periwinkle-blue ground, vintage pink peonies, sage leaves, butterfly motifs and gold botanical scrolls. Flat even light without room or wrinkles."
+    },
+    {
+      "path": "textures/rose_cotton_reference_v3.png",
+      "reference": "User photograph 15, ivory rose bedsheet print only",
+      "description": "Cream ground, faded mauve-pink roses, sage stems and faint vertical taupe stripes. Flat even light without bed or wrinkles."
+    }
+  ],
+  "limitations": "Approximate reconstruction of visible textile motifs, not an exact scan or original manufacturer's pattern. Generated swatches are requested to repeat; native Blender cloth supplies all geometric folds, shadows and room lighting.",
+  "distribution": "Generated project artwork supplied with the reconstruction. Do not represent these assets as a licensed copy of the original textile manufacturer's source artwork."
+}

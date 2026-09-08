@@ -2,6 +2,7 @@
 
 import bpy
 import math
+import hashlib
 from mathutils import Vector
 
 ACTIVE = None
@@ -57,13 +58,20 @@ def box(name, loc, dims, mat, bevel=0.005):
     if mat and "oak" in mat.name.lower():
         # Grain follows each manufactured part's long direction, at real scale.
         layer = o.data.uv_layers.active
-        offset = (sum(ord(c) for c in name) % 97) / 97
+        # Blender's resolved name distinguishes adjacent same-named components.
+        # A stable hash avoids near-identical grain crops on consecutive doors.
+        offset = int.from_bytes(hashlib.sha256(o.name.encode()).digest()[:4], "big") / 2**32
         for p in o.data.polygons:
             axes = [i for i in range(3) if abs(p.normal[i]) < 0.5]
             axes.sort(key=lambda i: dims[i], reverse=True)
+            if "field" in name.lower() and 2 in axes:
+                # Short raised-panel door inserts still use vertical grain;
+                # their horizontal rails retain their own long-axis mapping.
+                axes.remove(2)
+                axes.insert(0, 2)
             for li in p.loop_indices:
                 co = o.data.vertices[o.data.loops[li].vertex_index].co
-                layer.data[li].uv = (co[axes[0]] / 1.9 + offset, co[axes[1]] / 0.72 + offset * 0.3)
+                layer.data[li].uv = (co[axes[0]] / 1.15 + offset, co[axes[1]] / 0.72 + offset * 0.3)
     if bevel:
         b = o.modifiers.new("Manufactured edge radius", "BEVEL")
         b.width = bevel
@@ -179,7 +187,7 @@ def material(name, color, rough=0.5, metal=0):
 
 def noise_bump(m, scale, strength, distance):
     n = m.node_tree.nodes
-    l = m.node_tree.links
+    links = m.node_tree.links
     bs = n.get("Principled BSDF")
     tex = n.new("ShaderNodeTexNoise")
     tex.inputs["Scale"].default_value = scale
@@ -187,14 +195,14 @@ def noise_bump(m, scale, strength, distance):
     bump = n.new("ShaderNodeBump")
     bump.inputs["Strength"].default_value = strength
     bump.inputs["Distance"].default_value = distance
-    l.new(tex.outputs["Fac"], bump.inputs["Height"])
-    l.new(bump.outputs["Normal"], bs.inputs["Normal"])
+    links.new(tex.outputs["Fac"], bump.inputs["Height"])
+    links.new(bump.outputs["Normal"], bs.inputs["Normal"])
 
 
 def image_material(name, path, rough=0.75, scale=(1, 1, 1)):
     m = material(name, (0.65, 0.65, 0.65), rough)
     n = m.node_tree.nodes
-    l = m.node_tree.links
+    links = m.node_tree.links
     tex = n.new("ShaderNodeTexImage")
     tex.image = bpy.data.images.load(str(path), check_existing=True)
     tex.interpolation = "Linear"
@@ -202,9 +210,9 @@ def image_material(name, path, rough=0.75, scale=(1, 1, 1)):
     uv = n.new("ShaderNodeTexCoord")
     mapping = n.new("ShaderNodeMapping")
     mapping.inputs["Scale"].default_value = scale
-    l.new(uv.outputs["UV"], mapping.inputs["Vector"])
-    l.new(mapping.outputs["Vector"], tex.inputs["Vector"])
-    l.new(tex.outputs["Color"], n.get("Principled BSDF").inputs["Base Color"])
+    links.new(uv.outputs["UV"], mapping.inputs["Vector"])
+    links.new(mapping.outputs["Vector"], tex.inputs["Vector"])
+    links.new(tex.outputs["Color"], n.get("Principled BSDF").inputs["Base Color"])
     return m
 
 

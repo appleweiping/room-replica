@@ -1,0 +1,38 @@
+{
+  "asset": "Dirty Carpet",
+  "slug": "dirty_carpet",
+  "author": "Rohit Seervi",
+  "source_page": "https://polyhaven.com/a/dirty_carpet",
+  "license": "CC0-1.0",
+  "license_url": "https://polyhaven.com/license",
+  "metadata_url": "https://api.polyhaven.com/files/dirty_carpet",
+  "official_scan_width_m": 0.6,
+  "authored_fibre_repeat_m": 0.18,
+  "tile_repeat_m": 0.5,
+  "recorded_at": "2026-09-08T16:16:03.699994+00:00",
+  "files": [
+    {
+      "path": "textures/dirty_carpet_diff_2k.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/dirty_carpet/dirty_carpet_diff_2k.jpg",
+      "bytes": 3818108,
+      "sha256": "6337d3ef1a11ca8bea2d31b86da15a65f10ae92c7f3345fae62924bae194f6c0",
+      "official_md5": "d2f1c8d121996a8f46c8da89968ed95c"
+    },
+    {
+      "path": "textures/dirty_carpet_rough_2k.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/dirty_carpet/dirty_carpet_rough_2k.jpg",
+      "bytes": 1856051,
+      "sha256": "7e06b98f11a304a433916c847be2cbf6308b12a5372fe9961924e70127a833d4",
+      "official_md5": "5db82e0d4af1af941a7425690fd52729"
+    },
+    {
+      "path": "textures/dirty_carpet_nor_gl_2k.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/dirty_carpet/dirty_carpet_nor_gl_2k.jpg",
+      "bytes": 4376244,
+      "sha256": "b59b74a4aa2ef9389704019d376cdca1f5f799490632a6aca8583bb3280b9117",
+      "official_md5": "448812d2a7208e5f48282617561508a7"
+    }
+  ],
+  "processing": "Original maps unchanged. Native build removes broad captured brown dye variation, combines a restrained fine-fibre luminance with authored directional stripes, and resamples registered normal and roughness maps into a portable 0.50 m tile. The 0.18 m fibre repeat is an authored visual estimate, not the scan size or a measurement of this room.",
+  "limitations": "Different source carpet. No reference-photo pixels or claim of a measured room material. Grain and capture color remain subject to multi-view review."
+}

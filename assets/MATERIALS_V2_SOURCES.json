@@ -1,0 +1,34 @@
+{
+  "asset": "Oak Veneer 01",
+  "slug": "oak_veneer_01",
+  "author": "Jenelle van Heerden",
+  "source_page": "https://polyhaven.com/a/oak_veneer_01",
+  "license": "CC0-1.0",
+  "license_url": "https://polyhaven.com/license",
+  "official_scale_m": 1.8,
+  "downloaded_at": "2026-09-08T12:39:12.983509+00:00",
+  "files": [
+    {
+      "path": "textures/oak_veneer_01_diff_2k.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/oak_veneer_01/oak_veneer_01_diff_2k.jpg",
+      "bytes": 2831117,
+      "sha256": "0718c2e1a209afe6138ccb41d70e1a18cd825d1e73db33ad7cf80806fa9ce5a4",
+      "hash_kind": "locally computed after download"
+    },
+    {
+      "path": "textures/oak_veneer_01_rough_2k.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/oak_veneer_01/oak_veneer_01_rough_2k.jpg",
+      "bytes": 3968436,
+      "sha256": "5c81718ee172299c44e0754fadbe652758b6feed05a8fd88be6efff5aa70ca1e",
+      "hash_kind": "locally computed after download"
+    },
+    {
+      "path": "textures/oak_veneer_01_nor_gl_2k.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/oak_veneer_01/oak_veneer_01_nor_gl_2k.jpg",
+      "bytes": 2429019,
+      "sha256": "e74a9d3ddcd86473a21815a28464f4dac4ceb8f86e7f170226dede8ed70d8eb9",
+      "hash_kind": "locally computed after download"
+    }
+  ],
+  "processing": "Original downloaded maps remain unchanged. materials_v2.py rotates derivatives 90 degrees to fit the project grain-U convention, rotates tangent normal XY accordingly and calibrates amber finish in material color."
+}

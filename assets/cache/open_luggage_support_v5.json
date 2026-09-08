@@ -1,0 +1,1694 @@
+{
+  "format_version": 1,
+  "kind": "authored_geometry_pose_cache",
+  "not_a_physics_simulation": true,
+  "description": "Case rigid pose and locally deformed packed textiles, before the new v5 puffer. No photos, shaders or puffer mesh included.",
+  "source_private_snapshot_sha256": "057a8f3b7775f6dec703126f7d216e5e244c2c63dfab01080fb5108c21daacb8",
+  "coordinate_context": "After layout_v3 +0.40m Y; room coordinates in metres",
+  "npz_sha256": "c77af5dcf660dc4ee44dc6a509bab289a062b8629b2f982e8ca12822d4e73913",
+  "objects": [
+    {
+      "name": "Open case shell half",
+      "type": "MESH",
+      "array": "object_000",
+      "point_count": 612,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.27000001072883606
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.45500001311302185
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_faces": 578
+    },
+    {
+      "name": "Open luggage fabric interior",
+      "type": "MESH",
+      "array": "object_001",
+      "point_count": 8,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -0.2199999988079071
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          2.9750001430511475
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.14100000262260437
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_faces": 6
+    },
+    {
+      "name": "Open suitcase zipper edge",
+      "type": "CURVE",
+      "array": "object_002",
+      "point_count": 15,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.27000001072883606
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.45500001311302185
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_faces": null
+    },
+    {
+      "name": "Open case shell half.001",
+      "type": "MESH",
+      "array": "object_003",
+      "point_count": 612,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.27000001072883606
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.45500001311302185
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_faces": 578
+    },
+    {
+      "name": "Open luggage fabric interior.001",
+      "type": "MESH",
+      "array": "object_004",
+      "point_count": 8,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.23000001907348633
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          2.9750001430511475
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.14100000262260437
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_faces": 6
+    },
+    {
+      "name": "Open suitcase zipper edge.001",
+      "type": "CURVE",
+      "array": "object_005",
+      "point_count": 15,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.27000001072883606
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.45500001311302185
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_faces": null
+    },
+    {
+      "name": "Open case small caster",
+      "type": "MESH",
+      "array": "object_006",
+      "point_count": 64,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -0.41999998688697815
+        ],
+        [
+          0.0,
+          7.549790126404332e-08,
+          -1.0,
+          2.5350000858306885
+        ],
+        [
+          0.0,
+          1.0,
+          7.549790126404332e-08,
+          0.05400000140070915
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_faces": 34
+    },
+    {
+      "name": "Open case small caster.001",
+      "type": "MESH",
+      "array": "object_007",
+      "point_count": 64,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -0.41999998688697815
+        ],
+        [
+          0.0,
+          7.549790126404332e-08,
+          -1.0,
+          3.3950002193450928
+        ],
+        [
+          0.0,
+          1.0,
+          7.549790126404332e-08,
+          0.05400000140070915
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_faces": 34
+    },
+    {
+      "name": "Open case small caster.002",
+      "type": "MESH",
+      "array": "object_008",
+      "point_count": 64,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.4399999976158142
+        ],
+        [
+          0.0,
+          7.549790126404332e-08,
+          -1.0,
+          2.5350000858306885
+        ],
+        [
+          0.0,
+          1.0,
+          7.549790126404332e-08,
+          0.05400000140070915
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_faces": 34
+    },
+    {
+      "name": "Open case small caster.003",
+      "type": "MESH",
+      "array": "object_009",
+      "point_count": 64,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.4399999976158142
+        ],
+        [
+          0.0,
+          7.549790126404332e-08,
+          -1.0,
+          3.3950002193450928
+        ],
+        [
+          0.0,
+          1.0,
+          7.549790126404332e-08,
+          0.05400000140070915
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_faces": 34
+    },
+    {
+      "name": "Suitcase internal compression strap",
+      "type": "MESH",
+      "array": "object_010",
+      "point_count": 8,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.15000000596046448
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          2.6650002002716064
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.16699999570846558
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_faces": 6
+    },
+    {
+      "name": "Suitcase compression buckle",
+      "type": "MESH",
+      "array": "object_011",
+      "point_count": 8,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.17000001668930054
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          2.6650002002716064
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.17100000381469727
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_faces": 6
+    },
+    {
+      "name": "Suitcase internal compression strap.001",
+      "type": "MESH",
+      "array": "object_012",
+      "point_count": 8,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.15000000596046448
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          3.2150001525878906
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.16699999570846558
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_faces": 6
+    },
+    {
+      "name": "Suitcase compression buckle.001",
+      "type": "MESH",
+      "array": "object_013",
+      "point_count": 8,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.17000001668930054
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          3.2150001525878906
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.17100000381469727
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_faces": 6
+    },
+    {
+      "name": "Folded clothing V3 cream returned trouser leg 0",
+      "type": "MESH",
+      "array": "object_014",
+      "point_count": 11232,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.27000001072883606
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.45500001311302185
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_faces": 11232
+    },
+    {
+      "name": "Folded clothing V3 cream returned trouser leg 0 pressed side se",
+      "type": "CURVE",
+      "array": "object_015",
+      "point_count": 117,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.27000001072883606
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.45500001311302185
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_faces": null
+    },
+    {
+      "name": "Folded clothing V3 cream returned trouser leg 0 pressed side s",
+      "type": "CURVE",
+      "array": "object_016",
+      "point_count": 117,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.27000001072883606
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.45500001311302185
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_faces": null
+    },
+    {
+      "name": "Folded clothing V3 cream returned trouser leg 0 turned trouser ",
+      "type": "CURVE",
+      "array": "object_017",
+      "point_count": 49,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.27000001072883606
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.45500001311302185
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_faces": null
+    },
+    {
+      "name": "Folded clothing V3 cream returned trouser leg 1",
+      "type": "MESH",
+      "array": "object_018",
+      "point_count": 11232,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.27000001072883606
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.45500001311302185
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_faces": 11232
+    },
+    {
+      "name": "Folded clothing V3 cream returned trouser leg 1 pressed side se",
+      "type": "CURVE",
+      "array": "object_019",
+      "point_count": 117,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.27000001072883606
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.45500001311302185
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_faces": null
+    },
+    {
+      "name": "Folded clothing V3 cream returned trouser leg 1 pressed side s",
+      "type": "CURVE",
+      "array": "object_020",
+      "point_count": 117,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.27000001072883606
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.45500001311302185
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_faces": null
+    },
+    {
+      "name": "Folded clothing V3 cream returned trouser leg 1 turned trouser ",
+      "type": "CURVE",
+      "array": "object_021",
+      "point_count": 49,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.27000001072883606
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.45500001311302185
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_faces": null
+    },
+    {
+      "name": "Folded clothing V3 blue returned trouser leg 0",
+      "type": "MESH",
+      "array": "object_022",
+      "point_count": 11232,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.27000001072883606
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.45500001311302185
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_faces": 11232
+    },
+    {
+      "name": "Folded clothing V3 blue returned trouser leg 0 pressed side sea",
+      "type": "CURVE",
+      "array": "object_023",
+      "point_count": 117,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.27000001072883606
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.45500001311302185
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_faces": null
+    },
+    {
+      "name": "Folded clothing V3 blue returned trouser leg 0 pressed side se",
+      "type": "CURVE",
+      "array": "object_024",
+      "point_count": 117,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.27000001072883606
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.45500001311302185
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_faces": null
+    },
+    {
+      "name": "Folded clothing V3 blue returned trouser leg 0 turned trouser c",
+      "type": "CURVE",
+      "array": "object_025",
+      "point_count": 49,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.27000001072883606
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.45500001311302185
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_faces": null
+    },
+    {
+      "name": "Folded clothing V3 blue returned trouser leg 1",
+      "type": "MESH",
+      "array": "object_026",
+      "point_count": 11232,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.27000001072883606
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.45500001311302185
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_faces": 11232
+    },
+    {
+      "name": "Folded clothing V3 blue returned trouser leg 1 pressed side sea",
+      "type": "CURVE",
+      "array": "object_027",
+      "point_count": 117,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.27000001072883606
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.45500001311302185
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_faces": null
+    },
+    {
+      "name": "Folded clothing V3 blue returned trouser leg 1 pressed side se",
+      "type": "CURVE",
+      "array": "object_028",
+      "point_count": 117,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.27000001072883606
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.45500001311302185
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_faces": null
+    },
+    {
+      "name": "Folded clothing V3 blue returned trouser leg 1 turned trouser c",
+      "type": "CURVE",
+      "array": "object_029",
+      "point_count": 49,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.27000001072883606
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.45500001311302185
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_faces": null
+    },
+    {
+      "name": "Light blue loose garment V3 gathered shirt",
+      "type": "MESH",
+      "array": "object_030",
+      "point_count": 10010,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.27000001072883606
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.45500001311302185
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_faces": 19736
+    },
+    {
+      "name": "Light blue loose garment V3 gathered shirt soft double stitched",
+      "type": "CURVE",
+      "array": "object_031",
+      "point_count": 101,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.27000001072883606
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.45500001311302185
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_faces": null
+    },
+    {
+      "name": "Light blue loose garment V3 gathered shirt soft double stitche",
+      "type": "CURVE",
+      "array": "object_032",
+      "point_count": 101,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.27000001072883606
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.45500001311302185
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_faces": null
+    },
+    {
+      "name": "Grey shirt spills V3 rumpled knit body",
+      "type": "MESH",
+      "array": "object_033",
+      "point_count": 10010,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.27000001072883606
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.45500001311302185
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_faces": 19736
+    },
+    {
+      "name": "Grey shirt spills V3 rumpled knit body soft double stitched hem",
+      "type": "CURVE",
+      "array": "object_034",
+      "point_count": 101,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.27000001072883606
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.45500001311302185
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_faces": null
+    },
+    {
+      "name": "Grey shirt spills V3 rumpled knit body soft double stitched he",
+      "type": "CURVE",
+      "array": "object_035",
+      "point_count": 101,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.27000001072883606
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.45500001311302185
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_faces": null
+    },
+    {
+      "name": "Grey shirt spills V3 folded knitted neckline",
+      "type": "MESH",
+      "array": "object_036",
+      "point_count": 384,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.27000001072883606
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.45500001311302185
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_faces": 384
+    },
+    {
+      "name": "Grey shirt spills V3 folded knitted neckline knitted neckline s",
+      "type": "CURVE",
+      "array": "object_037",
+      "point_count": 97,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.27000001072883606
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.45500001311302185
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_faces": null
+    },
+    {
+      "name": "Grey shirt spills V3 returned sweater sleeve",
+      "type": "MESH",
+      "array": "object_038",
+      "point_count": 11232,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.27000001072883606
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.45500001311302185
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_faces": 11232
+    },
+    {
+      "name": "Grey shirt spills V3 returned sweater sleeve pressed side seam",
+      "type": "CURVE",
+      "array": "object_039",
+      "point_count": 117,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.27000001072883606
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.45500001311302185
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_faces": null
+    },
+    {
+      "name": "Grey shirt spills V3 returned sweater sleeve pressed side sea",
+      "type": "CURVE",
+      "array": "object_040",
+      "point_count": 117,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.27000001072883606
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.45500001311302185
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_faces": null
+    },
+    {
+      "name": "Grey shirt spills V3 returned sweater sleeve turned trouser cuf",
+      "type": "CURVE",
+      "array": "object_041",
+      "point_count": 49,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.27000001072883606
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.45500001311302185
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_faces": null
+    },
+    {
+      "name": "Folded clothing V3 central black outerwear",
+      "type": "MESH",
+      "array": "object_042",
+      "point_count": 10010,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.27000001072883606
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.45500001311302185
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_faces": 19736
+    },
+    {
+      "name": "Folded clothing V3 central black outerwear soft double stitched",
+      "type": "CURVE",
+      "array": "object_043",
+      "point_count": 101,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.27000001072883606
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.45500001311302185
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_faces": null
+    },
+    {
+      "name": "Folded clothing V3 central black outerwear soft double stitche",
+      "type": "CURVE",
+      "array": "object_044",
+      "point_count": 101,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.27000001072883606
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.45500001311302185
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_faces": null
+    },
+    {
+      "name": "Small travel carton",
+      "type": "MESH",
+      "array": "object_045",
+      "point_count": 8,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -0.2999993562698364
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          2.615159749984741
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.2352914661169052
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_faces": 6
+    },
+    {
+      "name": "Travel carton colored stripe",
+      "type": "MESH",
+      "array": "object_046",
+      "point_count": 8,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -0.2999993562698364
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          2.5881595611572266
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.23629146814346313
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_faces": 6
+    },
+    {
+      "name": "Small travel carton.001",
+      "type": "MESH",
+      "array": "object_047",
+      "point_count": 8,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -0.24999694526195526
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          2.6855697631835938
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.22032074630260468
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_faces": 6
+    },
+    {
+      "name": "Travel carton colored stripe.001",
+      "type": "MESH",
+      "array": "object_048",
+      "point_count": 8,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -0.24999694526195526
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          2.658569812774658
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.2213207483291626
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_faces": 6
+    },
+    {
+      "name": "Small travel carton.002",
+      "type": "MESH",
+      "array": "object_049",
+      "point_count": 8,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -0.3599999248981476
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          2.745032548904419
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.23910073935985565
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_faces": 6
+    },
+    {
+      "name": "Travel carton colored stripe.002",
+      "type": "MESH",
+      "array": "object_050",
+      "point_count": 8,
+      "matrix_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -0.3599999248981476
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          2.7180325984954834
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.24010074138641357
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "mesh_faces": 6
+    }
+  ]
+}
