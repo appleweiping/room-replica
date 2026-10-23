@@ -122,7 +122,7 @@
     }
   },
   "notes": [
-    "Official Yudof mattress dimensions are 36 x 80 inches (0.9144 x 2.032 m).",
+    "Standard Twin XL mattress: 36 x 80 inches (0.9144 x 2.032 m).",
     "SfM registered 13 of 15 non-ceiling photographs; camera reprojection RMS 0.8515 px is a sparse feature metric, not visual fidelity.",
     "Absolute SfM scale 0.3025935 m/unit assumes a 2.14 m bed-post span; this span is not surveyed. Door aspect provides a conditional cross-check, not an independent absolute scale.",
     "Gravity from 16 architectural edges in 8 photographs; direction is fixed across all reference cameras.",

@@ -1,4 +1,4 @@
-"""Photograph-informed everyday objects for the Yudof room reconstruction.
+"""Photograph-informed everyday objects for the dorm room reconstruction.
 
 All geometry and graphic treatments in this module are authored procedurally.
 Dimensions are metres. Personal screen contents and product labels are replaced
@@ -714,7 +714,7 @@ def build(ctx):
     B("Small suitcase luggage tag", (-0.851, 0.872, 0.300), (0.072, 0.001, 0.038), teal, 0.002)
     text(
         "Luggage tag neutral lettering",
-        "521",
+        "A12",
         (-0.827, 0.874, 0.291),
         0.014,
         tissue,

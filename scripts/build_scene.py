@@ -708,7 +708,7 @@ def cloth_grid(name, fn, mat, nu=120, nv=85):
 
 def bedding():
     collection("07 / Bed and textiles")
-    # Official Yudof mattress: 36 x 80 inches. Two tall oak end frames.
+    # Standard Twin XL mattress: 36 x 80 inches. Two tall oak end frames.
     for x in [-1.07, 1.07]:
         for y in [3.092, 4.08]:
             box("Bed_4x4_post", (x, y, 0.88), (0.069, 0.073, 1.76), M["oak"], 0.004)
@@ -820,7 +820,7 @@ def validate_and_manifest(cameras, bed_support=None):
             "height": CALIBRATION["room"]["height"],
             "status": "photo-estimated",
             "mattress": [2.032, 0.9144, 0.208],
-            "mattress_source": "https://housing.umn.edu/yudof",
+            "mattress_source": "standard Twin XL mattress, 36 x 80 in",
             "resolved_bed_support": bed_support,
         },
         "objects": len(scene.objects),

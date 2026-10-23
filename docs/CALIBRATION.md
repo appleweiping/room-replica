@@ -12,7 +12,7 @@ The room frame uses metres, Z up, Y from the entry wall toward the window, and X
 
 ## Scale is conditional
 
-The [official Yudof page](https://housing.umn.edu/yudof) gives a 36 × 80-inch mattress, modelled as **0.9144 × 2.032 m**. No dimensioned plan specific to room 521 was found. The sparse reconstruction cannot recover an absolute scale by itself.
+The bed is a standard Twin XL (36 × 80 in), modelled as **0.9144 × 2.032 m**. I have no dimensioned floor plan of the room. The sparse reconstruction cannot recover an absolute scale by itself.
 
 The present similarity scale is **0.3025935 m per SfM unit**, based on an estimated 2.14 m bed-post span around that mattress. The post span is not an official measurement. A separate entry-door check recovers a height-to-width ratio of approximately 2.325; assuming a 36 × 84-inch door gives 0.2996 m per SfM unit, within about 1% of the bed-based estimate. That door size is also an assumption. The cross-check supports consistency but is not an independent measurement.
 
@@ -35,7 +35,7 @@ Manual point uncertainty is reported separately from shared camera and scale unc
 
 `config/calibration.json` stores the accepted working dimensions, assembly placements and all 13 calibrated camera poses. `scripts/layout_v3.py` applies those estimates to the editable authored assets. The official mattress dimensions remain unchanged by the layout transforms. The construction is deterministic and does not require the original photographs to rebuild the released scene.
 
-Private candidate builds use `--output-dir .local/iterations/<iteration>` and record source hashes alongside the native scene. Corresponding reference cameras support direct visual comparison. Final review must inspect the whole scene and close-ups for surface quality, contact, lighting, texture scale, object shape and occlusion—not just this calibration table or engineering checks.
+Candidate builds can go to a separate folder with `--output-dir`. Corresponding reference cameras support direct visual comparison. Final review must inspect the whole scene and close-ups for surface quality, contact, lighting, texture scale, object shape and occlusion—not just this calibration table or engineering checks.
 
 Render a specific registered photograph's camera after rebuilding the calibrated scene:
 
