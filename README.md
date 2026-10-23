@@ -1,181 +1,88 @@
 # Room Replica
 
-> **项目已于 2026-09-08 按用户要求结束。** 当前结果没有达到“与实景难辨”；不再继续自动迭代。最新成果、版本对应关系、下载与已知差距见 **[项目收尾记录](docs/PROJECT_CLOSEOUT.md)** 和 **[收尾画廊](https://appleweiping.github.io/room-replica/closeout.html)**。
+My dorm room rebuilt in Blender from 16 phone photos, with Cycles renders and a 3D viewer that runs in the browser.
 
-**版本说明：** 下方原生 `scene/room.blend`、实时 GLB 和四张大图是保留的 **v1 演示基线**。后续改进源码已随仓库交付；最后完成整场景构建和实际渲染检查的 **r10 Blender 工程及其精确源码快照**在 [收尾 Release](https://github.com/appleweiping/room-replica/releases/tag/v1.1.0-closeout) 下载。r10 之后合入的地毯反光、桌面印刷和三抽柜包装改进只计入源码及对应局部预览，没有冒称已重建进 r10。
+**[Open the 3D viewer](https://appleweiping.github.io/room-replica/)** · [Downloads](https://github.com/appleweiping/room-replica/releases/tag/v1.0.0) · [中文说明](#中文说明)
 
-[![Validate delivery](https://github.com/appleweiping/room-replica/actions/workflows/validate.yml/badge.svg)](https://github.com/appleweiping/room-replica/actions/workflows/validate.yml)
-[![Publish demo](https://github.com/appleweiping/room-replica/actions/workflows/pages.yml/badge.svg)](https://github.com/appleweiping/room-replica/actions/workflows/pages.yml)
+![Bed and window, Cycles render](renders/bedroom.jpg)
 
-**把照片里的日常空间，做成可以走近观察的三维房间。**
-
-A complete, editable Blender reconstruction of a lived-in student room, guided by sixteen resident photographs. Native Cycles renders, a portable glTF scene, and an interactive browser companion are delivered together.
-
-![Bedroom reconstruction](renders/bedroom.jpg)
-
-**[打开交互演示 / Live demo](https://appleweiping.github.io/room-replica/)** · **[Blender 场景](scene/room.blend)** · **[浏览器模型](demo/public/models/room.glb)** · **[官方参考资料](docs/REFERENCE_RESEARCH.md)**
-
-无需运行代码即可使用 [v1 下载包](https://github.com/appleweiping/room-replica/releases/tag/v1.0.0)：原生 `.blend`、独立 `.glb`、四视角成片和包含源码的完整项目包。每个发布附件提供 SHA-256 校验值。后续冻结原生工程另见上方收尾 Release。
-
-## 交付内容
-
-| 内容 | 文件 | 用途 |
+| Kitchen and entrance | Desk | Cutaway overview |
 | --- | --- | --- |
-| 原生工程 | [`scene/room.blend`](scene/room.blend) | 可编辑几何、材质、分组、灯光、四个预设相机；贴图打包在文件内 |
-| 交互模型 | [`demo/public/models/room.glb`](demo/public/models/room.glb) | 嵌入贴图的 glTF 2.0 单文件，可用 Three.js / Blender 等打开 |
-| v1 预览成片 | [`renders/`](renders) | 卧室、入口厨房、书桌、空间剖切四个 Cycles 视角；1600 × 1200，64 samples，降噪 |
-| 完整演示 | [`demo/`](demo) | 中英界面、相机预设、剖切、曝光、画质、截图和模型下载 |
-| 可重复构建 | [`scripts/build_scene.py`](scripts/build_scene.py) | 从零建立同一房间，固定种子，不依赖私有照片 |
-| 材质来源 | [`assets/ASSET_SOURCES.json`](assets/ASSET_SOURCES.json) | CC0 贴图作者、URL、下载校验信息 |
-| 场景清单 | [`scene/scene-manifest.json`](scene/scene-manifest.json) | 尺寸依据、物件/材质数量、相机参数、版本 |
-| 验收记录 | [`docs/validation.json`](docs/validation.json) | 文件完整性、模型结构、嵌入资源、成片同步检查 |
-| 网页验收 | [`docs/browser-validation.json`](docs/browser-validation.json) | 实际浏览器交互与桌面/窄屏布局检查 |
+| ![](renders/kitchen.jpg) | ![](renders/desk.jpg) | ![](renders/overview.jpg) |
 
-## 复刻了什么
+All four images are Blender Cycles renders at 1600 × 1200 with 64 samples. None of them is a photo.
 
-房间按照照片中的关系布置：窗下横向单人床，左右两侧的三抽柜和衣柜，靠衣柜的书桌、入口厨房、独立凹槽洗手台及侧门。深灰地毯砖和入口浅色地砖保留分界，墙体保留门窗开口、窗台、黑色踢脚线、设备检修板和通风格栅。
+## What this is
 
-- **家具与五金**：橡木柜门框线、凹面板、抽屉间隙、台面封边、门铰、门锁、闭门器、床架连接件。
-- **厨房与洗手台**：螺旋电炉盘、微波炉网窗和按键、双门小冰箱、真实凹陷的金属水盆、排水口、弯管龙头及反射镜面。
-- **织物**：有厚度和褶皱的碎花床单、蓝色花卉被褥、床边搭挂的衣物、格纹毛巾、椅子靠垫和行李中的绗缝外套。
-- **生活物件**：键盘独立按键的笔记本、平板、手机、鼠标、纸巾卷、线缆、插线板、背包、零食、鞋、透明收纳箱及两种状态的行李箱。
-- **材质和光线**：真实木纹 PBR 来源、顺着部件长度生长的木纹、细微墙面/顶棚起伏、织物纹理、金属粗糙度、顶灯和百叶窗冷暖混合光。
+I wanted to see how close I could get to a real, lived-in room by modelling it by hand from ordinary photos: no laser scanner and no photogrammetry mesh. The result had to stay editable. Every cabinet door, cable, snack bag and folded jacket is a separate named Blender object, created by Python scripts that rebuild the whole scene from nothing.
 
-蓝色被套采用依据参考照片生成的花卉纹理，单张映射到布料表面；[生成提示词和来源记录](docs/fabric-generation.md) 随工程提供。褶皱、厚度和光影来自三维几何及 Cycles，生成图没有用来替代场景渲染。
+- **`scene/room.blend`**: the editable scene (v1) with all textures packed. Opens in Blender 4.5 LTS.
+- **`renders/`**: the four Cycles renders above.
+- **`demo/`**: the Three.js viewer, hosted on GitHub Pages. You can orbit the whole room with the near walls cut away, jump to the bedroom, kitchen and desk cameras, and change the light and exposure. It loads a 6 MB compressed model. The full 42 MB `room.glb` is on the [v1.0.0 release](https://github.com/appleweiping/room-replica/releases/tag/v1.0.0).
+- **`scripts/`**: `build_scene.py` and about 40 modules it calls (geometry, materials, lights, cameras), plus `render.py`, `check_assets.py` and the web-model compressor.
+- **`assets/`**: textures. They are CC0 wood from Poly Haven, patterns drawn by script, surfaces sampled from my photos, and two AI-generated fabric prints ([AI_TEXTURES.md](docs/AI_TEXTURES.md)).
 
-## 真实性与尺寸依据
+![The browser viewer, whole-room view](docs/img/viewer.jpg)
 
-这是根据多张照片进行的**人工参数化建模**，并非激光扫描或摄影测量网格。目标是保留这个房间的布局、日常状态和材料特征。遮挡部分、细小标签、柔性织物的具体褶皱均为依据照片重建的近似；电脑屏幕和门上公告使用原创通用内容。
+## How I built it
 
-UMN 官方 [Yudof 页面](https://housing.umn.edu/yudof) 给出床垫 **36 × 80 英寸（0.9144 × 2.032 米）**，模型据此定标。未找到该具体房间的公开实测平面图。v1 主体估算为 **3.00 × 4.15 × 2.82 米**；后续 r10 和当前源码通过多视角校准调整为 **3.33 × 4.54 × 3.035 米**，仍属估算，不是现场测量。官方平均面积没有明确统计边界，没有直接套用。证据与限制见 [参考核查](docs/REFERENCE_RESEARCH.md) 和 [改进审查记录](docs/REALISM_REVIEW.md)。
+1. **Layout from photos.** I took 16 photos from different spots in the room. The only real dimension I had was the bed, a standard Twin XL mattress (36 × 80 in, 0.9144 × 2.032 m). Everything else is scaled from the photos around it. The v1 room is 3.00 × 4.15 × 2.82 m, which is an estimate and not a measurement.
+2. **Everything as code.** `build_scene.py` builds the walls, the window and its blind slats, the bed frame and its bolts, the wardrobe and dresser (with rails, stiles and bevels), the kitchenette, the microwave, the coil burners, the sink basin, the bedding and the clutter. It uses a fixed random seed, so every run gives the same scene. My photos are not needed to rebuild it.
+3. **Camera calibration.** For a later revision I ran COLMAP on the photos. It registered 13 of 15, and I used those camera poses to correct the layout and to render from the exact photo viewpoints for side-by-side comparison. That moved the room estimate to 3.33 × 4.54 × 3.035 m. See [CALIBRATION.md](docs/CALIBRATION.md).
+4. **Materials.** Poly Haven red oak veneer with an amber stain node, wood and packaging sampled from my photos for the dresser and desk items, and AI-generated prints for the duvet and pillowcase. Folds and lighting always come from the geometry and Cycles, never from a texture.
+5. **Rendering.** Cycles on a laptop CPU (Intel i5-1240P, 12 threads). The bedroom view took 25 minutes ([`render-stats.json`](renders/render-stats.json)).
+6. **Web.** Export to glTF, compress it with meshopt from 42 MB to 6 MB, and view it with Three.js using the cameras authored in Blender. More details are in [PRODUCTION.md](docs/PRODUCTION.md).
 
-**Cycles 成片是材质与光照的主版本。** 浏览器使用实时 PBR、辅助灯光和环境反射，镜面、微观凹凸、透明介质以及间接光与 Cycles 有差别。GLB 可以观察与交互，不能替代最终渲染。没有将任一自动指标表述为“与照片完全一致”。
+## Versions
 
-## 快速运行
+The `.blend`, the four renders and the web model in this repository are **v1** (September 2026). After v1 I kept refining in the source: the calibrated layout, wood sampled from photos, better bedding, desk items and package prints. The last full build of that work, "r10", is attached to the [v1.1.0-closeout release](https://github.com/appleweiping/room-replica/releases/tag/v1.1.0-closeout) as a 161 MB `.blend`. Running `build_scene.py` on the current `main` builds this later revision, not v1. Two r10 preview renders (800 × 600, 32 samples):
 
-### 直接打开原生场景
+| Desk (r10) | Dresser and bed (r10) |
+| --- | --- |
+| ![](docs/img/r10-desk.png) | ![](docs/img/r10-dresser.png) |
 
-1. 安装 **Blender 4.5 LTS**（实际构建版本：4.5.13 LTS）。
-2. 打开 `scene/room.blend`。所有使用中的图像已打包。
-3. 默认是卧室相机，数字键盘 `0` 进入相机视图。将时间线切到第 `1 / 61 / 121 / 181` 帧，会通过相机标记启用 `Bedroom / Kitchen / Desk / Overview`；仅在 Outliner 选中相机不会更改渲染视角。
-4. 通过下方渲染脚本输出相应视角；总览会自动隐藏前墙、左墙和顶棚。
+## Where it falls short
 
-### 本地交互演示
+It still looks like CG up close. The folded duvet, the pile of clothes, the backpack's shape, the transparent plastic and some of the lighting and colour are clearly off compared with the photos. The room's size is estimated. The browser viewer uses its own lights and tone mapping, so it looks flatter than the Cycles renders. I stopped iterating at r10 because each further round cost a lot of time for small gains.
+
+**Why not photogrammetry or Gaussian splats?** A phone scan (Polycam, RealityScan) or a splat would look more photographic for far less work. But the result is one fused mesh or a point cloud: you can't open the wardrobe, move the suitcase or relight the room. Making the scene editable was the point of this project.
+
+## Run it
+
+**Viewer** (Node 20.19+ or 22.12+):
 
 ```sh
 git clone https://github.com/appleweiping/room-replica.git
 cd room-replica/demo
 npm ci
-npm run dev
+npm run dev            # http://127.0.0.1:5173
 ```
 
-打开终端显示的本地地址。需要 **Node.js 20.19+ 或 22.12+**，推荐 Node 22 LTS。模型和库从本地加载，不依赖第三方 CDN。首次加载时间取决于网速和设备；弱显卡可降低画质，或使用成片画廊。
+**Rebuild the scene** (Blender 4.5 LTS, no extra Python packages):
 
 ```sh
-npm run check
-npm run build
-npm run preview
-```
-
-构建结果在 `demo/dist/`，可发布到普通静态托管。Vite 使用相对资源地址，可部署到 GitHub Pages 子目录。
-
-## 从零重建
-
-所需贴图已经随仓库提供；正常构建不需要下载素材，不需要原始照片，也不需要安装额外 Python 包。Blender 自带 Python 即可执行场景构建。
-
-```sh
-blender --background --python-exit-code 1 --python scripts/build_scene.py -- \
-  --render all --resolution 1600 --samples 96
-```
-
-Windows PowerShell 可指定 Blender 绝对路径：
-
-```powershell
-./scripts/build.ps1 -Blender 'C:\Program Files\Blender Foundation\Blender 4.5\blender.exe' -Render all -Resolution 1600 -Samples 96
-```
-
-脚本依次建立几何和材质、验证基本场景结构、打包保存 `.blend`、导出 `.glb`、按需渲染。只建模型可用 `--render none`；只校对几何可加 `--skip-export`。
-
-如果使用直接 Blender 命令，渲染后同步画廊文件：
-
-```powershell
-Copy-Item renders/*.jpg demo/public/renders/
-Copy-Item scene/scene-manifest.json demo/public/scene-manifest.json
-```
-
-更改织物原创图案时，需要 Python、Pillow 和 NumPy：
-
-```sh
-python -m pip install -r requirements-textures.txt
-python scripts/make_textures.py
-```
-
-这些依赖用于重新生成床单、地毯、通用公告和备用蓝色图案，正常重建无需安装。正式使用的 `blue_floral_art.png` 是已经提交的 AI 辅助素材，此脚本不会重建它；提示词见 `docs/fabric-generation.md`。第三方木纹贴图的下载来源和校验值在 `assets/` 中。
-
-### 仅重新渲染现有场景
-
-```sh
+blender --background --python-exit-code 1 --python scripts/build_scene.py -- --render none
 blender --background scene/room.blend --python-exit-code 1 --python scripts/render.py -- \
-  --view bedroom --resolution 1600 --samples 96
+  --view all --resolution 1600 --samples 64
 ```
 
-支持 `bedroom / kitchen / desk / overview / all`。更高质量可用 `--resolution 2400 --samples 256`；成本取决于硬件、透明物件和反射。脚本固定使用 CPU，可在没有独立显卡的机器运行。使用受支持的 GPU 时，请在 Blender 界面配置设备并将 Cycles 的 Device 改为 GPU Compute 后渲染；仅更改 Preferences 不会改变此脚本的 CPU 设置。
+`build_scene.py` writes `scene/room.blend` and the full `scene/room.glb`. Rendering all four views overwrites `renders/` and took about an hour on my laptop. `cd scripts/web-model && npm install && npm run build` regenerates the compressed web model.
 
-单视角输出用于局部预览；更新正式交付时请使用 `--view all`，再同步四张图到 demo。发布校验要求四视角完整记录，且实际图片至少为 1600 × 1200、采样预算至少为 64。临时预览可通过 `--stats-file .local/preview-stats.json` 保留原批次记录，但不要将覆盖后的预览图直接发布。
-
-## 工程组织
-
-```text
-room-replica/
-├── scene/                 # Packed .blend and measured/estimated metadata
-├── renders/               # Four final Cycles JPEG images
-├── assets/                # Original textile graphics and licensed wood maps
-├── scripts/
-│   ├── common.py          # Modeling primitives, UVs, material/camera helpers
-│   ├── build_scene.py     # Architecture, furniture, bedding and assembly
-│   ├── props.py           # Everyday objects, cloth, electronics and luggage
-│   ├── make_textures.py   # Original deterministic textile graphics
-│   ├── render.py          # Render existing master without rebuilding geometry
-│   └── validate_delivery.py
-├── demo/                  # Vite / Three.js interactive viewer
-├── docs/                  # Research, production notes and validation evidence
-└── references/            # Private local photographs; excluded from Git
-```
-
-场景使用米、Z 轴向上；入口是 `y=0`，窗户是 `y=4.15`，衣柜/书桌为 `+x` 一侧。glTF 转为 Y 轴向上，坐标映射为 `(x, z, -y)`。物件通过描述性名称和集合分组，便于逐件替换或重新校准。家具尺寸集中在各建模函数中，场景清单记录最终结果；它不是任意户型自动生成器。
-
-## 验证与发布
-
-原生场景审计可以独立复跑，不重建、不渲染、不保存场景；检查贴图打包、尺寸、四个相机、物件尺度和水盆内部三点射线，并将原生文件的 SHA-256 与检查结果写入 `docs/native-validation.json`：
+**Checks** (no Blender needed, these run in CI):
 
 ```sh
-blender --background scene/room.blend --python-exit-code 1 --python scripts/audit_scene.py
+python -m unittest discover -s tests
+python scripts/check_assets.py     # renders, demo copies, web model, manifest
 ```
 
-独立运行 Khronos 官方 glTF 2.0 标准校验，不改动演示依赖；完整原始报告和模型指纹分别写入 `docs/gltf-validation.json` 与 `docs/gltf-validation-run.json`：
+## Privacy
 
-```sh
-npm install --prefix .local/gltf-validation --no-save --ignore-scripts --registry=https://registry.npmjs.org gltf-validator@2.0.0-dev.3.10
-node scripts/validate_gltf.cjs
-```
+The original photos are not in the repository. The laptop and tablet screens and the door notice show generic graphics, not what was really there.
 
-```sh
-python -m compileall -q scripts
-python scripts/validate_delivery.py
-cd demo
-npm ci
-npm run check
-npm run build
-```
+## License
 
-完整性脚本独立读取 GLB 容器，检查文件长度、缓冲区边界、嵌入贴图、有限坐标边界、关键家具、原生文件、四张 JPEG、视角重复、渲染完成记录和画廊同步。[原生场景验收](docs/native-validation.json) 另核对贴图打包、相机、床垫尺度和镜头/鞋孔等小部件的尺寸。[浏览器验收](docs/browser-validation.json) 记录实际交互检查。它们不能自动证明照片拟合程度，视觉检查仍是必要步骤。
+Code: MIT ([LICENSE](LICENSE)). Poly Haven textures: CC0. Textures sampled from my photos of packaged products keep the rights of whoever owns that packaging artwork.
 
-GitHub Actions 提供交付检查和 Pages 发布两个流程。修改公开模型后应重新构建、查看四个相机视角、运行检查，再更新成片；只修改网页时不需要重新渲染 Blender 场景。
+## 中文说明
 
-## 许可和隐私
-
-原创代码和随附原创模型资产使用 [MIT](LICENSE)；第三方木纹保持其 **CC0** 许可，并在 [素材清单](assets/ASSET_SOURCES.json) 中逐项记录。原始照片不随公开仓库分发，也没有向本仓库授予照片再许可。公开资产不包含原始照片路径、私人电脑屏幕内容或原图 EXIF。
-
-当前改进分支中的照片衍生贴图按各自目录的 `PROVENANCE.json` 和 README 标注来源、遮罩、推断区域及残留拍摄光照。它们属于估计表面颜色，不能称为实测反射率；其中照片区域、商品图案与商标保留原有权利，不适用本项目的 MIT 或第三方 CC0 许可。
-
-This project is an independent visual reconstruction. It is not an official university room survey or an affiliation claim. Native editable assets, reproducible source, offline renders and a self-contained web demo are included; dimensional accuracy beyond the published mattress anchor is not asserted.
+这是我按 16 张手机照片在 Blender 里手工参数化重建的宿舍房间。所有家具、杂物和织物都是可编辑的独立对象，由 Python 脚本从零生成。仓库里的 `scene/room.blend`、四张 Cycles 渲染图和网页模型是 v1 版本。之后的多视角标定和材质改进在源码里，最后一次完整构建（r10）在 v1.1.0-closeout Release 中下载。唯一的实测尺寸是标准 Twin XL 床垫（36 × 80 英寸），其余尺寸都是按照片估算的。床品褶皱、衣物堆和背包等细节仍然能看出是 CG。在线三维浏览：https://appleweiping.github.io/room-replica/
