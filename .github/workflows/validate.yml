@@ -1,9 +1,9 @@
-name: Validate delivery
+name: Checks
 on: [push, pull_request, workflow_dispatch]
 permissions:
   contents: read
 jobs:
-  integrity:
+  checks:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -12,16 +12,17 @@ jobs:
           python-version: '3.12'
       - run: python -m compileall -q scripts
       - run: python -m unittest discover -s tests -v
-      - run: python scripts/validate_delivery.py
+      - run: python scripts/check_assets.py
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
           cache: npm
           cache-dependency-path: demo/package-lock.json
-      - name: Install pinned glTF validator
-        run: npm install --prefix .local/gltf-validation --no-save --ignore-scripts gltf-validator@2.0.0-dev.3.10 --registry=https://registry.npmjs.org
+      - run: npm install --prefix .local/gltf-validation --no-save --ignore-scripts gltf-validator@2.0.0-dev.3.10
       - run: node scripts/validate_gltf.cjs
       - run: npm ci
+        working-directory: demo
+      - run: npm run check
         working-directory: demo
       - run: npm run build
         working-directory: demo

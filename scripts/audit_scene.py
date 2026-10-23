@@ -3,7 +3,7 @@
 Run from the repository root:
     blender --background scene/room.blend --python-exit-code 1 --python scripts/audit_scene.py
 
-Writes docs/native-validation.json. Failed checks raise an exception, which
+Prints a JSON summary. Failed checks raise an exception, which
 --python-exit-code 1 converts into a nonzero Blender process exit code.
 """
 
@@ -306,16 +306,10 @@ result = {
     "nonfinite_objects": nonfinite,
     "elapsed_seconds": round(time.perf_counter() - started, 3),
 }
-(root / "docs").mkdir(exist_ok=True)
-out = root / "docs/native-validation.json"
-# Re-read immediately before writing; a concurrent rebuild invalidates this audit.
+# Re-read before reporting; a concurrent rebuild invalidates this audit.
 source_hash_before_report = hashlib.sha256(source.read_bytes()).hexdigest()
 checks["native_file_unchanged_during_audit"] = source_hash_at_start == source_hash_before_report
-result["source_sha256_before_report"] = source_hash_before_report
 result["status"] = "passed" if all(checks.values()) else "failed"
-temporary = out.with_suffix(".json.tmp")
-temporary.write_text(json.dumps(result, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-temporary.replace(out)
 print(
     "NATIVE_VALIDATION",
     json.dumps(
@@ -327,7 +321,6 @@ print(
             "evaluated": evaluated,
             "images": len(images),
             "render_subdivision_differences": len(subdivision_differences),
-            "output": str(out),
         }
     ),
     flush=True,

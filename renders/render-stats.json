@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "started_at": "2026-09-08T02:15:19+00:00",
-  "source_scene": "D:\\Company\\room-replica\\scene\\room.blend",
+  "source_scene": "scene/room.blend",
   "source_scene_sha256_at_start": "707b59e0f27a8f87631ff4c6c439b9d26205066de67f595014c8d6c9129ac1ce",
   "blender_version": "4.5.13 LTS",
   "engine": "Cycles",

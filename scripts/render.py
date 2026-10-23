@@ -164,7 +164,11 @@ def main(argv=None) -> int:
     stats = {
         "schema_version": 1,
         "started_at": timestamp(),
-        "source_scene": str(source_scene),
+        "source_scene": (
+            source_scene.relative_to(ROOT).as_posix()
+            if ROOT in source_scene.parents
+            else source_scene.name
+        ),
         "source_scene_sha256_at_start": hashlib.sha256(source_scene.read_bytes()).hexdigest(),
         "blender_version": bpy.app.version_string,
         "engine": "Cycles",
