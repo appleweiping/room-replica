@@ -1,7 +1,7 @@
 # Dresser front wood — reference-derived estimates
 
 Each of the three PNG base-color maps belongs to the corresponding drawer,
-used once across its observed front. Grain comes from the user's reference 14.
+used once across its observed front. Grain comes from my reference photo 14.
 It is not a repeated generic wood sample or an AI-generated room image.
 
 The sampler excludes the power cable, its nearby shadow and the hanging label.
@@ -29,6 +29,6 @@ edges retain the old editable material, and drawer dimensions and broad room
 lighting still need refinement. This is an incremental asset, not evidence of
 photographic equivalence.
 
-These derivatives originate in the user's supplied photographs. They are not
+These derivatives come from my own photographs. They are not
 third-party CC0 textures; the repository's software license does not assign
 rights to the source photographs.

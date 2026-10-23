@@ -14,7 +14,7 @@
   "observed_texel_fraction_front_half": 0.7595062255859375,
   "highlight_reduced_observed_fraction": 0.013897538925163235,
   "basecolor_clipped_channel_fraction": 0.009858449300130209,
-  "license": "Photo-derived packaging artwork retains its underlying rights and trademarks; use is authorized by the user for this room reconstruction. Do not relabel the captured artwork CC0. The separate authored compression normal is original project artwork.",
+  "license": "Photo-derived packaging artwork retains its underlying rights and trademarks; the source photo is the author's own. Do not relabel the captured artwork CC0. The separate authored compression normal is original project artwork.",
   "files": {
     "captured-front-panel.png": {
       "bytes": 389901,

@@ -1,7 +1,7 @@
 # Masked desktop package capture v6
 
 This candidate samples the visible Lay’s logo, red band and black/gold film from
-the user's photograph 12. It does not infer the exact product model. Photographs
+my photograph 12. It does not infer the exact product model. Photographs
 2 and 9 provide appearance checks, with no multi-view pixel stitching.
 
 `desktop_package_capture_v6.refine_desktop_package_capture()` replaces only the
@@ -63,5 +63,5 @@ requires the private v5 surface/camera snapshot and already-rendered baseline,
 documented in `.local/desktop-package-capture-v6/calibrate_recipe.py`.
 
 Photo-derived product artwork retains its underlying rights and trademarks;
-the user authorized its use in this reconstruction. It must not be described
+the photo is mine. It must not be described
 as CC0. No private computer-screen content is included.

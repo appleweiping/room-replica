@@ -1,6 +1,6 @@
 # Photographed wood material estimates
 
-Editable wood materials derived deterministically from the user’s own photographs. These files contain bare wood or sampling masks; original room photographs are not included. They are **photo derivatives, not measured/scanned albedo and not CC0 stock**.
+Editable wood materials derived deterministically from my own photographs. These files contain bare wood or sampling masks; original room photographs are not included. They are **photo derivatives, not measured/scanned albedo and not CC0 stock**.
 
 Call `refine_photo_wood(M=None, texture_dir=None)` from `scripts/wood_photo_v4.py` after layout and the original wood UV pass. The default asset path is relative to the repository; an explicit asset directory is supported. The operation is idempotent. All five meshes preserve their original vertices, transforms, modifiers, and UV0. Images connect directly to Principled Base Color on UV1 / glTF TEXCOORD_1. Original coat/specular/roughness remain; the incompatible synthetic macrograin normal is disconnected on replaced surfaces.
 

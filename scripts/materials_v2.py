@@ -393,7 +393,7 @@ def _textile_image(texture_dir, rose=False):
         image = _load_image(reference, "sRGB")
         image.pack()
         image["provenance"] = (
-            "AI-assisted flat print reconstruction from user-provided textile reference; see assets/TEXTILE_V3_SOURCES.json"
+            "AI-assisted flat print reconstruction from a photo of the actual bedding; see assets/TEXTILE_V3_SOURCES.json"
         )
         return image
     filename = "rose_cotton.png" if rose else "blue_floral_art.png"
@@ -426,7 +426,7 @@ def _textile_image(texture_dir, rose=False):
         name = "MATV2 blue floral calibrated ground.png"
     image = _packed_image(name, _srgb(result), "sRGB", filename)
     image["license"] = (
-        "Derivative of project-authored / AI-assisted input; see docs/fabric-generation.md"
+        "Derivative of project-authored / AI-assisted input; see docs/AI_TEXTURES.md"
     )
     return image
 

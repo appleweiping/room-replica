@@ -1,87 +1,51 @@
-# Production notes / 制作说明
+# Production notes
 
-The editable Blender scene is the visual master. The browser demo exposes the same modeled room through glTF, with an interactive lighting setup suited to navigation. Reconstruction source, original authored graphics, downloaded texture provenance, render commands and validation evidence are included so the result can be revised and rebuilt.
+## Scale and coordinates
 
-## Reconstruction and scale
+The only real measurement I have is the bed: a standard Twin XL mattress, 36 × 80 in (0.9144 × 2.032 m). Everything else is scaled from the photos around it. The v1 scene's room is 3.00 × 4.15 × 2.82 m. The later calibrated source (see [CALIBRATION.md](CALIBRATION.md)) moves this to 3.33 × 4.54 × 3.035 m. Both are estimates, not survey data. Cabinet sizes, the window opening, cloth folds and anything hidden in the photos are my best guesses.
 
-The scene was manually parameterized from sixteen resident-supplied photographs. Repeated views establish the relationships between the window, transverse bed, wardrobe, writing desk, kitchenette, entry door and recessed sink. The model preserves the photographed everyday objects and their approximate arrangement: luggage, bedding, backpack, desktop electronics, cables, toiletries and storage.
+Blender uses metres and Z up. The entry wall is at `y=0` and the window wall at `y=4.15` (v1). glTF export is Y up, so Blender `(x, y, z)` becomes `(x, z, -y)`. Random variation uses a fixed seed, so every build gives the same scene.
 
-The published **36 × 80 inch mattress** anchors scale at **0.9144 × 2.032 m**. The modeled thickness, 0.208 m, is an estimate. The room envelope is also estimated: **3.00 × 4.15 × 2.82 m**, plus the sink recess. Cabinet sizes, window opening, door placement, cloth folds and objects obscured in the photographs have not been surveyed. [Reference research](REFERENCE_RESEARCH.md) separates the published evidence from these inferences. No unpictured bathroom or adjoining unit is asserted as observed geometry.
+## Materials
 
-Blender coordinates use metres and Z-up. The entry wall is at `y=0`; the window wall is at `y=4.15`; the wardrobe and desk occupy the positive-X side. Export to glTF uses Y-up, mapping Blender `(x, y, z)` to `(x, z, -y)`. Geometry is organized into named objects and collections. Seed **521** keeps authored variation reproducible.
+- **Wood:** Poly Haven's CC0 Red Oak Veneer diffuse and normal maps, with UVs that follow each part's long direction. A constant amber Multiply node `(0.80, 0.47, 0.16)` gives the stain, and it exports to glTF as `baseColorFactor`, so the browser model keeps the colour.
+- **Fabrics and printed items:** rose cotton, carpet weave, the generic door notice and a spare blue pattern are drawn by [`make_textures.py`](../scripts/make_textures.py). The duvet and pillowcase prints are AI-generated from my photos ([AI_TEXTURES.md](AI_TEXTURES.md)). The later dresser, desk and package textures are sampled from my photos (folders under `assets/textures/`).
+- No original photo and no real screen contents are in the scene. The laptop, tablet and door notice show generic graphics.
 
-## Geometry and materials
+## Rendering
 
-Raised cabinet doors use separate fields, rails, stiles and molding. Other scale cues include manufactured edge bevels, wood-frame bolts, individual blind slats and cords, coil heating elements, a hollow sink cabinet surrounding an unobstructed metal basin, faucet, door hardware, furniture seams and draped fabrics. Cloth surfaces and puffy garments are authored meshes with shaped folds; they are an interpretation of the photographs rather than a recovered cloth simulation.
+The four gallery images were rendered with Blender 4.5.13 LTS, Cycles on the CPU (12 threads, Intel Core i5-1240P), at 1600 × 1200, 64 samples, with denoising. `renders/render-stats.json` records each run. These were the render times:
 
-The main timber material uses Poly Haven's CC0 **Red Oak Veneer** diffuse and OpenGL normal maps. Oak UVs follow each part's principal face direction, with dimension-based repeat scales of 1.9 m along the grain and 0.72 m across it. Small deterministic offsets vary the grain among parts. A satin coat and restrained normal strength represent finished furniture. Amber stain uses a modern RGBA Multiply node with constant factor **`(0.80, 0.47, 0.16, 1)`**. The final GLB contains this same `baseColorFactor`, retaining the color treatment in the browser model.
-
-Diffuse textures use sRGB; normals use Non-Color data. The supplied roughness maps remain available as source assets, while the current finished-oak shader uses an authored roughness of 0.32. The additional CC0 Kitchen Wood set is included for material revisions. Original download URLs, authors and verified hashes are recorded in [ASSET_SOURCES.json](../assets/ASSET_SOURCES.json).
-
-Rose cotton, carpet weave, the neutral door notice and an alternative blue pattern are generated by [make_textures.py](../scripts/make_textures.py). The delivered duvet uses **`blue_floral_art.png`**, a separately AI-generated albedo informed by the photographed textile. This committed 1254 × 1254 PNG is the build input; the procedural texture script does not regenerate it. Its prompt, SHA-256, provenance and repeat-boundary limitations are documented in [fabric-generation.md](fabric-generation.md). Micro-bump shaders supply paint, ceiling, laminate and fabric surface variation. Public scene assets do not embed the original room photographs or personal screen contents. The native file packs all six used image textures, including the new floral artwork; normal use and scene rebuilding require no private reference images.
-
-## Renderer and runtime
-
-The production runtime is **Blender 4.5.13 LTS**, Windows Release, build **`daeeeca98fb0`**, built **2026-08-25 at 01:50:50**. The portable distribution came from Blender's official release directory and passed its published SHA-256 checksum. The executable is an external tool dependency and is not bundled into this repository.
-
-The local Windows machine used an **Intel Core i5-1240P**, **12 cores / 16 logical processors**, an Intel Iris Xe integrated GPU, and approximately **40 GB RAM**. Windows reported 42,643,939,328 bytes of physical memory. Rendering uses **Cycles CPU with 12 fixed threads**; [render.py](../scripts/render.py) also accepts 8 threads. No discrete-GPU performance result is claimed.
-
-The saved master uses denoising, adaptive sampling at 0.02, a maximum of 10 light bounces, and AgX / Medium High Contrast with exposure 0. Its saved sample value is **96**. This stored setting is independent of a render command's override: the delivery render run requests **1600 × 1200 pixels at 64 samples**. Each independent render run records its actual settings, completion status and elapsed time in `renders/render-stats.json`.
+| View | Lens | Time |
+| --- | --- | --- |
+| Bedroom | 21 mm | 25.0 min |
+| Kitchen | 21 mm | 19.9 min |
+| Desk | 30 mm | 15.9 min |
+| Overview (cutaway) | 42 mm | 3.5 min |
 
 ```sh
-blender --background scene/room.blend --python-exit-code 1 --python scripts/render.py -- --view all --resolution 1600 --samples 64 --threads 12
+blender --background scene/room.blend --python-exit-code 1 --python scripts/render.py -- \
+  --view all --resolution 1600 --samples 64 --threads 12
 ```
 
-The script renders the four existing cameras without rebuilding or saving over the master. Interior views restore the shell; overview applies the documented front/left-wall and ceiling cutaway. Resolution is horizontal pixels with 4:3 framing. JPEG quality is 95. Errors and completed views are recorded in the run's statistics file.
+`render.py` renders the saved cameras without changing the `.blend`. The overview hides the front wall, left wall, ceiling, ceiling light and smoke detector. Use `--view bedroom` (or another view) and `--stats-file renders/probe.json` for quick single-view tests that leave the main record alone. After a full run, copy `renders/*.jpg` to `demo/public/renders/`. `python scripts/check_assets.py` fails if the copies differ.
 
-Both `build_scene.py --render all` and `render.py --view all` use this shared renderer and produce the same batch records. Lower-resolution, lower-sample and single-camera renders remain available for iteration. **Final delivery validation requires a complete set of all four distinct expected cameras, each complete, at least 1600 × 1200 pixels and a sample budget of at least 64.** JPEG dimensions are read directly from their frame headers and compared with batch/per-image records; recorded byte sizes and synchronized gallery copies must match. An in-progress batch or stale preview image fails the release check. Running `validate_delivery.py` replaces any earlier report with a failed result when these conditions are unmet.
-
-Render batches record `source_scene_sha256_at_start` and each completed JPEG's SHA-256. Validation compares that source fingerprint with the current native file, which also supports a newly rebuilt scene. The final four-view batch uses this recording path after the sink cabinet cavity correction. `docs/validation.json` also states whether the current scene still matches the detailed native audit, which may become stale after a deliberate rebuild.
-
-To replace one view without overwriting the original batch evidence, pass a separate statistics path. Overview also hides the ceiling light fixture and smoke detector so they cannot obstruct the cutaway:
-
-```sh
-blender --background scene/room.blend --python-exit-code 1 --python scripts/render.py -- --view overview --resolution 1600 --samples 64 --stats-file renders/overview-rerender-stats.json
-```
-
-The final delivery is a single complete four-view batch. The separate statistics option above remains available for later one-view iterations; those runs do not replace the complete delivery record automatically. Only statistics are redirected; the JPEG is still replaced in `renders/`. A replaced image no longer passes the original delivery check until its records and gallery are refreshed consistently.
-
-## Native validation snapshot
-
-[native-validation.json](native-validation.json) records a read-only load of the actual delivered native file, including its SHA-256 fingerprint. The audit did not render or save the scene. It hashes the native file before inspection and again immediately before writing the report; a concurrent file change fails the audit. Re-run the committed script with:
+`scripts/audit_scene.py` is a read-only check of a `.blend`. It counts objects, materials and packed textures, confirms the cameras and mattress size, checks that small parts have plausible sizes, and casts rays into the sink to make sure the basin is open:
 
 ```sh
 blender --background scene/room.blend --python-exit-code 1 --python scripts/audit_scene.py
 ```
 
-A failed check raises an exception and exits Blender with code 1 when this command is used.
+## Browser model vs. Cycles
 
-| Check | Audited result |
-| --- | --- |
-| Native file size | 11,627,569 bytes |
-| Scene objects | 1,303 |
-| Base mesh objects / vertices / triangles | 979 / 137,777 / 260,596 |
-| Evaluated geometry vertices / triangles | 563,279 / 1,105,819 |
-| Used materials | 58 |
-| Used image textures | 6, all packed and nonempty |
-| Cameras | Bedroom, Kitchen, Desk, Overview; Bedroom active |
-| Mattress dimensions | 2.032 × 0.9144 × 0.208 m within 0.00001 m tolerance |
-| Transform and base mesh coordinates | Finite |
-| Named lenses / eyelets | 2 / 36; largest lens 4 mm, largest eyelet 7 mm; all below 20 mm |
-| Prop scale guards | All 423 prop meshes below 1.2 m; all 50 default UV-sphere props below 1 m |
-| Sink cavity | Side rays hit metal basin at z = 0.711 m; center hits metal drain strainer at z = 0.7165 m |
-| Unit system and render engine | Metric metres; Cycles |
+Cycles does the indirect light, reflections, glass and the full shader graphs. The browser uses Three.js with shadow maps, a generated room environment and its own lights. Blender's area lights are not exported. The browser tone-maps with ACES, while Blender uses AgX. Procedural bump and other Blender-only nodes do not survive glTF export. Use the web viewer to look at the layout. The renders are the reference for materials and light.
 
-Evaluated counts apply the current **VIEWPORT dependency graph**, including bevelled curves and text converted to mesh. They are actual evaluated counts rather than the smaller authored-mesh count. Five cloth objects have subdivision level 1 in the viewport and level 2 for rendering, so final Cycles geometry can be denser. Collections, per-type counts and the specific subdivision differences are included in the JSON report. The report records **58 loaded materials** separately from the pre-save manifest's 59 entries; the unused material is absent from the saved native file.
+`build_scene.py` writes the full export to `scene/room.glb` (about 42 MB). The demo loads a 6 MB copy made by [`scripts/web-model`](../scripts/web-model/make_web_model.mjs):
 
-Semantic scale checks supplement structural checks: camera lenses and shoe eyelets must stay below 20 mm, meshes in `Props /` collections below 1.2 m, and the default UV-sphere props below 1 m. Long cable curves are excluded from these prop-mesh bounds. Three downward first-hit rays start inside the basin opening: side samples must reach the basin and the center may reach the drain, with all hit heights between 0.68 and 0.76 m. This detects a cabinet body incorrectly filling the bowl. These targeted checks catch implausibly enlarged parts that could still have finite coordinates; they do not replace visual inspection or prove complete photo agreement.
+```sh
+cd scripts/web-model
+npm install
+npm run build        # scene/room.glb -> demo/public/models/room-web.glb
+```
 
-## Cycles and browser differences
-
-Cycles resolves indirect illumination, scene reflections, transmission and the full material graphs. The browser uses Three.js rasterization, shadow maps, a room environment and its own lights. Blender area lights are intentionally excluded from the glTF export. The browser uses ACES filmic tone mapping while the native scene uses AgX; exposure, reflection and contrast therefore differ. Mirror surfaces in the browser reflect its environment lighting rather than ray-tracing the modeled room.
-
-Portable image textures, metallic/roughness values, supported coating parameters and the oak color factor survive export. Procedural micro-bump and other Blender-specific node effects are not fully represented in glTF. The interactive model is suitable for inspecting layout and geometry; the Cycles gallery is the intended reference for final lighting and materials.
-
-Dense sampled paths use polygon splines with restrained bevel tessellation; shorter paths retain smooth Bézier interpolation. The final **293 curve objects contribute 185,600 evaluated triangles**, within the complete model's 1,105,819 evaluated triangles. The browser merges compatible static meshes at runtime; cutaway parts and unsupported merge cases stay separate. The actual pre/post counts are recorded in the browser validation report. Mobile and integrated-GPU performance varies; this release does not claim a fixed frame rate or include automatic levels of detail.
-
-中文说明：这是依据照片和官方床垫尺度制作的可编辑视觉重建，房间尺寸及遮挡细节仍包含估算。原生文件的六张已用贴图全部打包；其中最终蓝色花卉贴图由 AI 参考照片生成，程序脚本只重建其余图案及备用蓝色图案。四个相机、床垫尺度、镜头和鞋孔等小零件的尺寸通过最终文件核查；盆腔三点射线确认金属盆底没有被柜体遮挡。曲线细分已优化，网页模型的光照、镜面和程序化材质与 Cycles 渲染仍存在已说明的差异；移动设备流畅度须以实际设备为准。
+This step shrinks textures to 1024 px JPEG, then quantizes and meshopt-compresses the geometry. It keeps node names and cameras, because the viewer finds walls, doors and viewpoints by name. At load time the viewer merges static meshes that share a material: the 1,279 meshes in the file become 262.

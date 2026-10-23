@@ -168,7 +168,7 @@ report = {
     "observed_texel_fraction_front_half": float(np.mean(source_valid[:, :512])),
     "highlight_reduced_observed_fraction": float(np.mean(suppression[source_valid] > 0.01)),
     "basecolor_clipped_channel_fraction": float(np.mean(outside)),
-    "license": "Photo-derived packaging artwork retains its underlying rights and trademarks; use is authorized by the user for this room reconstruction. Do not relabel the captured artwork CC0. The separate authored compression normal is original project artwork.",
+    "license": "Photo-derived packaging artwork retains its underlying rights and trademarks; the source photo is the author's own. Do not relabel the captured artwork CC0. The separate authored compression normal is original project artwork.",
     "files": files,
 }
 (P / "PROVENANCE.json").write_text(json.dumps(report, indent=2), encoding="utf8")

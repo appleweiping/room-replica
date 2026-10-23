@@ -76,7 +76,7 @@ files = {
 (P / "PROVENANCE.json").write_text(
     json.dumps(
         {
-            "author": "Original procedural graphics authored by Codex for this room reconstruction",
+            "author": "Original procedural graphics made for this room reconstruction",
             "method": "Deterministic NumPy/Pillow/SciPy raster drawing; no downloaded images, no photograph pixels, no personal screen information.",
             "seed": 52105,
             "references": [

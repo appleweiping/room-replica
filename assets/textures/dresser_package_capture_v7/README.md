@@ -2,7 +2,7 @@
 
 This independent candidate rebuilds the light-blue wet-wipe pack and yellow-green
 snack packet as closed, editable soft-package meshes. Only their necessary
-printed surface pixels are sampled from the user's photograph 11. References
+printed surface pixels are sampled from my photograph 11. References
 10 and 14 check physical placement; they are not stitched into the texture.
 The full photographs are not included in this folder.
 
@@ -78,6 +78,6 @@ preserved in `sampling-recipe.json`; output image hashes are in
 do not recover unseen fine writing. Exact snack product names/models are not
 guessed.
 
-The user authorized reconstruction using these photographs. Photograph-derived
+These are my own photographs. Photograph-derived
 packaging graphics retain underlying rights and trademarks and are not labeled
 CC0. The independently authored pressure maps are original project artwork.
