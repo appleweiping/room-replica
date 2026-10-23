@@ -1,0 +1,15 @@
+{
+  "name": "room-replica-web-model",
+  "private": true,
+  "type": "module",
+  "description": "Shrinks the full Blender GLB export into the model the browser demo loads",
+  "scripts": {
+    "build": "node make_web_model.mjs ../../scene/room.glb ../../demo/public/models/room-web.glb"
+  },
+  "dependencies": {
+    "@gltf-transform/core": "4.5.1",
+    "@gltf-transform/extensions": "4.5.1",
+    "@gltf-transform/functions": "4.5.1",
+    "meshoptimizer": "0.22.0"
+  }
+}

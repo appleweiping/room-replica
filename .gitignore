@@ -2,6 +2,7 @@ references/*
 !references/README.md
 scene/*.blend1
 scene/*.blend2
+scene/room.glb
 *.log
 __pycache__/
 .venv/

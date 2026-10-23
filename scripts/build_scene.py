@@ -1036,7 +1036,9 @@ def main():
     bpy.ops.wm.save_as_mainfile(filepath=str(OUTPUT_ROOT / "scene" / "room.blend"), compress=True)
     print("SCENE_READY", json.dumps(manifest), flush=True)
     if not ARGS.skip_export:
-        dest = OUTPUT_ROOT / "demo" / "public" / "models"
+        # Full-quality export (about 42 MB). The demo loads a smaller copy made
+        # by scripts/web-model; this file is attached to the GitHub release.
+        dest = OUTPUT_ROOT / "scene"
         dest.mkdir(parents=True, exist_ok=True)
         # Keep the same oak stain graph: its constant Multiply exports as a
         # portable glTF baseColorFactor, preserving the Cycles amber finish.

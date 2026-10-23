@@ -48,7 +48,7 @@ const words = {
     fullscreen: "全屏查看",
     exitFullscreen: "退出全屏",
     reset: "重置视角",
-    modelDownload: "下载 3D 模型",
+    modelDownload: "下载完整模型（GLB，42 MB）",
     noteLabel: "关于精度",
     shortNote:
       "依照照片重建；房间尺寸为估算。可交互画面的光照与材质效果与离线渲染有所差异。",
@@ -71,11 +71,10 @@ const words = {
       "覆盖房间、家具、床品、天花与桌面。利用不同观察角度核对位置和遮挡关系。",
     scaleTitle: "0.914 × 2.032 m",
     scaleText:
-      "UMN 官方公布的 Yudof Twin XL 床尺寸。它提供尺度参考；房间长宽和层高仍需实测。",
+      "标准 Twin XL 床垫（36 × 80 英寸）。它提供尺度参考；房间长宽和层高仍需实测。",
     methodTitle: "可编辑的场景",
     methodText:
       "Blender 中构建几何、材质与灯光；网页以 GLB 展示。未拍到的表面与尺寸采用明确记录的推算。",
-    source: "查看 UMN 官方家具资料 ↗",
     footerTitle: "Room, remembered.",
     footerText: "一个被认真记录的日常空间。",
     footerNote: "照片参考重建 · 尺寸非实测",
@@ -136,7 +135,7 @@ const words = {
     fullscreen: "Full screen",
     exitFullscreen: "Exit full screen",
     reset: "Reset view",
-    modelDownload: "Download 3D model",
+    modelDownload: "Download the full model (GLB, 42 MB)",
     noteLabel: "A NOTE ON ACCURACY",
     shortNote:
       "Rebuilt from photographs; room dimensions are estimated. Real-time lighting and materials differ from the offline renders.",
@@ -159,11 +158,10 @@ const words = {
       "Views of the room, furniture, bedding, ceiling and desktop. Multiple angles help resolve positions and occlusions.",
     scaleTitle: "0.914 × 2.032 m",
     scaleText:
-      "The Twin XL bed dimensions published by UMN for Yudof. A scale reference; the room itself has not been measured.",
+      "A standard Twin XL mattress (36 × 80 in). A scale reference; the room itself has not been measured.",
     methodTitle: "An editable scene",
     methodText:
       "Geometry, materials and lighting built in Blender; a GLB for the browser. Unseen surfaces and dimensions are documented estimates.",
-    source: "View official UMN furnishing details ↗",
     footerTitle: "Room, remembered.",
     footerText: "An everyday space, carefully observed.",
     footerNote: "Photo-guided reconstruction · Dimensions estimated",
@@ -179,9 +177,10 @@ const words = {
       "WebGL 2 is unavailable on this device. You can still explore the render gallery below.",
   },
 };
-let language = "zh";
+let language = /^zh/i.test(navigator.language || "") ? "zh" : "en";
 try {
-  if (localStorage.getItem("room-language") === "en") language = "en";
+  const saved = localStorage.getItem("room-language");
+  if (saved === "en" || saved === "zh") language = saved;
 } catch {
   /* Storage may be disabled. */
 }
@@ -219,7 +218,7 @@ document.querySelector("#app").innerHTML = `
         <div class="stage-bottom"><span class="stage-hint" data-i18n="drag">${t("drag")}</span><span class="scene-status" id="scene-status">GLB / PBR</span></div>
       </div><aside class="control-panel"><fieldset><legend data-i18n="viewpoints">${t("viewpoints")}</legend><div class="view-buttons">${["dollhouse", "bedroom", "kitchen", "desk"].map((key, i) => `<button class="view-button ${i === 0 ? "active" : ""}" data-view="${key}" aria-pressed="${i === 0}"><span class="view-number">0${i + 1}</span>${label(key)}${icon("arrow")}</button>`).join("")}</div></fieldset>
         <fieldset class="adjustments"><legend data-i18n="adjust">${t("adjust")}</legend><label class="switch-row"><span data-i18n="cutaway">${t("cutaway")}</span><input id="cutaway" type="checkbox" role="switch" checked/><span class="switch" aria-hidden="true"></span></label><p class="control-help" data-i18n="cutawayHelp">${t("cutawayHelp")}</p><div class="select-row"><label for="lighting" data-i18n="lighting">${t("lighting")}</label><select id="lighting"><option value="daylight" data-i18n="daylight">${t("daylight")}</option><option value="warm" data-i18n="warm">${t("warm")}</option></select></div><div class="range-label"><label for="exposure" data-i18n="exposure">${t("exposure")}</label><output for="exposure" id="exposure-value">0.80</output></div><input type="range" id="exposure" min="0.5" max="1.8" step="0.05" value="0.8"/><div class="select-row"><label for="quality" data-i18n="quality">${t("quality")}</label><select id="quality"><option value="high" data-i18n="high">${t("high")}</option><option value="balanced" data-i18n="balanced">${t("balanced")}</option></select></div><p class="control-help" data-i18n="qualityHelp">${t("qualityHelp")}</p><label class="switch-row"><span data-i18n="autoRotate">${t("autoRotate")}</span><input id="rotate" type="checkbox" role="switch"/><span class="switch" aria-hidden="true"></span></label></fieldset>
-        <a href="${asset("models/room.glb")}" download="room-replica.glb" class="download-button" id="model-download">${icon("download")}${label("modelDownload")}</a><div class="accuracy-note">${label("noteLabel", "span", 'class="tiny-label"')}${label("shortNote", "p")}</div>
+        <a href="https://github.com/appleweiping/room-replica/releases/download/v1.0.0/room.glb" class="download-button" id="model-download">${icon("download")}${label("modelDownload")}</a><div class="accuracy-note">${label("noteLabel", "span", 'class="tiny-label"')}${label("shortNote", "p")}</div>
       </aside></div>
     </section>
     <section id="gallery" class="gallery-section"><div class="section-heading"><div>${label("galleryEyebrow", "p", 'class="eyebrow"')}${label("galleryTitle", "h2")}</div>${label("galleryIntro", "p")}</div><div class="gallery-grid">${renderKeys.map((key, i) => `<button class="gallery-item" data-render="${key}" aria-label="${t(key === "overview" ? "overviewCaption" : key + "Caption")}"><div class="gallery-image"><img src="${asset(`renders/${key}.jpg`)}" alt="${t(key + "Caption")}" loading="lazy"/><span class="render-fallback" data-i18n="unavailable">${t("unavailable")}</span><span class="enlarge">${icon("plus")}</span></div><div class="gallery-caption"><span class="gallery-number">0${i + 1}</span>${label(key + "Caption")}<span class="image-type">BLENDER RENDER</span></div></button>`).join("")}</div></section>
@@ -230,7 +229,7 @@ document.querySelector("#app").innerHTML = `
     ]
       .map(
         ([key, i]) =>
-          `<article><span class="archive-index">${i} / ${key.toUpperCase()}</span>${label(key + "Title", "h3")}${label(key + "Text", "p")}${key === "scale" ? `<a href="https://housing.umn.edu/yudof" target="_blank" rel="noreferrer" data-i18n="source">${t("source")}</a>` : ""}</article>`,
+          `<article><span class="archive-index">${i} / ${key.toUpperCase()}</span>${label(key + "Title", "h3")}${label(key + "Text", "p")}</article>`,
       )
       .join("")}</div></section>
   </main>
@@ -402,7 +401,7 @@ async function load() {
       const { RoomViewer } = await import("./viewer.js");
       viewer = new RoomViewer(document.querySelector("#canvas-host"));
     }
-    await viewer.load(asset("models/room.glb"), (percentage) => {
+    await viewer.load(asset("models/room-web.glb"), (percentage) => {
       document.querySelector("#progress").style.width = `${percentage}%`;
       document.querySelector("#progress-text").textContent = `${percentage}%`;
     });

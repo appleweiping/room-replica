@@ -3,8 +3,26 @@ import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
 import { mergeGeometries } from "three/addons/utils/BufferGeometryUtils.js";
+import { MeshoptDecoder } from "three/addons/libs/meshopt_decoder.module.js";
 
 const CUTAWAY_DETAIL = /^(Entry_Door|Interior_Door|Ceiling_Light|Smoke_detector)/i;
+
+// The web model is meshopt-compressed with quantized (normalized integer)
+// vertex data. Batching bakes world transforms into the vertices, which would
+// clamp integer positions, so batched copies are converted to float first.
+function toFloatAttributes(geometry) {
+  for (const [name, attribute] of Object.entries(geometry.attributes)) {
+    if (attribute.array instanceof Float32Array && !attribute.isInterleavedBufferAttribute)
+      continue;
+    const { count, itemSize } = attribute;
+    const out = new Float32Array(count * itemSize);
+    const getters = ["getX", "getY", "getZ", "getW"].slice(0, itemSize);
+    for (let i = 0; i < count; i++)
+      for (let c = 0; c < itemSize; c++) out[i * itemSize + c] = attribute[getters[c]](i);
+    geometry.setAttribute(name, new THREE.BufferAttribute(out, itemSize));
+  }
+  return geometry;
+}
 
 function isCutawayDetail(object) {
   for (let current = object; current; current = current.parent) {
@@ -123,7 +141,7 @@ export class RoomViewer {
   }
 
   async load(url, onProgress) {
-    const loader = new GLTFLoader();
+    const loader = new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
     const gltf = await loader.loadAsync(url, (event) => {
       onProgress(
         event.total
@@ -221,8 +239,8 @@ export class RoomViewer {
       const attributes = Object.entries(object.geometry.attributes)
         .sort(([a], [b]) => a.localeCompare(b))
         .map(
-          ([name, value]) =>
-            `${name}:${value.itemSize}:${value.normalized}:${value.array.constructor.name}`,
+          // every batched copy is converted to float, so only the layout matters
+          ([name, value]) => `${name}:${value.itemSize}`,
         )
         .join("|");
       const key = `${object.material.uuid}:${Boolean(object.geometry.index)}:${object.castShadow}:${object.receiveShadow}:${attributes}`;
@@ -233,7 +251,7 @@ export class RoomViewer {
     for (const objects of groups.values()) {
       if (objects.length < 2) continue;
       const geometries = objects.map((object) => {
-        const geometry = object.geometry.clone();
+        const geometry = toFloatAttributes(object.geometry.clone());
         geometry.applyMatrix4(inverseRoot.clone().multiply(object.matrixWorld));
         return geometry;
       });
