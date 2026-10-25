@@ -1,4 +1,4 @@
-"""Bounded photo-constrained quilt refinement, after the final bed layout.
+"""Small photo-matched reshaping of the blue quilt, after the final bed layout.
 
 Only the blue quilt and its bound-edge seam are changed. The lower contact shell,
 sheet, mattress, bed and materials remain outside this operation. This is an

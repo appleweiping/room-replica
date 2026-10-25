@@ -868,7 +868,7 @@ def validate_and_manifest(cameras, bed_support=None):
 
 
 def render_views(cameras):
-    """Use the same camera logic and auditable statistics as saved-scene renders."""
+    """Render with the same camera logic and render-stats output as saved-scene renders."""
     import render as saved_renderer
 
     saved_renderer.ROOT = OUTPUT_ROOT

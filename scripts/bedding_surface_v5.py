@@ -1,6 +1,6 @@
 """Localized pressure folds for the already calibrated blue quilt.
 
-This is a deterministic surface refinement, not another macro pose or cloth
+This is a fixed surface refinement, not another macro pose or cloth
 solve. Curved, branching crease fans redistribute the outer filling by a few
 millimetres. A monotonic vertical map leaves the contact casing untouched and
 cannot reverse the ordering of surfaces above the same XY point. The printed
@@ -119,14 +119,14 @@ def fold_field(xy, config=None):
 
 
 def warp_surface_points(points, config=None):
-    """Return a bounded injective world-space warp; no input is modified."""
+    """Return the warped points (displacement capped, never folding over itself); inputs are not modified."""
     c = (
         config
         if isinstance(config, BeddingSurfaceConfig)
         else BeddingSurfaceConfig(**(config or {}))
     )
     if not 0 < c.displacement_limit_m <= 0.020 or c.release_height_m <= 0:
-        raise ValueError("Use a positive bounded displacement and release height")
+        raise ValueError("Use a positive displacement limit (at most 20 mm) and release height")
     if c.displacement_limit_m * 1.5 >= c.release_height_m:
         raise ValueError("Vertical derivative could reverse; increase release height")
     if c.contact_lock_z + c.release_height_m > 0.825:
