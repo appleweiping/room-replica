@@ -5,7 +5,7 @@ const words = {
     project: "私人房间 · 三维重建",
     explore: "空间探索",
     gallery: "渲染画廊",
-    notes: "复刻档案",
+    notes: "制作方法",
     language: "EN",
     eyebrow: "A PERSONAL SPACE, RECONSTRUCTED",
     title: "把日常，留在空间里。",
@@ -62,10 +62,10 @@ const words = {
     overviewCaption: "全景 · 家具与空间关系",
     unavailable: "此渲染尚未包含在当前构建中",
     close: "关闭",
-    archiveEyebrow: "02 / RECONSTRUCTION ARCHIVE",
-    archiveTitle: "细节有依据，尺度有边界。",
+    archiveEyebrow: "02 / NOTES",
+    archiveTitle: "制作方法",
     archiveIntro:
-      "照片中的陈设与材质是重建的主要依据，公开的家具尺寸提供尺度参考。",
+      "物品和材质按照片制作，尺度以一张标准 Twin XL 床垫为准。",
     photosTitle: "16 张参考照片",
     photosText:
       "覆盖房间、家具、床品、天花与桌面。利用不同观察角度核对位置和遮挡关系。",
@@ -92,7 +92,7 @@ const words = {
     project: "A PERSONAL ROOM · RECONSTRUCTED",
     explore: "Explore",
     gallery: "Render gallery",
-    notes: "The archive",
+    notes: "How it was built",
     language: "中文",
     eyebrow: "A PERSONAL SPACE, RECONSTRUCTED",
     title: "Room, remembered.",
@@ -149,10 +149,10 @@ const words = {
     overviewCaption: "Overview · The space and its contents",
     unavailable: "This render is not included in the current build",
     close: "Close",
-    archiveEyebrow: "02 / RECONSTRUCTION ARCHIVE",
-    archiveTitle: "Grounded in detail. Honest about scale.",
+    archiveEyebrow: "02 / NOTES",
+    archiveTitle: "How it was built",
     archiveIntro:
-      "The photographs guide the objects and materials. Published furniture dimensions provide a reference for scale.",
+      "The photographs guide the objects and materials. A standard Twin XL mattress sets the scale.",
     photosTitle: "16 reference photographs",
     photosText:
       "Views of the room, furniture, bedding, ceiling and desktop. Multiple angles help resolve positions and occlusions.",
@@ -207,7 +207,7 @@ const asset = (path) => `${import.meta.env.BASE_URL}${path}`;
 document.querySelector("#app").innerHTML = `
   <header class="topbar"><a class="brand" href="#" aria-label="Room, remembered home">${icon("cube")}<span>ROOM<span class="brand-dot">.</span></span></a>${label("project", "span", 'class="project-label"')}<nav aria-label="Main navigation"><a href="#room">${label("explore")}</a><a href="#gallery">${label("gallery")}</a><a href="#archive">${label("notes")}</a></nav><button class="language-button" id="language" aria-label="Switch language">${label("language")}</button></header>
   <main>
-    <section class="intro"><div>${label("eyebrow", "p", 'class="eyebrow"')}${label("title", "h1")}${label("intro", "p", 'class="intro-text"')}</div><div class="intro-aside"><span class="edition">SCENE STUDY<br><strong>001</strong></span><div class="tags">${label("tag1")}${label("tag2")}${label("tag3")}</div></div></section>
+    <section class="intro"><div>${label("eyebrow", "p", 'class="eyebrow"')}${label("title", "h1")}${label("intro", "p", 'class="intro-text"')}</div><div class="intro-aside"><span class="edition">VERSION<br><strong>1.0</strong></span><div class="tags">${label("tag1")}${label("tag2")}${label("tag3")}</div></div></section>
     <section id="room" class="room-section" aria-labelledby="viewer-title">
       <div class="section-bar"><div><span class="status-dot"></span>${label("live")}</div><span class="section-index">360° / 3D</span></div>
       <div class="viewer-layout"><div class="stage" id="stage">
