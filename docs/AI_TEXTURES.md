@@ -9,7 +9,16 @@ Two printed fabrics in the scene come from an image generator rather than a phot
 
 Neither image is a scan, and neither matches the real fabric pixel for pixel. The flower and ornament placement is newly generated. The duvet print was asked to tile seamlessly, but its opposite edges differ by 8–13 out of 255 per channel on average, so it is mapped once across the duvet instead of repeated.
 
-Everything else is either a CC0 download from Poly Haven (see `assets/ASSET_SOURCES.json`), drawn by `scripts/make_textures.py`, or sampled from my own photos (the wood, dresser and package folders under `assets/textures/`, each with its own README).
+The later revision on `main` also uses four more generated images, made the same way from my photos:
+
+| Texture | Used for | Notes in |
+| --- | --- | --- |
+| `assets/textures/blue_floral_panel_v6.png` | the duvet, as one full panel | `blue_floral_panel_v6.provenance.json` |
+| `assets/textures/blue_floral_reference_v3.png` | blue floral cloth that the v6 panel does not cover | `assets/TEXTILE_V3_SOURCES.json` |
+| `assets/textures/rose_cotton_reference_v3.png` | the rose bedsheet | `assets/TEXTILE_V3_SOURCES.json` |
+| `assets/textures/oak_honey_straight_reference_v3.png` | the plainer straight-grain oak on some furniture | `assets/WOOD_V3_SOURCES.json` |
+
+Everything else is a CC0 download from Poly Haven, drawn by a script, or sampled from my own photos. [assets/README.md](../assets/README.md) lists which is which.
 
 ## Duvet prompt
 

@@ -20,7 +20,7 @@ I wanted to see how close I could get to a real, lived-in room by modelling it b
 - **`renders/`**: the four Cycles renders above.
 - **`demo/`**: the Three.js viewer, hosted on GitHub Pages. You can orbit the whole room with the near walls cut away, jump to the bedroom, kitchen and desk cameras, and change the light and exposure. It loads a 6 MB compressed model. The full 42 MB `room.glb` is on the [v1.0.0 release](https://github.com/appleweiping/room-replica/releases/tag/v1.0.0).
 - **`scripts/`**: `build_scene.py` and about 40 modules it calls (geometry, materials, lights, cameras), plus `render.py`, `check_assets.py` and the web-model compressor.
-- **`assets/`**: textures. They are CC0 wood from Poly Haven, patterns drawn by script, surfaces sampled from my photos, and two AI-generated fabric prints ([AI_TEXTURES.md](docs/AI_TEXTURES.md)).
+- **`assets/`**: textures. They are CC0 wood from Poly Haven, patterns drawn by script, surfaces sampled from my photos, and a few AI-generated prints for the bedding, the pillowcase and one oak veneer ([AI_TEXTURES.md](docs/AI_TEXTURES.md)). [assets/README.md](assets/README.md) says where each texture came from.
 
 ![The browser viewer, whole-room view](docs/img/viewer.jpg)
 
@@ -81,7 +81,7 @@ The original photos are not in the repository. The laptop and tablet screens and
 
 ## License
 
-Code: MIT ([LICENSE](LICENSE)). Poly Haven textures: CC0. Textures sampled from my photos of packaged products keep the rights of whoever owns that packaging artwork.
+The code is MIT ([LICENSE](LICENSE)). The Poly Haven textures are CC0, and [assets/README.md](assets/README.md) lists their sources. My original photos are not in the repository and are not licensed. The textures sampled from them (four folders under `assets/textures/`, listed in the same file) are not covered by MIT or CC0, and any product artwork or trademarks they show belong to their owners.
 
 ## 中文说明
 

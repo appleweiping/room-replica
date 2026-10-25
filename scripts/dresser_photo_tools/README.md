@@ -1,20 +1,7 @@
-# Rebuild the photographed drawer assets
+# Drawer front textures
 
-Scene construction uses the committed PNGs and needs no private photographs.
-This optional authoring recipe requires the exact reference-14 photograph
-identified by SHA-256 in the asset provenance, plus Python, NumPy, SciPy and
-Pillow. It verifies the photograph hash before processing it.
+`rebuild.py` remakes the drawer-front PNGs in `assets/textures/dresser_photo_v5/` from my photo 14. That photo is not in the repository, so this is mostly for my own use; the scene build only needs the committed PNGs. The script checks the photo's hash before using it, needs NumPy, SciPy and Pillow, and writes to `.local/dresser-photo-rebuild` (or `--output-dir`) so the committed files stay untouched.
 
-```powershell
-python scripts/dresser_photo_tools/rebuild.py --reference "path/to/reference14.jpg"
+```sh
+python scripts/dresser_photo_tools/rebuild.py --reference path/to/photo14.jpg
 ```
-
-The default output is `.local/dresser-photo-rebuild`; the committed assets are
-not overwritten. `--output-dir` selects another destination. Source wood is
-rectified, exclusions filled from the same drawer, and the recorded first-order
-illumination/height response applied. This reproduces all fifteen delivered
-wood/mask PNGs. It performs no download, upload, generative processing or render.
-
-The frozen color-response coefficients were fitted against actual Cycles crops
-under the documented room lighting and per-camera exposure. Rebuilding these
-maps does not re-estimate the scene illumination or prove photographic accuracy.
